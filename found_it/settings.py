@@ -146,14 +146,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-
-
-cp -r /workspace/.pip-modules/lib/python3.12/site-packages/allauth/templates/* ./templates/allauth
-
-/workspace/.pip-modules/lib/python3.12/site-packages
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
