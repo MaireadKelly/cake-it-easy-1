@@ -56,13 +56,58 @@ body {
     border: 1px solid black !important;
 }
 
+/* Logo styling */
+.logo-img {
+    height: 50px;
+    /* Adjust as needed */
+}
+
+/* Navbar links */
+.nav-link {
+    color: #333;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    color: #007bff;
+    /* Change hover color */
+}
+
+/* Button hover effects */
+.btn-outline-secondary:hover {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+/* Shopping cart */
+.shopping-cart .basket-total {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Hover effect on shopping cart */
+.shopping-cart a:hover .bi-cart-fill {
+    color: #007bff;
+}
+
+/* Adjust the container-fluid spacing if needed */
+.container-fluid {
+    max-width: 1200px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
 @media (min-width: 1200px) {
-  .container {
-    max-width: 80%;
-  }
+    .container {
+        max-width: 80%;
+    }
 }
 
 /* fixed top navbar only on medium and up */

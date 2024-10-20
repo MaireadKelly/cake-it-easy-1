@@ -1,38 +1,49 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Cake it Easy</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+{% load static %}
+
+<header class="container-fluid py-3">
+    <div class="d-flex justify-content-between align-items-center">
+        <!-- Logo on the left -->
+        <div class="logo">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'images/logo.png' %}" alt="Cake it Easy Logo" class="logo-img" />
+            </a>
+        </div>
+
+        <!-- Navigation Links in the center -->
+        <nav class="d-flex align-items-center">
+            <ul class="navbar-nav d-flex flex-row">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link px-3" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Our Story</a>
+                    <a class="nav-link px-3" href="#">Our Story</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Shop Now</a>
+                    <a class="nav-link px-3" href="#">Shop Now</a>
                 </li>
             </ul>
+        </nav>
 
-            <!-- Icons and Login/Register -->
-            <form class="d-flex align-items-center">
-                <!-- User Account Icon -->
-                <a href="#" class="me-3">
-                    <i class="bi bi-person-circle" style="font-size: 1.5rem;"></i>
-                </a>
-
-                <!-- Login/Signup Links -->
-                <a href="#" class="btn btn-outline-primary me-2">Login</a>
-                <a href="#" class="btn btn-outline-secondary">Register</a>
-
-                <!-- Shopping Cart Icon -->
-                <a href="#" class="ms-3">
-                    <i class="bi bi-cart" style="font-size: 1.5rem;"></i>
-                </a>
+        <!-- Search bar, Login, and Shopping Cart on the right -->
+        <div class="d-flex align-items-center">
+            <!-- Search bar -->
+            <form class="d-flex me-4">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
             </form>
+
+            <!-- Login/Register -->
+            <div class="me-4">
+                <a href="#" class="btn btn-outline-secondary">Login / Register</a>
+            </div>
+
+            <!-- Shopping Cart with total below -->
+            <div class="shopping-cart">
+                <a href="#" class="btn btn-outline-secondary position-relative">
+                    <i class="bi bi-cart-fill"></i>
+                    <!-- Basket total below the icon -->
+                    <span class="basket-total d-block text-center">€0.00</span>
+                </a>
+            </div>
         </div>
     </div>
-</nav>
+</header>
