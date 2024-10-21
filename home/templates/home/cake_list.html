@@ -1,0 +1,9 @@
+
+{% for cake in cakes %}
+    <h2>{{ cake.name }}</h2>
+    <p>{{ cake.description }}</p>
+    <p>{{ cake.category }}</p>
+    <p>${{ cake.price }}</p>
+    <img src="{{ cake.image.url }}" alt="{{ cake.name }}">
+    <a href="{% url 'order_create' %}">Order</a>
+{% endfor %}
