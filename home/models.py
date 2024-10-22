@@ -20,11 +20,8 @@ class Cake(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to="cakes/")
     slug = models.SlugField(unique=True, blank=True)
-    category = models.CharField(
-        max_length=50, choices=OCCASION_CHOICES, default="other"
-    )
-    available_stock = models.PositiveIntegerField(default=0)
-
+    category = models.CharField(max_length=50, choices=OCCASION_CHOICES, default="other")
+    
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
