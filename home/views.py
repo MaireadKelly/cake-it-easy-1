@@ -24,7 +24,12 @@ def order_create(request):
     if request.method == "POST":
         form = OrderForm(request.POST)
         if form.is_valid():
-            form.save()
+            order = form.save(commit=False)
+            order.customer = request.user.customer # Assuming user is logged in
+            # if the user didn't provide a delivery address, use their primary address
+            if not order.delivery_address:
+                order.delivery_address = request.user.customer.address
+                order.save()
             return redirect("cake_list")
     else:
         form = OrderForm()

@@ -43,13 +43,7 @@ class Cake(models.Model):
 
 class Order(models.Model):
     cake = models.ForeignKey(Cake, on_delete=models.CASCADE)  # Capital 'C' here
-    customer = models.ForeignKey(
-        "Customer",
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True,
-        related_name="orders",
-    )
+    customer = models.ForeignKey("Customer",on_delete=models.CASCADE, blank=True, null=True, related_name="orders")
     quantity = models.PositiveIntegerField()
     inscription = models.CharField(max_length=255, default="No inscription")
     price = models.DecimalField(max_digits=10, decimal_places=2, editable=False)
@@ -64,6 +58,7 @@ class Order(models.Model):
         default="pending",
     )
     delivery_time = models.DateTimeField()
+    delivery_address = models.CharField(max_length=255, blank=True, null=True)  # New field for custom delivery address
 
     def save(self, *args, **kwargs):
         self.price = self.cake.price * self.quantity
@@ -88,7 +83,7 @@ class Customer(models.Model):
 
 
 class Comment(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)  # Use Customer here
+    customer = models.ForeignKey("Customer",on_delete=models.CASCADE, blank=True, null=True, related_name="comments")  # Use Customer here
     cake = models.ForeignKey(Cake, on_delete=models.CASCADE, related_name="comments")
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -101,7 +96,7 @@ from django.core.exceptions import ValidationError
 
 
 class Rating(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey("Customer",on_delete=models.CASCADE, blank=True, null=True, related_name="ratings")
     cake = models.ForeignKey(Cake, on_delete=models.CASCADE, related_name="ratings")
     rating = models.PositiveIntegerField(default=1)
 
