@@ -4,15 +4,8 @@ from home.models import Cake, Customer
 
 # Create your models here.
 class Basket(models.Model):
-    customer = models.ForeignKey(
-        Customer,
-        on_delete=models.CASCADE,
-        related_name="baskets",
-        null=True,
-        blank=True,
-    )
-    session_key = models.CharField(
-        max_length=255, null=True, blank=True
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="baskets", null=True, blank=True)
+    session_key = models.CharField(max_length=255, null=True, blank=True
     )  # For guest checkout
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
@@ -22,7 +15,9 @@ class Basket(models.Model):
 
     @property
     def total_price(self):
-        return sum(item.total_price for item in self.items.all())  # Calculate total price of basket items
+        return sum(
+            item.total_price for item in self.items.all()
+        )  # Calculate total price of basket items
 
 
 class BasketItem(models.Model):

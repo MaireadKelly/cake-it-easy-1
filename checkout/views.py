@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect
+from django.db import models
 from .models import Order
-from .basket.models import Basket
+from .basket.models import Basket, BasketItem
 from home.models import Customer
 
 # Create your views here.
 
 def checkout(request):
     customer = request.user.customer
-    Basket = Basket.objects.filter(customer=customer).first()
+    basket = Basket.objects.filter(customer=customer).first()
     
     if request.method == 'POST':
         delivery_time = request.POST.get('delivery_time')
