@@ -10,6 +10,7 @@ class Cake(models.Model):
         ("birthday", "Birthday"),
         ("anniversary", "Anniversary"),
         ("baby_shower", "Baby Shower"),
+        ("gender_reveal", "Gender Reveal"),
         ("Communion", "Communion"),
         ("Confirmation", "Confirmation"),
         ("other", "Other"),
