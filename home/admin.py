@@ -4,7 +4,7 @@ from .models import Cake, Order, Customer, Comment, Rating
 # Register your models here.
 @admin.register(Cake)
 class CakeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category', 'price')
+    list_display = ('name', 'description', 'category','image', 'price')
     prepopulated_fields = {"slug": ("name",)}
 
 @admin.register(Order)
