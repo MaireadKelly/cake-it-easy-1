@@ -73,3 +73,8 @@ def shop(request):
     return render(request, 'home/shop.html', {'cakes': cakes})
 
 
+def our_story(request):
+    return render(request, 'home/our_story.html')
+
+
+

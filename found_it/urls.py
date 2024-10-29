@@ -24,4 +24,6 @@ urlpatterns = [
     path('basket/', include('basket.urls')),  # Include basket app URLs
     path('checkout/', include('checkout.urls')),  # Include checkout app URLs
     path('', include('home.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,12 +2,27 @@ html {
     height: 100%;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body {
     background: url('/media/cake-banner.jpg') no-repeat center center fixed;
     background-size: cover;
-    height: calc(100vh - 164px);
-    color: #555;
-    font-family: 'Lato';
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Viewport height */
+    margin: 0;
+}
+
+#content {
+    flex: 1; /* This makes the content area expand to fill the space */
+}
+
+footer {
+    background-color: #f8f9fa; /* Adjust as needed */
+    padding: 1em 0;
 }
 
 /* from Bulma */

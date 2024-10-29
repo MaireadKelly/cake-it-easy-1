@@ -37,15 +37,19 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    # Django Apps
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Third-Party Apps
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    
+    # My Apps
     "home",
     "basket",
     "checkout",
@@ -101,7 +105,8 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = "/accounts/login/"
-LOGIN_REDIRECT_URL = "/success"
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "home"
 
 WSGI_APPLICATION = "found_it.wsgi.application"
 
