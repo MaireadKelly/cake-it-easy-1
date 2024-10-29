@@ -12,6 +12,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),  # Accounts-related routes
     path('cakes/', views.cake_list, name='cake_list'),  # Cake listing page
     path('order/', views.order_create, name='order_create'),  # Order page
+    path('shop/', views.shop, name='shop'),
 ]
 
 # Serve media files during development

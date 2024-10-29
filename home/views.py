@@ -68,3 +68,8 @@ def add_rating(request, cake_id):
     return render(request, 'home/add_rating.html', {'form': form, 'cake': cake})
 
 
+def shop(request):
+    cakes = Cake.objects.all() # Retrieve All cakes
+    return render(request, 'home/shop.html', {'cakes': cakes})
+
+
