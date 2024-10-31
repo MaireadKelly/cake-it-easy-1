@@ -1,5 +1,4 @@
 # shop/views.py
-
 from django.shortcuts import render, redirect
 from .models import Cake, Order, Customer, Comment, Rating
 from .forms import OrderForm, CommentForm, RatingForm

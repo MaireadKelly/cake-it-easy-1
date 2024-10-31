@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "home",
     "basket",
     "checkout",
+
 ]
 
 MIDDLEWARE = [
@@ -71,27 +72,28 @@ ROOT_URLCONF = "found_it.urls"
 
 TEMPLATES = [
     {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")],
-        "APP_DIRS": True,
-        "OPTIONS": {
-            "context_processors": [
-                "django.template.context_processors.debug",
-                "django.template.context_processors.request",
-                "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',  # Required for authentication
+                'django.contrib.messages.context_processors.messages',  # Required for messages
+                # Any other context processors you need
             ],
         },
     },
 ]
 
 
-
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
-    "django.contrib.auth.backends.ModelBackend",
+    'django.contrib.auth.backends.ModelBackend',
+
     # `allauth` specific authentication methods, such as login by email
-    "allauth.account.auth_backends.AuthenticationBackend",
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 SITE_ID = 1
@@ -100,7 +102,7 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = "/accounts/login/"

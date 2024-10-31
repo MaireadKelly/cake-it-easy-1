@@ -23,6 +23,9 @@ class Cake(models.Model):
     slug = models.SlugField(unique=True, blank=True)
     category = models.CharField(max_length=50, choices=OCCASION_CHOICES, default="other")
     
+    def __str__(self):
+        return self.name
+    
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
