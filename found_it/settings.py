@@ -193,9 +193,16 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 CLOUDINARY_STORAGE = {
-'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
-'API_KEY': '895838384854865',
-'API_SECRET': os.getenv('CLOUDINARY_API_SECRET')
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET')
+
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': 'mkswdev',
+#     'API_KEY': '895838384854865',
+#     'API_SECRET': 'c14_WdvPPOmvaUAZ1HVhQjy6bOs'
+# }
+
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
