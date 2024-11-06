@@ -116,17 +116,24 @@ WSGI_APPLICATION = "found_it.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('DB_NAME'),   # Load DB_NAME from the environment
+#         'USER': os.getenv('DB_USER'),   # Load DB_USER from the environment
+#         'PASSWORD': os.getenv('DB_PASSWORD'),  # Load DB_PASSWORD from the environment
+#         'HOST': os.getenv('DB_HOST'),   # Load DB_HOST from the environment
+#         'PORT': os.getenv('DB_PORT', '5432'),  # Load DB_PORT from the environment, default to 5432
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME'),   # Load DB_NAME from the environment
-        'USER': os.getenv('DB_USER'),   # Load DB_USER from the environment
-        'PASSWORD': os.getenv('DB_PASSWORD'),  # Load DB_PASSWORD from the environment
-        'HOST': os.getenv('DB_HOST'),   # Load DB_HOST from the environment
-        'PORT': os.getenv('DB_PORT', '5432'),  # Load DB_PORT from the environment, default to 5432
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 
 CSRF_TRUSTED_ORIGINS = [

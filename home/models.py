@@ -27,16 +27,16 @@ class Cake(models.Model):
         return self.name
     
     def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-            # Attempt to create the object with a unique slug
-            for i in range(1, 100):
-                try:
-                    return super().save(*args, **kwargs)
-                except IntegrityError:
-                    self.slug = f"{slugify(self.name)}-{i}"
-            else:
-                super().save(*args, **kwargs)                
+        # if not self.slug:
+        #     self.slug = slugify(self.name)
+        #     # Attempt to create the object with a unique slug
+        #     for i in range(1, 100):
+        #         try:
+        #             return super().save(*args, **kwargs)
+        #         except IntegrityError:
+        #             self.slug = f"{slugify(self.name)}-{i}"
+        #     else:
+        super().save(*args, **kwargs)                
 
     def __str__(self):
         return self.name
