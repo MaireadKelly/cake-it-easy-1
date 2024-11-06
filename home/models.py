@@ -27,7 +27,7 @@ class Cake(models.Model):
     def __str__(self):
         return self.name
     
-    def save(self, *args, **kwargs):
+    # def save(self, *args, **kwargs):
         # if not self.slug:
         #     self.slug = slugify(self.name)
         #     # Attempt to create the object with a unique slug
@@ -37,10 +37,20 @@ class Cake(models.Model):
         #         except IntegrityError:
         #             self.slug = f"{slugify(self.name)}-{i}"
         #     else:
-        super().save(*args, **kwargs)                
+        # super().save(*args, **kwargs)                
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
+    
+def save(self, *args, **kwargs):
+    try:
+        # Custom logic before saving
+        super().save(*args, **kwargs)
+        # Custom logic after saving (optional)
+    except ValidationError as e:
+        print(f"Validation error while saving: {e}")
+    except Exception as e:
+        print(f"Error while saving: {e}")
 
 
 class Order(models.Model):
