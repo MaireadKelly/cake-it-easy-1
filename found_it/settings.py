@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 import dj_database_url
 from dotenv import load_dotenv
+
 load_dotenv()  # Loads environment variables from .env
 
 from pathlib import Path
@@ -25,14 +26,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'default_fallback_secret_key')
+SECRET_KEY = os.getenv("SECRET_KEY", "default_fallback_secret_key")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "8000-maireadkell-cakeiteasya-d869ciubm12.ws.codeinstitute-ide.net"]
+ALLOWED_HOSTS = ["8000-maireadkell-cakeiteasya-d869ciubm12.ws.codeinstitute-ide.net"]
 
 
 # Application definition
@@ -43,19 +43,17 @@ INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
-    'django.contrib.sites',
+    "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # Third-Party Apps
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    
     # My Apps
     "home",
     "basket",
     "checkout",
-
 ]
 
 MIDDLEWARE = [
@@ -73,15 +71,15 @@ ROOT_URLCONF = "found_it.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',  # Required for authentication
-                'django.contrib.messages.context_processors.messages',  # Required for messages
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",  # Required for authentication
+                "django.contrib.messages.context_processors.messages",  # Required for messages
                 # Any other context processors you need
             ],
         },
@@ -91,10 +89,9 @@ TEMPLATES = [
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-
+    "django.contrib.auth.backends.ModelBackend",
     # `allauth` specific authentication methods, such as login by email
-    'allauth.account.auth_backends.AuthenticationBackend',
+    "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
 SITE_ID = 1
@@ -129,9 +126,9 @@ WSGI_APPLICATION = "found_it.wsgi.application"
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -139,7 +136,7 @@ DATABASES = {
 CSRF_TRUSTED_ORIGINS = [
     "https://8000-maireadkelly-foundit-vs9ytjoojur.ws.codeinstitute-ide.net",
     "https://*.herokuapp.com",
-    "https://*.codeinstitute-ide.net/"
+    "https://*.codeinstitute-ide.net/",
 ]
 
 # Password validation
@@ -177,11 +174,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_URL = "/static/"
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 # Default primary key field type
