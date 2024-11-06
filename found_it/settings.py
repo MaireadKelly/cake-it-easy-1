@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 import dj_database_url
 from dotenv import load_dotenv
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 load_dotenv()  # Loads environment variables from .env
 
@@ -50,6 +53,8 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "cloudinary",
+    "cloudinary_storage",
     # My Apps
     "home",
     "basket",
@@ -185,3 +190,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'mkswdev',
+    'API_KEY': '895838384854865',
+    'API_SECRET': 'c14_WdvPPOmvaUAZ1HVhQjy6bOs'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

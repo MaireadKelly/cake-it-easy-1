@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models, IntegrityError
 from django.utils.text import slugify
 from django.core.exceptions import ValidationError
+from cloudinary.models import CloudinaryField
 
 
 class Cake(models.Model):
@@ -16,10 +17,10 @@ class Cake(models.Model):
         ("other", "Other"),
     ]
 
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.ImageField(upload_to="cakes/")
+    image = CloudinaryField('image')  # Use CloudinaryField to store images
     slug = models.SlugField(unique=True, blank=True)
     category = models.CharField(max_length=50, choices=OCCASION_CHOICES, default="other")
     
