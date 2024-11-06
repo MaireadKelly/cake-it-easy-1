@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
+import dj_database_url
 from dotenv import load_dotenv
 load_dotenv()  # Loads environment variables from .env
 
@@ -31,7 +32,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'default_fallback_secret_key')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "8000-maireadkelly-foundit-vs9ytjoojur.ws.codeinstitute-ide.net"]
+    "8000-maireadkell-cakeiteasya-d869ciubm12.ws.codeinstitute-ide.net"]
 
 
 # Application definition
@@ -118,11 +119,11 @@ WSGI_APPLICATION = "found_it.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT', '5432'),  # Default to 5432 if not set
+        'NAME': os.getenv('DB_NAME'),   # Load DB_NAME from the environment
+        'USER': os.getenv('DB_USER'),   # Load DB_USER from the environment
+        'PASSWORD': os.getenv('DB_PASSWORD'),  # Load DB_PASSWORD from the environment
+        'HOST': os.getenv('DB_HOST'),   # Load DB_HOST from the environment
+        'PORT': os.getenv('DB_PORT', '5432'),  # Load DB_PORT from the environment, default to 5432
     }
 }
 
