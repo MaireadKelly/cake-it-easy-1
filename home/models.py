@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models, IntegrityError
 from django.utils.text import slugify
 from django.core.exceptions import ValidationError
+from cloudinary.models import CloudinaryField
 
 
 class Cake(models.Model):
@@ -16,30 +17,40 @@ class Cake(models.Model):
         ("other", "Other"),
     ]
 
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.ImageField(upload_to="cakes/")
+    image = CloudinaryField('image')  # Use CloudinaryField to store images
     slug = models.SlugField(unique=True, blank=True)
     category = models.CharField(max_length=50, choices=OCCASION_CHOICES, default="other")
     
     def __str__(self):
         return self.name
     
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-            # Attempt to create the object with a unique slug
-            for i in range(1, 100):
-                try:
-                    return super().save(*args, **kwargs)
-                except IntegrityError:
-                    self.slug = f"{slugify(self.name)}-{i}"
-            else:
-                super().save(*args, **kwargs)                
+    # def save(self, *args, **kwargs):
+        # if not self.slug:
+        #     self.slug = slugify(self.name)
+        #     # Attempt to create the object with a unique slug
+        #     for i in range(1, 100):
+        #         try:
+        #             return super().save(*args, **kwargs)
+        #         except IntegrityError:
+        #             self.slug = f"{slugify(self.name)}-{i}"
+        #     else:
+        # super().save(*args, **kwargs)                
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.name
+    
+def save(self, *args, **kwargs):
+    try:
+        # Custom logic before saving
+        super().save(*args, **kwargs)
+        # Custom logic after saving (optional)
+    except ValidationError as e:
+        print(f"Validation error while saving: {e}")
+    except Exception as e:
+        print(f"Error while saving: {e}")
 
 
 class Order(models.Model):

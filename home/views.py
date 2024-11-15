@@ -1,7 +1,7 @@
 # shop/views.py
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Cake, Order, Customer, Comment, Rating
-from .forms import OrderForm, CommentForm, RatingForm
+from .forms import OrderForm, CakeForm, CommentForm, RatingForm
 
 
 def index(request):
@@ -12,6 +12,45 @@ def index(request):
 def customer_profile(request, customer_id):
     customer = get_object_or_404(Customer, id=customer_id)
     return render(request, "home/customer_profile.html", {"customer": customer})
+
+
+def shop(request):
+    cakes = Cake.objects.all()
+    return render(request, 'home/shop.html', {'cakes: cakes'})
+
+
+# View to Add New Cake
+def add_cake(request):
+    if request.method == 'POST':
+        form = CakeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('shop')
+    else:
+        form = CakeForm()
+    return render(request, 'home/add_cake.html', {'form': form})
+
+
+# View to edit existing cake
+def edit_cake(request, pk):
+    cake = get_object_or_404(Cake, pk=pk)
+    if request.method == 'POST':
+        form = CakeForm(request.POST, request.FILES, instance=cake)
+        if form.is_valid():
+            form.save()
+            return redirect('shop')
+    else:
+        form = CakeForm(instance=cake)
+    return render(request, 'home/edit_cake.html', {'form': form})
+
+
+# View to delete a cake
+def delete_cake(request, pk):
+    cake = get_object_or_404(Cake, pk=pk)
+    if request.method == 'POST':
+        cake.delete()
+        return redirect('shop')
+    return render(request, 'home/delete_cake.html', {'cake': cake})
 
 
 def cake_list(request):

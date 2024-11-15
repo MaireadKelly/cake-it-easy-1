@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block content %}
 <div class="container my-5">
@@ -12,7 +12,8 @@
                     <h5 class="card-title">{{ cake.name }}</h5>
                     <p class="card-text">{{ cake.description }}</p>
                     <p class="card-text">€{{ cake.price }}</p>
-                    <a href="#" class="btn btn-primary">View Details</a>
+                    <a href="{% url 'edit_cake' cake.pk %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'delete_cake' cake.pk %}" class="btn btn-danger">Delete</a>
                 </div>
             </div>
         </div>

@@ -11,7 +11,12 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
+import dj_database_url
 from dotenv import load_dotenv
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 load_dotenv()  # Loads environment variables from .env
 
 from pathlib import Path
@@ -24,14 +29,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'default_fallback_secret_key')
+SECRET_KEY = os.getenv("SECRET_KEY", "default_fallback_secret_key")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "8000-maireadkelly-foundit-vs9ytjoojur.ws.codeinstitute-ide.net"]
+ALLOWED_HOSTS = ["8000-maireadkell-cakeiteasya-d869ciubm12.ws.codeinstitute-ide.net"]
 
 
 # Application definition
@@ -42,19 +46,19 @@ INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
-    'django.contrib.sites',
+    "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # Third-Party Apps
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    
+    "cloudinary",
+    "cloudinary_storage",
     # My Apps
     "home",
     "basket",
     "checkout",
-
 ]
 
 MIDDLEWARE = [
@@ -72,15 +76,15 @@ ROOT_URLCONF = "found_it.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',  # Required for authentication
-                'django.contrib.messages.context_processors.messages',  # Required for messages
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",  # Required for authentication
+                "django.contrib.messages.context_processors.messages",  # Required for messages
                 # Any other context processors you need
             ],
         },
@@ -90,10 +94,9 @@ TEMPLATES = [
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-
+    "django.contrib.auth.backends.ModelBackend",
     # `allauth` specific authentication methods, such as login by email
-    'allauth.account.auth_backends.AuthenticationBackend',
+    "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
 SITE_ID = 1
@@ -115,23 +118,30 @@ WSGI_APPLICATION = "found_it.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('DB_NAME'),   # Load DB_NAME from the environment
+#         'USER': os.getenv('DB_USER'),   # Load DB_USER from the environment
+#         'PASSWORD': os.getenv('DB_PASSWORD'),  # Load DB_PASSWORD from the environment
+#         'HOST': os.getenv('DB_HOST'),   # Load DB_HOST from the environment
+#         'PORT': os.getenv('DB_PORT', '5432'),  # Load DB_PORT from the environment, default to 5432
+#     }
+# }
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT', '5432'),  # Default to 5432 if not set
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-
 
 
 CSRF_TRUSTED_ORIGINS = [
     "https://8000-maireadkelly-foundit-vs9ytjoojur.ws.codeinstitute-ide.net",
     "https://*.herokuapp.com",
-    "https://*.codeinstitute-ide.net/"
+    "https://*.codeinstitute-ide.net/",
 ]
 
 # Password validation
@@ -169,14 +179,30 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_URL = "/static/"
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET')
+
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': 'mkswdev',
+#     'API_KEY': '895838384854865',
+#     'API_SECRET': 'c14_WdvPPOmvaUAZ1HVhQjy6bOs'
+# }
+
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
