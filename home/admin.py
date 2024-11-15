@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Cake, Customer, Comment, Rating
+from .models import Cake, Customer, Order, Comment, Rating
 
 # Register your models here.
 # @admin.register(Cake)
