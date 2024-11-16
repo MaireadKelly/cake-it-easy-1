@@ -9,7 +9,7 @@
             <p>{{ cake.description }}</p>
             <p>Category: {{ cake.category }}</p>
             <p>Price: €{{ cake.price }}</p>
-            <img src="{{ cake.image.url }}" alt="{{ cake.name }}" style="max-width: 100%; height: auto;">
+            <img src="{{ cake.image }}" alt="{{ cake.name }}" style="max-width: 100%; height: auto;">
             <a href="{% url 'order_create' %}" class="btn btn-primary mt-2">Order</a>
         </div>
     {% endfor %}
