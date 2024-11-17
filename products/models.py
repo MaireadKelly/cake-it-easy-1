@@ -18,7 +18,7 @@ class Product(models.Model):
     preview_description = models.CharField(max_length=255)  # Use TextField if it's longer
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="products")
     image = CloudinaryField("image", blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True)
 
