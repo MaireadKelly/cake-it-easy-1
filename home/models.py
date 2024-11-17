@@ -3,6 +3,8 @@ from django.db import models, IntegrityError
 from django.utils.text import slugify
 from django.core.exceptions import ValidationError
 from cloudinary.models import CloudinaryField
+from products.models import Product
+
 
 
 class Cake(models.Model):
@@ -27,42 +29,14 @@ class Cake(models.Model):
     def __str__(self):
         return self.name
     
-    # def save(self, *args, **kwargs):
-        # if not self.slug:
-        #     self.slug = slugify(self.name)
-        #     # Attempt to create the object with a unique slug
-        #     for i in range(1, 100):
-        #         try:
-        #             return super().save(*args, **kwargs)
-        #         except IntegrityError:
-        #             self.slug = f"{slugify(self.name)}-{i}"
-        #     else:
-        # super().save(*args, **kwargs)                
-
-    # def __str__(self):
-    #     return self.name
-    
-def save(self, *args, **kwargs):
-    try:
-        # Custom logic before saving
-        super().save(*args, **kwargs)
-        # Custom logic after saving (optional)
-    except ValidationError as e:
-        print(f"Validation error while saving: {e}")
-    except Exception as e:
-        print(f"Error while saving: {e}")
-
-
 class Order(models.Model):
-    cake = models.ForeignKey(Cake, on_delete=models.CASCADE)  # Capital 'C' here
+    product = models.ForeignKey(Product, on_delete=models.CASCADE) 
     customer = models.ForeignKey("Customer",on_delete=models.CASCADE, blank=True, null=True, related_name="orders")
     quantity = models.PositiveIntegerField()
     inscription = models.CharField(max_length=255, default="No inscription")
     price = models.DecimalField(max_digits=10, decimal_places=2, editable=False)
     ordered_at = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(
-        max_length=20,
-        choices=[
+    status = models.CharField(max_length=20, choices=[
             ("pending", "Pending"),
             ("shipped", "Shipped"),
             ("delivered", "Delivered"),
@@ -73,11 +47,11 @@ class Order(models.Model):
     delivery_address = models.CharField(max_length=255, blank=True, null=True)  # New field for custom delivery address
 
     def save(self, *args, **kwargs):
-        self.price = self.cake.price * self.quantity
+        self.price = self.product.price * self.quantity
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"Order of {self.cake.name} (x{self.quantity})"
+        return f"Order of {self.product.name} (x{self.quantity})"
 
 
 class Customer(models.Model):
@@ -96,20 +70,17 @@ class Customer(models.Model):
 
 class Comment(models.Model):
     customer = models.ForeignKey("Customer",on_delete=models.CASCADE, blank=True, null=True, related_name="comments")  # Use Customer here
-    cake = models.ForeignKey(Cake, on_delete=models.CASCADE, related_name="comments")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="comments")
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Comment by {self.customer.user.username} on {self.cake.name}"
-
-
-from django.core.exceptions import ValidationError
+        return f"Comment by {self.customer.user.username} on {self.product.name}"
 
 
 class Rating(models.Model):
     customer = models.ForeignKey("Customer",on_delete=models.CASCADE, blank=True, null=True, related_name="ratings")
-    cake = models.ForeignKey(Cake, on_delete=models.CASCADE, related_name="ratings")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="ratings")
     rating = models.PositiveIntegerField(default=1)
 
     def save(self, *args, **kwargs):
@@ -118,4 +89,4 @@ class Rating(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"Rating {self.rating} by {self.customer.user.username} for {self.cake.name}"
+        return f"Rating {self.rating} by {self.customer.user.username} for {self.product.name}"

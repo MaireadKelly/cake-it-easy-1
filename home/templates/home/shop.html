@@ -2,18 +2,18 @@
 
 {% block content %}
 <div class="container my-5">
-    <h1 class="text-center mb-4">Shop All Cakes</h1>
+    <h1 class="text-center mb-4">Shop All Products</h1>
     <div class="row">
-        {% for cake in cakes %}
+        {% for product in products %}
         <div class="col-md-4 mb-4">
             <div class="card">
-                <img src="{{ cake.image }}" class="card-img-top" alt="{{ cake.name }}">
+                <img src="{{ product.image }}" class="card-img-top" alt="{{ product.name }}">
                 <div class="card-body">
-                    <h5 class="card-title">{{ cake.name }}</h5>
-                    <p class="card-text">{{ cake.description }}</p>
-                    <p class="card-text">€{{ cake.price }}</p>
-                    <a href="{% url 'edit_cake' cake.pk %}" class="btn btn-primary">Edit</a>
-                    <a href="{% url 'delete_cake' cake.pk %}" class="btn btn-danger">Delete</a>
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <p class="card-text">€{{ product.price }}</p>
+                    <a href="{% url 'edit_product' product.pk %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'delete_product' product.pk %}" class="btn btn-danger">Delete</a>
                 </div>
             </div>
         </div>

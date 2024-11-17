@@ -1,15 +1,15 @@
 from django.contrib import admin
-from .models import Cake, Order, Customer, Comment, Rating
+from .models import Product, Order, Customer, Comment, Rating
 
 # Register your models here.
-@admin.register(Cake)
-class CakeAdmin(admin.ModelAdmin):
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'price', 'image', 'slug', 'category')
     prepopulated_fields = {"slug": ("name",)}
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('customer', 'cake', 'quantity', 'status', 'delivery_time')
+    list_display = ('customer', 'product', 'quantity', 'status', 'delivery_time')
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
