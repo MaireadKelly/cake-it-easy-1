@@ -49,7 +49,7 @@ class Cake(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = CloudinaryField("image")  # Use CloudinaryField to store images
+    image = CloudinaryField("image", blank=True, null=True)  # Use CloudinaryField to store images
     slug = models.SlugField(unique=True, blank=True)
     category = models.CharField(
         max_length=50, choices=OCCASION_CHOICES, default="other"

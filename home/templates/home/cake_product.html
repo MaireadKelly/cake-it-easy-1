@@ -9,7 +9,7 @@
             <p>{{ product.description }}</p>
             <p>Category: {{ product.category }}</p>
             <p>Price: €{{ product.price }}</p>
-            <img src="{{ product.image }}" alt="{{ Product.name }}" style="max-width: 100%; height: auto;">
+            <img src="{{ product.image.url }}" alt="{{ Product.name }}" style="max-width: 100%; height: auto;">
             <a href="{% url 'order_create' %}" class="btn btn-primary mt-2">Order</a>
         </div>
     {% endfor %}
