@@ -1,12 +1,18 @@
 :root {
-    --primary-color: #6a211e; /* Caput mortuum */
-    --secondary-color: #f1e0c3; /* Champagne */
-    --accent-color: #d7c9bd; /* Almond */
-    --text-color: #333; /* Dark Text */
-    --background-color: #d0dce5; /* Columbia blue */
+    --primary-color: #6a211e;
+    /* Caput mortuum */
+    --secondary-color: #f1e0c3;
+    /* Champagne */
+    --accent-color: #d7c9bd;
+    /* Almond */
+    --text-color: #333;
+    /* Dark Text */
+    --background-color: #d0dce5;
+    /* Columbia blue */
 }
 
-html, body {
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -21,15 +27,39 @@ body {
     flex-direction: column;
 }
 
+header {
+    background-color: var(--primary-color);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Login/Register Button Styling */
+.header-buttons a {
+    color: var(--secondary-color);
+    margin-left: 10px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.header-buttons a:hover {
+    color: var(--accent-color);
+}
+
+
 #content {
-    flex: 1; /* This makes the content area expand to fill the space */
+    flex: 1;
+    /* This makes the content area expand to fill the space */
 }
 
 footer {
-    background-color: var(--secondary-color); /* Using new colors */
+    background-color: var(--secondary-color);
+    /* Using new colors */
     padding: 20px 0;
     text-align: center;
-    margin-top: auto; /* Makes footer stay on the bottom */
+    margin-top: auto;
+    /* Makes footer stay on the bottom */
 }
 
 .wrapper {
@@ -39,7 +69,8 @@ footer {
 }
 
 main {
-    flex: 1; /* makes the main content take up all available space */
+    flex: 1;
+    /* makes the main content take up all available space */
 }
 
 /* from Bulma */
@@ -84,15 +115,20 @@ main {
 }
 
 /* Logo styling */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
 .logo-img {
     height: 50px;
     /* Adjust as needed */
 }
 
 /* Navbar links */
-.nav-link {
+nav .nav-link {
     margin-right: 15px;
-    color: var(--primary-color);
+    color: var(--secondary-color);
     font-size: 18px;
     font-weight: 500;
     transition: color 0.3s ease-in-out;
@@ -110,7 +146,7 @@ main {
     margin-left: 10px;
 }
 
-.nav-link:hover {
+nav .nav-link:hover {
     color: var(--accent-color);
     /* Change hover color */
 }
@@ -144,16 +180,31 @@ input[type="search"] {
     color: var(--text-color);
 }
 
-/* Shopping cart */
+form.d-flex input[type="search"] {
+    border: 2px solid var(--accent-color);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/* Shopping Cart Styling */
+.shopping-cart .btn {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border: none;
+    position: relative;
+}
+
+.shopping-cart .btn:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* Shopping Cart Total Styling */
 .shopping-cart .basket-total {
     font-size: 14px;
     color: var(--text-color);
 }
 
-/* Hover effect on shopping cart */
-.shopping-cart a:hover .bi-cart-fill {
-    color: var(--accent-color);
-}
 
 /* Adjust the container-fluid spacing if needed */
 .container-fluid {
