@@ -1,3 +1,11 @@
+:root {
+    --primary-color: #6a211e; /* Caput mortuum */
+    --secondary-color: #f1e0c3; /* Champagne */
+    --accent-color: #d7c9bd; /* Almond */
+    --text-color: #333; /* Dark Text */
+    --background-color: #d0dce5; /* Columbia blue */
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -5,6 +13,8 @@ html, body {
 }
 
 body {
+    background-color: var(--background-color);
+    color: var(--text-color);
     background: url('/media/cake-banner.jpg') no-repeat center center fixed;
     background-size: cover;
     display: flex;
@@ -16,9 +26,10 @@ body {
 }
 
 footer {
-    background-color: #f8f9fa; /* Adjust as needed */
+    background-color: var(--secondary-color); /* Using new colors */
     padding: 20px 0;
     text-align: center;
+    margin-top: auto; /* Makes footer stay on the bottom */
 }
 
 .wrapper {
@@ -48,15 +59,10 @@ main {
     width: fit-content;
 }
 
-.shop-now-button {
-    background: black;
-    color: white;
-    min-width: 260px;
-}
-
+.shop-now-button,
 .btn-black {
-    background: black;
-    color: white;
+    background-color: var(--primary-color);
+    color: #fff;
 }
 
 .shop-now-button:hover,
@@ -65,16 +71,16 @@ main {
 .btn-black:hover,
 .btn-black:active,
 .btn-black:focus {
-    background: #222;
+    background-color: var(--accent-color);
     color: white;
 }
 
 .text-black {
-    color: #000 !important;
+    color: var(--text-color) !important;
 }
 
 .border-black {
-    border: 1px solid black !important;
+    border: 1px solid var(--primary-color) !important;
 }
 
 /* Logo styling */
@@ -86,40 +92,67 @@ main {
 /* Navbar links */
 .nav-link {
     margin-right: 15px;
-    color: #333;
+    color: var(--primary-color);
     font-size: 18px;
     font-weight: 500;
     transition: color 0.3s ease-in-out;
 }
 
-.navbar-brand{
+.navbar {
+    background-color: var(--secondary-color);
+}
+
+.navbar-brand {
     margin-right: 30px;
 }
 
-.navbar.btn {
+.navbar .btn {
     margin-left: 10px;
 }
+
 .nav-link:hover {
-    color: #007bff;
+    color: var(--accent-color);
     /* Change hover color */
 }
 
 /* Button hover effects */
+.btn-outline-secondary {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
 .btn-outline-secondary:hover {
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: #fff;
-    border-color: #007bff;
+    border-color: var(--primary-color);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* Search bar */
+input[type="search"] {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--primary-color);
+    color: var(--text-color);
 }
 
 /* Shopping cart */
 .shopping-cart .basket-total {
     font-size: 14px;
-    color: #555;
+    color: var(--text-color);
 }
 
 /* Hover effect on shopping cart */
 .shopping-cart a:hover .bi-cart-fill {
-    color: #007bff;
+    color: var(--accent-color);
 }
 
 /* Adjust the container-fluid spacing if needed */
@@ -129,6 +162,15 @@ main {
     padding-right: 20px;
 }
 
+/* Logout link */
+.logout-link {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.logout-link:hover {
+    color: var(--accent-color);
+}
 
 /* -------------------------------- Media Queries */
 
