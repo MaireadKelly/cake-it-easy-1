@@ -1,11 +1,7 @@
 from django.contrib import admin
-from .models import Product, Order, Customer, Comment, Rating
+from .models import Order, Customer
 
 # Register your models here.
-@admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'price', 'image', 'slug', 'category')
-    prepopulated_fields = {"slug": ("name",)}
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
@@ -14,6 +10,3 @@ class OrderAdmin(admin.ModelAdmin):
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
     list_display = ('user', 'address', 'phone_number', 'email')
-
-admin.site.register(Comment)
-admin.site.register(Rating)
