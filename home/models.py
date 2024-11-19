@@ -3,10 +3,9 @@ from django.db import models
 from django.utils.text import slugify
 from django.core.exceptions import ValidationError
 from cloudinary.models import CloudinaryField
-from products.models import Product, Cake
 
 class Order(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="orders", default=1) 
+    product = models.ForeignKey("products.Product", on_delete=models.CASCADE, related_name="orders", default=1) 
     customer = models.ForeignKey("Customer", on_delete=models.CASCADE, blank=True, null=True, related_name="orders")
     quantity = models.PositiveIntegerField()
     inscription = models.CharField(max_length=255, default="No inscription")
@@ -46,7 +45,7 @@ class Customer(models.Model):
 
 class Comment(models.Model):
     customer = models.ForeignKey("Customer", on_delete=models.CASCADE, blank=True, null=True, related_name="comments")
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="comments", default=1)
+    product = models.ForeignKey("products.Product", on_delete=models.CASCADE, related_name="comments", default=1)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -55,7 +54,7 @@ class Comment(models.Model):
 
 class Rating(models.Model):
     customer = models.ForeignKey("Customer", on_delete=models.CASCADE, blank=True, null=True, related_name="ratings")
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="ratings", default=1)
+    product = models.ForeignKey("products.Product", on_delete=models.CASCADE, related_name="ratings", default=1)
     rating = models.PositiveIntegerField(default=1)
 
     def save(self, *args, **kwargs):

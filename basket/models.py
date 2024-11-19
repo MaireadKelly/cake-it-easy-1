@@ -1,5 +1,5 @@
 from django.db import models
-from home.models import Cake, Customer
+from products.models import Cake, Customer
 
 
 # Create your models here.
