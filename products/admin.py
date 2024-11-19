@@ -9,8 +9,9 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
 
 @admin.register(Cake)   
-class Cake(admin.ModelAdmin):
+class CakeAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'category', 'price', 'image',)
+    list_filter = ('category',)
     
     ordering = ('name', 'category',)
 
