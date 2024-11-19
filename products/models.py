@@ -44,9 +44,9 @@ class Cake(models.Model):
         ("anniversary", "Anniversary"),
         ("baby_shower", "Baby Shower"),
         ("gender_reveal", "Gender Reveal"),
-        ("Communion", "Communion"),
-        ("Confirmation", "Confirmation"),
-        ("Christening", "Christening"),
+        ("communion", "Communion"),
+        ("confirmation", "Confirmation"),
+        ("christening", "Christening"),
         ("other", "Other"),    
     ]
     occasion = models.CharField(max_length=50, choices=OCCASION_CHOICES, default="other")
