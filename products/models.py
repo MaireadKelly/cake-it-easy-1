@@ -6,10 +6,8 @@ from cloudinary.models import CloudinaryField
 
 
 class Category(models.Model):
-    
     class Meta:
         verbose_name_plural = 'Categories'
-        
     name = models.CharField(max_length=100)  # This will hold the name of the category (e.g., 'Wedding', 'Birthday', etc.)
     description = models.TextField(blank=True, null=True)
     parent = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True, related_name="subcategories")
@@ -19,12 +17,21 @@ class Category(models.Model):
             return f"{self.parent.name} -> {self.name}"
         return self.name
 
+
+
 class Product(models.Model):
+    PRODUCT_TYPES = [
+        ("cake", "Cake"),
+        ("cupcake", "Cupcake"),
+        # Add more as needed in the future
+    ]
+
     name = models.CharField(max_length=255)
-    preview_description = models.CharField(max_length=255)
+    preview_description = models.CharField(max_length=255)  # Use TextField if it's longer
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name="products", null=True, blank=True)
+    product_type = models.CharField(max_length=50, choices=PRODUCT_TYPES, default="cake")
     image = CloudinaryField("image", blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True)
 
@@ -34,7 +41,7 @@ class Product(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} ({self.product_type})"
 
 
 class Cake(models.Model):
@@ -56,8 +63,6 @@ class Cake(models.Model):
     image = CloudinaryField("image", blank=True, null=True)  # Use CloudinaryField to store images
     slug = models.SlugField(unique=True, blank=True)    
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name='cakes')
-    
-    print(OCCASION_CHOICES)
 
     def __str__(self):
         return self.name
