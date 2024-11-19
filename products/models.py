@@ -2,89 +2,62 @@ from django.db import models
 from django.utils.text import slugify
 from cloudinary.models import CloudinaryField
 
+class Category(models.Model):
+    class Meta:
+        verbose_name_plural = 'Categories'
 
-# Product View
-def product(request):
-    products = Product.objects.all()
-    return render(request, 'products/products.html', {'products': products})
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True, null=True)
+    parent = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True, related_name="subcategories")
 
+    def __str__(self):
+        if self.parent:
+            return f"{self.parent.name} -> {self.name}"
+        return self.name
 
-# Product detail view
-def product_detail(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    comments = product.comments.all()
-    ratings = product.ratings.all()
+class Cake(models.Model):
+    OCCASION_CHOICES = [
+        ("wedding", "Wedding"),
+        ("birthday", "Birthday"),
+        ("anniversary", "Anniversary"),
+        ("baby_shower", "Baby Shower"),
+        ("gender_reveal", "Gender Reveal"),
+        ("Communion", "Communion"),
+        ("Confirmation", "Confirmation"),
+        ("Christening", "Christening"),
+        ("other", "Other"),
+    ]
+    occasion = models.CharField(max_length=50, choices=OCCASION_CHOICES, default="other")
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    image = CloudinaryField("image", blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, related_name='cakes')
 
-    return render(request, 'products/product_detail.html', {'product': product, 'comments': comments, 'ratings': ratings})
+    def __str__(self):
+        return self.name
 
+class Product(models.Model):
+    PRODUCT_TYPE_CHOICES = [
+        ("cake", "Cake"),
+        ("cupcake", "Cupcake"),
+        ("other", "Other"),
+    ]
+ 
+    product_type = models.CharField(max_length=50, choices=PRODUCT_TYPE_CHOICES, default="cake")
+    name = models.CharField(max_length=255)
+    preview_description = models.CharField(max_length=255, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    category = models.ForeignKey("Category", on_delete=models.SET_NULL, related_name="products", null=True, blank=True)
+    image = CloudinaryField("image", blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=True)
 
-# View to Add New Product
-def add_product(request):
-    if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            product = form.save()
-            return redirect('products:product_detail', pk=product.pk)
-    else:
-        form = ProductForm()
-    return render(request, 'products/add_product.html', {'form': form})
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
-
-# View to edit existing product
-def edit_product(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES, instance=product)
-        if form.is_valid():
-            form.save()
-            return redirect('products:product_detail', pk=product.pk)
-    else:
-        form = ProductForm(instance=product)
-    return render(request, 'products/edit_product.html', {'form': form})
-
-
-# View to delete a product
-def delete_product(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    if request.method == 'POST':
-        product.delete()
-        return redirect('products:shop')
-    return render(request, 'products/delete_product.html', {'product': product})
-
-
-# View to list all products
-def product_list(request):
-    products = Product.objects.all()
-    return render(request, "products/product_list.html", {"products": products})
-
-
-# View to handle adding comments
-def add_comment(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
-    if request.method == "POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.customer = request.user.customer  # Assuming user is logged in
-            comment.product = product
-            comment.save()
-            return redirect("products:product_detail", pk=product.id)
-    else:
-        form = CommentForm()
-    return render(request, "products/add_comment.html", {"form": form, "product": product})
-
-
-# View to handle adding ratings
-def add_rating(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
-    if request.method == 'POST':
-        form = RatingForm(request.POST)
-        if form.is_valid():
-            rating = form.save(commit=False)
-            rating.customer = request.user.customer
-            rating.product = product
-            rating.save()
-            return redirect("products:product_detail", pk=product.id)
-    else:
-        form = RatingForm()
-    return render(request, 'products/add_rating.html', {'form': form, 'product': product})
+    def __str__(self):
+        return self.name

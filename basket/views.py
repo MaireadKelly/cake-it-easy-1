@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Basket, BasketItem
-from home.models import Cake
 
 # Create your views here.
 

@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
 from django.db import models
-from .models import Order
 from basket.models import Basket, BasketItem
-from home.models import Customer
 
 # Create your views here.
 
