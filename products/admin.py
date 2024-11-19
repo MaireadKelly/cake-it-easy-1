@@ -10,8 +10,8 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Cake)   
 class CakeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'category', 'price', 'image',)
-    list_filter = ('category',)
+    list_display = ('name', 'description', 'category', 'occasion', 'price', 'image',)
+    list_filter = ('occasion', 'category',)
     
     ordering = ('name', 'category',)
 
