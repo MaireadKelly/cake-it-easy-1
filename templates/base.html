@@ -47,9 +47,13 @@
 <body>
     <div class="wrapper">
         <!-- Header Section -->
-        <header>
-*           {% include 'includes/mobile-top-header.html' %}
-            {% include 'includes/main-nav.html' %}
+        <header class="header-container">
+            <div class="mobile-header">
+                {% include 'includes/mobile-top-header.html' %}
+            </div>
+            <div class="main-navigation">
+                {% include 'includes/main-nav.html' %}
+            </div>
         </header>
 
         <!-- Main Content -->
