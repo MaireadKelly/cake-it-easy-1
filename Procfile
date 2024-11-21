@@ -1,1 +1,1 @@
-web gunicorn cake_it_easy.wsgi
+web: gunicorn main.wsgi
