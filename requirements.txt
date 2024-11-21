@@ -16,3 +16,4 @@ sqlparse==0.5.1
 stripe==11.1.1
 svgwrite==1.4.3
 Tree==0.2.4
+whitenoise==6.8.2
