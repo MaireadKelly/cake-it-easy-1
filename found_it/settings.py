@@ -16,7 +16,8 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 import dj_database_url
-if os.path.isfile('env.py'):
+
+if os.path.isfile("env.py"):
     import env
 
 load_dotenv()  # Loads environment variables from .env
@@ -37,7 +38,10 @@ SECRET_KEY = os.getenv("SECRET_KEY", "default_fallback_secret_key")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['8000-maireadkelly-foundit-vs9ytjoojur.ws.codeinstitute-ide.net', '.herokuapp.com']
+ALLOWED_HOSTS = [
+    "8000-maireadkelly-foundit-vs9ytjoojur.ws.codeinstitute-ide.net",
+    ".herokuapp.com",
+]
 
 
 # Application definition
@@ -121,15 +125,9 @@ WSGI_APPLICATION = "found_it.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-}
+DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://*.codeinstitute-ide.net/",
-    "https://*.herokuapp.com"
-]
-
+CSRF_TRUSTED_ORIGINS = ["https://*.codeinstitute-ide.net/", "https://*.herokuapp.com"]
 
 
 # DATABASES = {
@@ -195,34 +193,32 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET')
-
-# CLOUDINARY_STORAGE = {
-#     'CLOUD_NAME': 'mkswdev',
-#     'API_KEY': '895838384854865',
-#     'API_SECRET': 'c14_WdvPPOmvaUAZ1HVhQjy6bOs'
-# }
-
+    "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
+    "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
+    # CLOUDINARY_STORAGE = {
+    #     'CLOUD_NAME': 'mkswdev',
+    #     'API_KEY': '895838384854865',
+    #     'API_SECRET': 'c14_WdvPPOmvaUAZ1HVhQjy6bOs'
+    # }
 }
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+MEDIA_URL = "/media/"
 
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
         },
     },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": "DEBUG",
         },
     },
 }
