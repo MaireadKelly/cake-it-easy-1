@@ -1,0 +1,369 @@
+:root {
+    --primary-color: #b5838d; /* Caput mortuum */
+    --secondary-color: #f1e0c3; /* Champagne */
+    --accent-color: #d7c9bd; /* Almond */
+    --text-color: #333; /* Dark Text */
+    --background-color: #d0dce5; /* Columbia blue */
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    background: url('/media/cake-banner.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: var(--primary-color);
+    padding: 10px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-container {
+    position: relative;
+    width: 100%;
+}
+
+.mobile-header {
+    display: none;
+}
+
+/* Header buttons */
+.header-buttons a {
+    color: var(--secondary-color);
+    margin: 0 10px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.header-buttons a:hover {
+    color: var(--accent-color);
+}
+
+/* Content and footer setup */
+#content {
+    flex: 1;
+}
+
+footer {
+    background-color: var(--secondary-color);
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* Icons */
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+/* Logo styling */
+.logo {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.logo-img {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.logo-font {
+    text-transform: uppercase;
+}
+
+.main-logo-link {
+    width: fit-content;
+}
+
+/* Button styles */
+.shop-now-button,
+.btn-black {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.shop-now-button:hover,
+.btn-black:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.text-black {
+    color: var(--text-color) !important;
+}
+
+.border-black {
+    border: 1px solid var(--primary-color) !important;
+}
+
+/* Navbar links */
+
+nav {
+    flex-grow: 1;
+}
+
+.main-navigation {
+    display: block;
+}
+
+nav .nav-link {
+    margin-right: 25px;
+    color: var(--secondary-color);
+    font-size: 20px;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar {
+    background-color: var(--secondary-color);
+}
+
+.navbar-brand {
+    margin-right: 30px;
+}
+
+.navbar-nav {
+    margin: 0 30px;
+}
+
+.navbar-nav .nav-item {
+    margin: 0 10px;
+}
+
+.d-flex.align-items-end {
+    margin-left: auto;
+    gap: 15px;
+}
+
+.navbar .btn {
+    margin-left: 10px;
+}
+
+nav .nav-link:hover {
+    color: var(--accent-color);
+}
+
+.navbar-toggler {
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.navbar-toggler-icon {
+    width: 30px;
+    height: 3px;
+    background-color: var(--secondary-color); /* Matches the theme */
+    position: relative;
+    transition: all 0.3s;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+    content: "";
+    width: 30px;
+    height: 3px;
+    background-color: var(--secondary-color);
+    position: absolute;
+    transition: all 0.3s;
+}
+
+.navbar-toggler-icon::before {
+    top: -10px;
+}
+
+.navbar-toggler-icon::after {
+    bottom: -10px;
+}
+
+/* Active Toggler State (when open) */
+.navbar-toggler.collapsed .navbar-toggler-icon {
+    background-color: transparent;
+}
+
+.navbar-toggler.collapsed .navbar-toggler-icon::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.navbar-toggler.collapsed .navbar-toggler-icon::after {
+    transform: rotate(-45deg);
+    bottom: 0;
+}
+
+
+/* Button hover effects */
+.btn-outline-secondary {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* Search bar */
+input[type="search"] {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--primary-color);
+    color: var(--text-color);
+}
+
+form.d-flex input[type="search"] {
+    background-color: var(--secondary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 5px 15px;
+    font-size: 16px;
+}
+
+/* Shopping Cart Styling */
+.shopping-cart .btn {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border: none;
+    position: relative;
+}
+
+.shopping-cart .btn:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* Shopping Cart Total Styling */
+.shopping-cart .basket-total {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+/* Container Fluid Styling */
+.container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logout link */
+.logout-link {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.logout-link:hover {
+    color: var(--accent-color);
+}
+
+/* Overlay */
+.overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: white;
+    z-index: -1;
+}
+
+/* Media Queries */
+
+/* Larger container on xl screens */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 80%;
+    }
+}
+
+/* Fixed top navbar on medium and up */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    .header-container {
+        padding-top: 164px;
+    }
+
+    .mobile-header {
+        display: none;
+    }
+
+    .main-navigation {
+        display: block;
+    }
+}
+
+@media (max-width: 992px) {
+    .mobile-header{
+        display: block;
+    }
+
+    .main-navigation {
+        display: none;
+    }
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .d-flex.align-items-end {
+        margin-top: 10px;
+        margin-left: 0;
+        gap: 10px;
+    }
+
+    nav .nav-link {
+        margin-right: 15px;
+    }
+}
+
