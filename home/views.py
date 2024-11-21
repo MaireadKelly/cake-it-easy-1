@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Order, Customer
 from .forms import OrderForm
 from django.contrib.auth.decorators import login_required
+from products.models import Product
 
 
 def index(request):
@@ -41,6 +42,10 @@ def order_create(request):
 
 def our_story(request):
     return render(request, 'home/our_story.html')
+
+def product_detail(request, id):
+    product = get_object_or_404(Product, id=id)
+    return render(request, 'products/product_detail.html', {'product': product})
 
 
 
