@@ -1,12 +1,17 @@
 asgiref==3.8.1
+black==24.10.0
+click==8.1.7
 cloudinary==1.41.0
 dj-database-url==2.3.0
 Django==4.2
 django-allauth==65.0.2
 django-cloudinary-storage==0.3.0
+pathspec==0.12.1
 pillow==10.4.0
 psycopg2-binary==2.9.10
 python-dotenv==1.0.1
 pytz==2024.2
 sqlparse==0.5.1
 stripe==11.1.1
+svgwrite==1.4.3
+Tree==0.2.4
