@@ -1,3 +1,5 @@
+import stripe
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.db import models
 from basket.models import Basket, BasketItem

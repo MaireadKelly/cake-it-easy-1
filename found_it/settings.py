@@ -16,6 +16,7 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 import dj_database_url
+import stripe  
 
 if os.path.isfile("env.py"):
     import env
@@ -201,3 +202,8 @@ CLOUDINARY_STORAGE = {
 
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 MEDIA_URL = "/media/"
+
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+
+stripe.api_key = STRIPE_SECRET_KEY
