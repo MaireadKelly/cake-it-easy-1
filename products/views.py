@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Product, Cake, Category
-from .forms import ProductForm, CommentForm, RatingForm
+from .forms import ProductForm, CommentForm, RatingForm, CustomCakeForm
 from home.models import Comment, Rating
 from django.contrib import messages
 from django.db.models import Q
@@ -114,3 +114,15 @@ def add_rating(request, product_id):
     else:
         form = RatingForm()
     return render(request, 'products/add_rating.html', {'form': form, 'product': product})
+
+@login_required
+def custom_cake_order(request):
+    if request.method == 'POST':
+        form = CustomCakeForm(request.POST, request.FILES)
+        if form.is_valid():
+            custom_cake = form.save()
+            return redirect('products:product_detail', pk=custom_cake.pk)
+        
+    else:
+        form = CustomCakeForm()
+    return render(request, 'products/custom_cake_order.html', {'form': formS})

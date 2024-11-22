@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product
+from .models import Product, CustomCake
 from home.models import Comment, Rating
 
 class ProductForm(forms.ModelForm):
@@ -16,3 +16,8 @@ class RatingForm(forms.ModelForm):
     class Meta:
         model = Rating
         fields = ['rating']
+        
+class CustomCakeForm(forms.ModelForm):
+    class Meta:
+        model = CustomCake
+        fields = ['flavor', 'filling', 'inscription', 'price', 'image']

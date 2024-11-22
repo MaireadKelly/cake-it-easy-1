@@ -13,4 +13,5 @@ urlpatterns = [
     # Add comment and rating
     path("<int:product_id>/comment/", views.add_comment, name="add_comment"),
     path("<int:product_id>/rating/", views.add_rating, name="add_rating"),
+    path("<int:pk>/custom-cake/", views.custom_cake_order, name="custom_cake_order"),
 ]
