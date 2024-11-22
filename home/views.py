@@ -6,14 +6,16 @@ from products.models import Product
 
 
 def index(request):
-    return render(request, "home/index.html")
+    featured_products = Product.objects.all()[:3]  # Get the first 3 products, for example
+    return render(request, "home/index.html", {'featured_products': featured_products})
+
 
 
 # Shop View
 @login_required
 def shop(request):
     products = Product.objects.all()
-    return render(request, 'home/products.html', {'products': products})
+    return render(request, "home/products.html", {"products": products})
 
 
 # View to show Customer profile
@@ -29,7 +31,7 @@ def order_create(request):
         form = OrderForm(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
-            order.customer = request.user.customer # Assuming user is logged in
+            order.customer = request.user.customer  # Assuming user is logged in
             # if the user didn't provide a delivery address, use their primary address
             if not order.delivery_address:
                 order.delivery_address = request.user.customer.address
@@ -41,11 +43,9 @@ def order_create(request):
 
 
 def our_story(request):
-    return render(request, 'home/our_story.html')
+    return render(request, "home/our_story.html")
+
 
 def product_detail(request, id):
     product = get_object_or_404(Product, id=id)
-    return render(request, 'products/product_detail.html', {'product': product})
-
-
-
+    return render(request, "products/product_detail.html", {"product": product})
