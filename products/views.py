@@ -9,26 +9,37 @@ from django.db.models import Q
 
 # View to list all products
 def all_products(request):
+    categories = Category.objects.all()
     products = Product.objects.all()
     query = None
+    selected_category = None
     
     if request.GET:
         if 'q' in request.GET:
             query = request.GET['q']
-        if not query:
-            messages.error(request, "You didn't enter any search criteria!")
-            return redirect(reverse('products'))
-        
-        queries = Q(name__icontains=query) | Q(description__icontains=query)
-        products = products.filter(queries)
+            if not query:
+                messages.error(request, "You didn't enter any search criteria!")
+                return redirect(reverse('products'))
+            
+            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            products = products.filter(queries)
+            
+    if 'category' in request.GET:
+        category_id = request.GET['category']
+        if category_id:
+            selected_category = category_id
+        #Filter products by selected category
+            products = products.filter(category_id=category_id)
     
     context = {
         'products': products,
+        'categories': categories,
         'search_term': query,
+        'selected_category': selected_category
     }
     
     return render(request, 'products/products.html', context)
-"""A view to show all products, including sorting and search queries """
+"""A view to show all products, including sorting, search queries and category filters """
 
 # Product detail view
 def product_detail(request, pk):

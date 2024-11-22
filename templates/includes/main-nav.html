@@ -18,17 +18,22 @@
                 <li class="nav-item mx-3">
                     <a href="{% url 'our_story' %}" class="nav-link">Our Story</a>
                 </li>
-                <li class="nav-item mx-3">
-                    <a href="{% url 'products' %}" class="nav-link">Shop Now</a>
-                </li>
-            </ul>
+                <li class="nav-item mx-3 dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop Now</a>
+                    <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
+                        {% for category in categories %}
+                        <li>
+                            <a class="dropdown-item" href="{% url 'products' %}?category={{ category.id }}">{{ category.name }}</a></li>
+                        {% endfor %}
+                    </ul>
         </nav>
 
         <!-- Search bar, Login, and Shopping Cart on the right -->
         <div class="d-flex me-3 align-items-center">
             <form method="GET" action="{% url 'products' %}">
                 <div class="input-group w-100">
-                    <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our site">
+                    <input class="form-control border border-black rounded-0" type="text" name="q"
+                        placeholder="Search our site">
                     <div class="input-group-append">
                         <button class="form-control btn btn-black border border-black rounded-0" type="submit">
                             <span class="icon">
@@ -38,11 +43,19 @@
                     </div>
                 </div>
             </form>
-            <!-- Search bar -->
-            <!-- <form class="d-flex me-3">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-            </form> -->
 
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Categories
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                    {% for category in categories %}
+                    <li><a class="dropdown-item"
+                            href="{% url 'products' %}?category={{ category.id }}">{{ category.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
             <!-- Login/Register -->
             <div class="me-3 header-buttons">
                 {% if user.is_authenticated %}
