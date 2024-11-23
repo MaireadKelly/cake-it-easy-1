@@ -18,20 +18,10 @@
                 <li class="nav-item mx-3">
                     <a href="{% url 'our_story' %}" class="nav-link">Our Story</a>
                 </li>
-                <li class="nav-item mx-3 dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="categoriesDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Categories
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="categoriesDropdown">
-                        {% for category in categories %}
-                        <li><a class="dropdown-item"
-                                href="{% url 'products' %}?category={{ category.id }}">{{ category.name }}</a></li>
-                        {% empty %}
-                        <li><a class="dropdown-item" href="#">No Categories Available</a></li>
-                        {% endfor %}
-                    </ul>
+                <li class="nav-item mx-3">
+                    <a href="{% url 'products' %}" class="nav-link">Shop</a>
                 </li>
+
         </nav>
 
         <!-- Search bar, Login, and Shopping Cart on the right -->
