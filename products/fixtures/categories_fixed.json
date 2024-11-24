@@ -1,0 +1,42 @@
+[
+    {
+        "model": "products.category",
+        "fields": {
+            "name": "Cakes",
+            "description": "All types of cakes for every occasion.",
+            "parent": null
+        }
+    },
+    {
+        "model": "products.category",
+        "fields": {
+            "name": "Cupcakes",
+            "description": "Small, individual cakes with rich flavors.",
+            "parent": 1
+        }
+    },
+    {
+        "model": "products.category",
+        "fields": {
+            "name": "Accessories",
+            "description": "Decorative and useful accessories for cakes.",
+            "parent": null
+        }
+    },
+    {
+        "model": "products.category",
+        "fields": {
+            "name": "Candles",
+            "description": "Bright and colorful candles for cakes.",
+            "parent": 3
+        }
+    },
+    {
+        "model": "products.category",
+        "fields": {
+            "name": "Toppers",
+            "description": "Elegant toppers to adorn cakes.",
+            "parent": 3
+        }
+    }
+]

@@ -1,0 +1,242 @@
+[
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "birthday",
+            "name": "Vanilla Cake 1",
+            "description": "This is a detailed description for Cake 1. It is crafted with care for special occasions.",
+            "price": 25.48,
+            "image": "https://via.placeholder.com/300?text=Cake+1",
+            "slug": "cake-1",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "other",
+            "name": "Chocolate Cake 2",
+            "description": "This is a detailed description for Cake 2. It is crafted with care for special occasions.",
+            "price": 33.6,
+            "image": "https://via.placeholder.com/300?text=Cake+2",
+            "slug": "cake-2",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "gender_reveal",
+            "name": "Chocolate Cake 3",
+            "description": "This is a detailed description for Cake 3. It is crafted with care for special occasions.",
+            "price": 40.4,
+            "image": "https://via.placeholder.com/300?text=Cake+3",
+            "slug": "cake-3",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "wedding",
+            "name": "Red Velvet Cake 4",
+            "description": "This is a detailed description for Cake 4. It is crafted with care for special occasions.",
+            "price": 43.17,
+            "image": "https://via.placeholder.com/300?text=Cake+4",
+            "slug": "cake-4",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "anniversary",
+            "name": "Chocolate Cake 5",
+            "description": "This is a detailed description for Cake 5. It is crafted with care for special occasions.",
+            "price": 28.53,
+            "image": "https://via.placeholder.com/300?text=Cake+5",
+            "slug": "cake-5",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "Communion",
+            "name": "Lemon Cake 6",
+            "description": "This is a detailed description for Cake 6. It is crafted with care for special occasions.",
+            "price": 20.07,
+            "image": "https://via.placeholder.com/300?text=Cake+6",
+            "slug": "cake-6",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "birthday",
+            "name": "Vanilla Cake 7",
+            "description": "This is a detailed description for Cake 7. It is crafted with care for special occasions.",
+            "price": 47.62,
+            "image": "https://via.placeholder.com/300?text=Cake+7",
+            "slug": "cake-7",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "birthday",
+            "name": "Red Velvet Cake 8",
+            "description": "This is a detailed description for Cake 8. It is crafted with care for special occasions.",
+            "price": 35.02,
+            "image": "https://via.placeholder.com/300?text=Cake+8",
+            "slug": "cake-8",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "wedding",
+            "name": "Red Velvet Cake 9",
+            "description": "This is a detailed description for Cake 9. It is crafted with care for special occasions.",
+            "price": 38.55,
+            "image": "https://via.placeholder.com/300?text=Cake+9",
+            "slug": "cake-9",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "wedding",
+            "name": "Red Velvet Cake 10",
+            "description": "This is a detailed description for Cake 10. It is crafted with care for special occasions.",
+            "price": 22.26,
+            "image": "https://via.placeholder.com/300?text=Cake+10",
+            "slug": "cake-10",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "other",
+            "name": "Chocolate Cake 11",
+            "description": "This is a detailed description for Cake 11. It is crafted with care for special occasions.",
+            "price": 29.07,
+            "image": "https://via.placeholder.com/300?text=Cake+11",
+            "slug": "cake-11",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "Communion",
+            "name": "Chocolate Cake 12",
+            "description": "This is a detailed description for Cake 12. It is crafted with care for special occasions.",
+            "price": 28.34,
+            "image": "https://via.placeholder.com/300?text=Cake+12",
+            "slug": "cake-12",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "birthday",
+            "name": "Chocolate Cake 13",
+            "description": "This is a detailed description for Cake 13. It is crafted with care for special occasions.",
+            "price": 27.8,
+            "image": "https://via.placeholder.com/300?text=Cake+13",
+            "slug": "cake-13",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "Communion",
+            "name": "Red Velvet Cake 14",
+            "description": "This is a detailed description for Cake 14. It is crafted with care for special occasions.",
+            "price": 48.28,
+            "image": "https://via.placeholder.com/300?text=Cake+14",
+            "slug": "cake-14",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "anniversary",
+            "name": "Lemon Cake 15",
+            "description": "This is a detailed description for Cake 15. It is crafted with care for special occasions.",
+            "price": 32.16,
+            "image": "https://via.placeholder.com/300?text=Cake+15",
+            "slug": "cake-15",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "other",
+            "name": "Chocolate Cake 16",
+            "description": "This is a detailed description for Cake 16. It is crafted with care for special occasions.",
+            "price": 38.43,
+            "image": "https://via.placeholder.com/300?text=Cake+16",
+            "slug": "cake-16",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "anniversary",
+            "name": "Chocolate Cake 17",
+            "description": "This is a detailed description for Cake 17. It is crafted with care for special occasions.",
+            "price": 34.39,
+            "image": "https://via.placeholder.com/300?text=Cake+17",
+            "slug": "cake-17",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "baby_shower",
+            "name": "Vanilla Cake 18",
+            "description": "This is a detailed description for Cake 18. It is crafted with care for special occasions.",
+            "price": 37.33,
+            "image": "https://via.placeholder.com/300?text=Cake+18",
+            "slug": "cake-18",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "birthday",
+            "name": "Red Velvet Cake 19",
+            "description": "This is a detailed description for Cake 19. It is crafted with care for special occasions.",
+            "price": 42.79,
+            "image": "https://via.placeholder.com/300?text=Cake+19",
+            "slug": "cake-19",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.cake",
+        "fields": {
+            "occasion": "Communion",
+            "name": "Vanilla Cake 20",
+            "description": "This is a detailed description for Cake 20. It is crafted with care for special occasions.",
+            "price": 38.55,
+            "image": "https://via.placeholder.com/300?text=Cake+20",
+            "slug": "cake-20",
+            "category": 1
+        }
+    }
+]
