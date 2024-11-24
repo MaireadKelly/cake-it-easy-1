@@ -1,0 +1,112 @@
+[
+    {
+        "model": "products.customcake",
+        "fields": {
+            "flavor": "carrot",
+            "filling": "lemon",
+            "inscription": "Happy Birthday",
+            "price": 38.3,
+            "image": "https://example.com/images/custom_cake_1.jpg",
+            "slug": "custom-cake-1"
+        }
+    },
+    {
+        "model": "products.customcake",
+        "fields": {
+            "flavor": "lemon",
+            "filling": "lemon",
+            "inscription": "Happy Wedding",
+            "price": 35.18,
+            "image": "https://example.com/images/custom_cake_2.jpg",
+            "slug": "custom-cake-2"
+        }
+    },
+    {
+        "model": "products.customcake",
+        "fields": {
+            "flavor": "carrot",
+            "filling": "chocolate",
+            "inscription": "Happy Birthday",
+            "price": 40.45,
+            "image": "https://example.com/images/custom_cake_3.jpg",
+            "slug": "custom-cake-3"
+        }
+    },
+    {
+        "model": "products.customcake",
+        "fields": {
+            "flavor": "chocolate",
+            "filling": "raspberry",
+            "inscription": "Happy Birthday",
+            "price": 65.62,
+            "image": "https://example.com/images/custom_cake_4.jpg",
+            "slug": "custom-cake-4"
+        }
+    },
+    {
+        "model": "products.customcake",
+        "fields": {
+            "flavor": "carrot",
+            "filling": "cream_cheese",
+            "inscription": "Happy Wedding",
+            "price": 34.01,
+            "image": "https://example.com/images/custom_cake_5.jpg",
+            "slug": "custom-cake-5"
+        }
+    },
+    {
+        "model": "products.customcake",
+        "fields": {
+            "flavor": "red_velvet",
+            "filling": "buttercream",
+            "inscription": "Happy Birthday",
+            "price": 47.54,
+            "image": "https://example.com/images/custom_cake_6.jpg",
+            "slug": "custom-cake-6"
+        }
+    },
+    {
+        "model": "products.customcake",
+        "fields": {
+            "flavor": "chocolate",
+            "filling": "cream_cheese",
+            "inscription": "Happy Wedding",
+            "price": 59.71,
+            "image": "https://example.com/images/custom_cake_7.jpg",
+            "slug": "custom-cake-7"
+        }
+    },
+    {
+        "model": "products.customcake",
+        "fields": {
+            "flavor": "carrot",
+            "filling": "raspberry",
+            "inscription": "Happy Anniversary",
+            "price": 37.2,
+            "image": "https://example.com/images/custom_cake_8.jpg",
+            "slug": "custom-cake-8"
+        }
+    },
+    {
+        "model": "products.customcake",
+        "fields": {
+            "flavor": "vanilla",
+            "filling": "buttercream",
+            "inscription": "Happy Birthday",
+            "price": 66.04,
+            "image": "https://example.com/images/custom_cake_9.jpg",
+            "slug": "custom-cake-9"
+        }
+    },
+    {
+        "model": "products.customcake",
+        "fields": {
+            "flavor": "carrot",
+            "filling": "lemon",
+            "inscription": "Happy Birthday",
+            "price": 54.03,
+            "image": "https://example.com/images/custom_cake_10.jpg",
+            "slug": "custom-cake-10"
+        }
+    }
+]
