@@ -2,8 +2,8 @@ import json
 from products.models import Product
 
 # File paths
-input_file = "fixtures/expanded_fixtures_products.json"
-output_file = "fixtures/filtered_fixtures_products.json"
+input_file = "products/fixtures/expanded_fixtures_products.json"
+output_file = "products/fixtures/filtered_fixtures_products.json"
 
 # Load existing slugs from the database
 existing_slugs = set(Product.objects.values_list("slug", flat=True))
