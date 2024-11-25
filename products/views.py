@@ -5,6 +5,7 @@ from .forms import ProductForm, CommentForm, RatingForm, CustomCakeForm
 from home.models import Comment, Rating
 from django.contrib import messages
 from django.db.models import Q
+from django.views.generic import DetailView, ListView
 
 
 # View to list all products
@@ -61,6 +62,13 @@ def product_detail(request, pk):
         "products/product_detail.html",
         {"product": product, "comments": comments, "ratings": ratings},
     )
+
+
+# View All Cakes
+class CakeListView(ListView):
+    model = Cake
+    template_name = "products/cake_list.html"
+    context_object_name = "cake"
 
 
 # View to Add New Product
