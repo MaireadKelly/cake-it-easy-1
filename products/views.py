@@ -5,8 +5,8 @@ from .forms import ProductForm, CommentForm, RatingForm, CustomCakeForm
 from home.models import Comment, Rating
 from django.contrib import messages
 from django.db.models import Q
-from django.views.generic import DetailView, ListView
-
+from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 # View to list all products
 def all_products(request):

@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from cloudinary.models import CloudinaryField
+from django.contrib import admin
 
 class Category(models.Model):
     class Meta:
