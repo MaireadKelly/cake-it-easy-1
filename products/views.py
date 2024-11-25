@@ -68,7 +68,7 @@ def product_detail(request, pk):
 class CakeListView(ListView):
     model = Cake
     template_name = "products/cake_list.html"
-    context_object_name = "cake"
+    context_object_name = "cakes"
 
 
 # View to Add New Product

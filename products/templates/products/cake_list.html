@@ -4,6 +4,21 @@
 <div class="container my-5">
     <h1 class="text-center mb-4">Our Cakes</h1>
     {% for cake in cakes %}
+    <div>
+        <h3>{{ cake.name }}</h3>
+        <p>{{ cake.description }}</p>
+        <!-- Add to basket button -->
+        <form method="post" action="{% url 'add_to_basket' cake.pk %}">
+            {% csrf_token %}
+            <button type="submit">Add to Basket</button>
+        </form>
+    </div>
+{% endfor %}
+    
+</div>
+{% endblock %}
+
+<!-- {% for cake in cakes %}
         <div class="cake-item mb-4">
             <h2>{{ cake.name }}</h2>
             <p>{{ cake.description }}</p>
@@ -12,6 +27,4 @@
             <img src="{{ cake.image.url }}" alt="{{ cake.name }}" style="max-width: 100%; height: auto;">
             <a href="{% url 'order_create' %}" class="btn btn-primary mt-2">Order</a>
         </div>
-    {% endfor %}
-</div>
-{% endblock %}
+    {% endfor %} -->
