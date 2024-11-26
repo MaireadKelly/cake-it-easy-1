@@ -6,26 +6,19 @@ from .models import Basket, BasketItem
 
 # Add to basket view
 def add_to_basket(request, cake_id):
-    """Add a quantity of the specified product to the basket"""
-    cake = get_object_or_404(Cake, pk=cake_id)
-    quantity = int(request.POST.get('quantity', 1))
-
-    # Retrieve session key for the basket
+    cake = get_object_or_404(Cake, id=cake_id)
+    quantity = int(request.POST.get('quantity', 1))  # Get quantity from the form
     session_key = request.session.session_key
     if not session_key:
         request.session.create()
 
-    # Retrieve or create a basket
-    basket, _ = Basket.objects.get_or_create(session_key=session_key)
-    basket_item, created = BasketItem.objects.get_or_create(basket=basket, cake=cake)
-
+    basket, created = Basket.objects.get_or_create(session_key=session_key)
+    item, created = BasketItem.objects.get_or_create(basket=basket, cake=cake)
     if not created:
-        basket_item.quantity += quantity  # Increase the quantity if item already exists
+        item.quantity += quantity  # Increase the quantity if the item already exists
     else:
-        basket_item.quantity = quantity
-
-    basket_item.save()
-    messages.success(request, f'Added {cake.name} to your basket.')
+        item.quantity = quantity  # Set initial quantity
+    item.save()
 
     return redirect('view_basket')
 

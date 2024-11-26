@@ -1,46 +1,38 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="container mt-5">
+<div class="container my-5">
     <h2>Your Basket</h2>
-    {% if basket and basket.basketitem_set.all %}
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Update</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for item in basket.basketitem_set.all %}
-            <tr>
-              <td>{{ item.cake.name }}</td>
-              <td>
-                <form method="post" action="{% url 'update_basket' item.id %}">
-                  {% csrf_token %}
-                  <input type="number" name="quantity" value="{{ item.quantity }}" min="1" class="form-control d-inline-block w-25">
-                  <button type="submit" class="btn btn-primary">Update</button>
-                </form>
-              </td>
-              <td>€{{ item.cake.price|floatformat:2 }}</td>
-              <td>
-                <form method="post" action="{% url 'update_basket' item.id %}">
-                  {% csrf_token %}
-                  <input type="hidden" name="quantity" value="0">
-                  <button type="submit" class="btn btn-danger">Remove</button>
-                </form>
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      <div>
-        <a href="{% url 'checkout' %}" class="btn btn-success">Proceed to Checkout</a>
-      </div>
-    {% else %}
-      <p>Your basket is empty.</p>
-    {% endif %}
-  </div>
+    <form action="{% url 'update_basket' %}" method="post">
+        {% csrf_token %}
+        {% if basket and basket.items %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in basket.items.all %}
+                    <tr>
+                        <td>{{ item.cake.name }}</td>
+                        <td>
+                            <input type="number" name="quantity_{{ item.id }}" value="{{ item.quantity }}" min="1">
+                        </td>
+                        <td>€{{ item.cake.price }}</td>
+                        <td>€{{ item.quantity|multiply:item.cake.price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Update Basket</button>
+        {% else %}
+            <p>Your basket is empty.</p>
+        {% endif %}
+    </form>
+    <a href="{% url 'checkout' %}" class="btn btn-success mt-4">Proceed to Checkout</a>
+</div>
 {% endblock %}

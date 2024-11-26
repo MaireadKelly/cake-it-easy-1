@@ -12,8 +12,11 @@ from .forms import OrderForm
 # Create your views here.
 
 
+from django.contrib import messages
+
+
 def checkout(request):
-    basket = request.session.get("basket", {})
+    basket = Basket.objects.filter(session_key=request.session.session_key).first()
     if request.method == "POST":
         form = OrderForm(request.POST)
         if form.is_valid():
@@ -21,40 +24,30 @@ def checkout(request):
             order.save()
 
             # Create order line items from the basket
-
-            for item_key, item_data in basket.items():
-
-                # Extract the cake id from the item key
-
-                cake_id = item_key.split("-")[0]
-
-                cake = get_object_or_404(Cake, pk=cake_id)
-                line_item = OrderLineItem(
-                    order=order,
-                    cake=cake,
-                    cake_size=item_data.get("size"),
-                    cake_flavor=item_data.get("flavor"),
-                    cake_filling=item_data.get("filling"),
-                    quantity=item_data.get("quantity", 1),
-                )
-                line_item.save()
+            if basket:
+                for item in basket.items.all():
+                    line_item = OrderLineItem(
+                        order=order,
+                        cake=item.cake,
+                        quantity=item.quantity,
+                        lineitem_total=item.cake.price * item.quantity,
+                    )
+                    line_item.save()
 
             # Clear the basket after saving the order
-            request.session["basket"] = {}
+            basket.items.all().delete()
             messages.success(request, "Your order has been placed successfully!")
 
             return redirect("order_confirmation", order_number=order.order_number)
-
         else:
-
             messages.error(
                 request, "There was an error with your form. Please check your details."
             )
-            return redirect("order_confirmation", order_number=order.order_number)
+            return redirect("checkout")  # Redirect back to checkout in case of an error
     else:
         form = OrderForm()
 
-    return render(request, "checkout/checkout.html", {"form": form})
+    return render(request, "checkout/checkout.html", {"form": form, "basket": basket})
 
 
 def order_confirmation(request, order_number):
