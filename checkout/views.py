@@ -1,21 +1,40 @@
 import stripe
 from django.conf import settings
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_list_or_404
 from django.db import models
+from .models import Order, OrderLineItem, CustomCake
 from basket.models import Basket, BasketItem
+from products.models import Cake
+from .forms import OrderForm
+
 
 # Create your views here.
 
 def checkout(request):
-    customer = request.user.customer
-    basket = Basket.objects.filter(customer=customer).first()
-    
+    basket = request.session.get('basket', {})
     if request.method == 'POST':
-        delivery_time = request.POST.get('delivery_time')
-        order = Order.objects.create(
-            customer=customer,
-            basket=basket,
-            delivery_time=delivery_time
-            )
-        basket.delete() # Clear the basket after order is placed
-        return redirect('order_confirmation', {'basket': basket})
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.save()
+            
+            # Create order line items from the basket
+            for item_key, item_data in basket.items():
+                cake = get_object_or_404(Cake, pk=item_key.split('-')[0])
+                line_item = OrderLineItem(
+                    order=order,
+                    cake=cake,
+                    cake_size=item_data.get('size'),
+                    cake_flavor=item_data.get('flavor'),
+                    cake_filling=item_data.get('filling'),
+                    quantity=item_data.get('quantity'),
+                )
+                line_item.save()
+
+            # Clear the basket after saving the order
+            request.session['basket'] = {}
+            return redirect('order_confirmation', order_number=order.order_number)
+    else:
+        form = OrderForm()
+
+    return render(request, 'checkout/checkout.html', {'form': form})
