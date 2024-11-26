@@ -1,11 +1,18 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
 <div class="container my-5">
     <h2>Customer Profile: {{ customer.user.username }}</h2>
-    <p><strong>Email:</strong> {{ customer.email }}</p>
+    <p><strong>Email:</strong> {{ customer.user.email }}</p>
     <p><strong>Address:</strong> {{ customer.address }}</p>
     <p><strong>Phone Number:</strong> {{ customer.phone_number }}</p>
-    <!-- Add more fields as needed -->
+
+    <hr>
+    <h3>Update Profile Information</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+    </form>
 </div>
 {% endblock %}

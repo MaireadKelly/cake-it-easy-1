@@ -1,6 +1,7 @@
 from django import forms
 from .models import Product, CustomCake, Cake, CakeSize
 from home.models import Comment, Rating
+from home.customer import Customer
 
 class ProductForm(forms.ModelForm):
     class Meta:

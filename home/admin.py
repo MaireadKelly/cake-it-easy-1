@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Order, Customer
+from .models import Order
+from home.customer import Customer
 
 # Register your models here.
 

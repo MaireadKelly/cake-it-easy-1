@@ -1,50 +1,73 @@
+# basket/views.py
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib import messages
-from products.models import Cake
 from .models import Basket, BasketItem
+from products.models import Cake
 
 
-# Add to basket view
 def add_to_basket(request, cake_id):
     cake = get_object_or_404(Cake, id=cake_id)
-    quantity = int(request.POST.get('quantity', 1))  # Get quantity from the form
+    customer = request.user.customer if request.user.is_authenticated else None
     session_key = request.session.session_key
     if not session_key:
         request.session.create()
 
-    basket, created = Basket.objects.get_or_create(session_key=session_key)
+    basket, created = Basket.objects.get_or_create(
+        customer=customer, session_key=session_key
+    )
     item, created = BasketItem.objects.get_or_create(basket=basket, cake=cake)
     if not created:
-        item.quantity += quantity  # Increase the quantity if the item already exists
-    else:
-        item.quantity = quantity  # Set initial quantity
+        item.quantity += 1  # Increase the quantity if the item already exists
     item.save()
 
-    return redirect('view_basket')
+    return redirect("view_basket")
 
 
-# View basket contents
+def remove_from_basket(request, item_id):
+    """Remove an item from the basket"""
+    try:
+        item = get_object_or_404(BasketItem, id=item_id)
+        item.delete()
+        return HttpResponse(status=200)
+    except Exception as e:
+        return HttpResponse(status=500)
+
+
 def view_basket(request):
-    """A view that renders the basket contents page"""
+    customer = None
+    if request.user.is_authenticated:
+        # Automatically create the customer profile if it doesn't exist
+        customer, created = Customer.objects.get_or_create(user=request.user)
+
     session_key = request.session.session_key
-    basket = Basket.objects.filter(session_key=session_key).first()
+    if not session_key:
+        request.session.create()
 
-    return render(request, 'basket/basket.html', {'basket': basket})
+    # Retrieve or create a basket based on the customer and session key
+    basket = Basket.objects.filter(customer=customer, session_key=session_key).first()
+
+    # Passing basket items to the template in the same format as the walkthrough
+    basket_items = basket.items.all() if basket else []
+
+    total = sum(item.quantity * item.cake.price for item in basket_items)
+    grand_total = total  # You can add delivery costs if needed
+
+    context = {
+        "basket_items": basket_items,
+        "total": total,
+        "grand_total": grand_total,
+        "free_delivery_delta": max(
+            0, 50 - total
+        ),  # Example: Assuming free delivery above 50 euros
+    }
+
+    return render(request, "basket/basket.html", context)
 
 
-# Update the quantity of an item in the basket
 def update_basket(request, item_id):
-    """Adjust the quantity of the specified product in the basket"""
     item = get_object_or_404(BasketItem, id=item_id)
-    if request.method == 'POST':
-        new_quantity = int(request.POST.get('quantity', 1))
-        if new_quantity > 0:
-            item.quantity = new_quantity
-            item.save()
-            messages.success(request, f'Updated {item.cake.name} quantity to {item.quantity}.')
-        else:
-            item.delete()
-            messages.success(request, f'Removed {item.cake.name} from your basket.')
+    if request.method == "POST":
+        new_quantity = int(request.POST.get("quantity", 1))
+        item.quantity = new_quantity
+        item.save()
 
-    return redirect('view_basket')
-
+    return redirect("view_basket")

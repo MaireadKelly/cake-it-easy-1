@@ -1,38 +1,103 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<div class="container my-5">
-    <h2>Your Basket</h2>
-    <form action="{% url 'update_basket' %}" method="post">
-        {% csrf_token %}
-        {% if basket and basket.items %}
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in basket.items.all %}
-                    <tr>
-                        <td>{{ item.cake.name }}</td>
-                        <td>
-                            <input type="number" name="quantity_{{ item.id }}" value="{{ item.quantity }}" min="1">
-                        </td>
-                        <td>€{{ item.cake.price }}</td>
-                        <td>€{{ item.quantity|multiply:item.cake.price }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <button type="submit" class="btn btn-primary">Update Basket</button>
-        {% else %}
-            <p>Your basket is empty.</p>
-        {% endif %}
-    </form>
-    <a href="{% url 'checkout' %}" class="btn btn-success mt-4">Proceed to Checkout</a>
+<div class="container mb-2">
+    <div class="row">
+        <div class="col">
+            <hr>
+            <h2 class="logo-font mb-4">Shopping Basket</h2>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {% if basket_items %}
+                <div class="table-responsive rounded">
+                    <table class="table table-sm table-borderless">
+                        <thead class="text-black">
+                            <tr>
+                                <th scope="col">Product Info</th>
+                                <th scope="col"></th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Subtotal</th>
+                            </tr>
+                        </thead>
+
+                        {% for item in basket_items %}
+                            <tr>
+                                <td class="p-3 w-25">
+                                    <img class="img-fluid rounded" src="{{ item.cake.image.url }}">
+                                </td>
+                                <td class="py-3">
+                                    <p class="my-0"><strong>{{ item.cake.name }}</strong></p>
+                                </td>
+                                <td class="py-3">
+                                    <p class="my-0">€{{ item.cake.price }}</p>
+                                </td>
+                                <td class="py-3 w-25">
+                                    <form class="form update-form" method="POST" action="{% url 'update_basket' item.id %}">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <input class="form-control form-control-sm qty_input" type="number"
+                                                       name="quantity" value="{{ item.quantity }}" min="1" max="99"
+                                                       data-item_id="{{ item.id }}">
+                                                <input type="submit" value="Update" class="btn btn-sm btn-primary ml-2">
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <a class="remove-item text-danger float-right" id="remove_{{ item.id }}" href="{% url 'remove_from_basket' item.id %}">
+                                      <small>Remove</small>
+                                  </a>
+                                  
+                                </td>
+                                <td class="py-3">
+                                    <p class="my-0">€{{ item.cake.price|floatformat:2 }}</p>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td colspan="5" class="pt-5 text-right">
+                                <h6><strong>Basket Total: €{{ total|floatformat:2 }}</strong></h6>
+                                <h4 class="mt-4"><strong>Grand Total: €{{ grand_total|floatformat:2 }}</strong></h4>
+                                {% if free_delivery_delta > 0 %}
+                                    <p class="mb-1 text-danger">
+                                        You could get free delivery by spending just <strong>€{{ free_delivery_delta }}</strong> more!
+                                    </p>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="text-right">
+                                <a href="{% url 'product_list' %}" class="btn btn-outline-secondary btn-lg">
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="text-uppercase">Keep Shopping</span>
+                                </a>
+                                <a href="{% url 'checkout' %}" class="btn btn-primary btn-lg">
+                                    <span class="text-uppercase">Proceed to Checkout</span>
+                                    <span class="icon">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            {% else %}
+                <p class="lead mb-5">Your basket is empty.</p>
+                <a href="{% url 'product_list' %}" class="btn btn-outline-secondary btn-lg">
+                    <span class="icon">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="text-uppercase">Keep Shopping</span>
+                </a>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock %}
