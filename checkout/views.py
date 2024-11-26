@@ -1,6 +1,7 @@
 import stripe
 from django.conf import settings
-from django.shortcuts import render, redirect, get_list_or_404
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from django.db import models
 from .models import Order, OrderLineItem, CustomCake
 from basket.models import Basket, BasketItem
@@ -40,6 +41,15 @@ def checkout(request):
 
             # Clear the basket after saving the order
             request.session["basket"] = {}
+            messages.success(request, "Your order has been placed successfully!")
+
+            return redirect("order_confirmation", order_number=order.order_number)
+
+        else:
+
+            messages.error(
+                request, "There was an error with your form. Please check your details."
+            )
             return redirect("order_confirmation", order_number=order.order_number)
     else:
         form = OrderForm()
