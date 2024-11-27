@@ -1,4 +1,3 @@
-# Updated basket/views.py with comments and commits
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
 from django.contrib import messages
 from products.models import Cake
@@ -9,24 +8,38 @@ def view_basket(request):
     return render(request, 'basket/basket.html')
 
 # View to add a quantity of the specified cake to the shopping basket
+# basket/views.py
+
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.contrib import messages
+from products.models import Cake
+
+# View to add a quantity of the specified cake to the shopping basket
 def add_to_basket(request, cake_id):
     """ Add a quantity of the specified cake to the shopping basket """
 
     cake = get_object_or_404(Cake, pk=cake_id)
     quantity = request.POST.get('quantity')
-    redirect_url = request.POST.get('redirect_url', reverse('products'))
+    redirect_url = request.POST.get('redirect_url')
     size = None
     if 'cake_size' in request.POST:
         size = request.POST['cake_size']
     basket = request.session.get('basket', {})
 
-    # Handle the case where `quantity` is None
+    # Handle the case where `quantity` or `redirect_url` is None
     if quantity is None:
         messages.error(request, "Quantity not specified. Please try again.")
-        return redirect('products')
+        return redirect('cake_list')
 
-    # Convert `quantity` to an integer
-    quantity = int(quantity)
+    if redirect_url is None:
+        messages.error(request, "Something went wrong. Please try again.")
+        return redirect('cake_list')
+
+    try:
+        quantity = int(quantity)
+    except ValueError:
+        messages.error(request, "Invalid quantity value. Please enter a valid number.")
+        return redirect('cake_list')
 
     if size:
         if cake_id in basket:
@@ -51,10 +64,9 @@ def add_to_basket(request, cake_id):
     request.session['basket'] = basket
     return redirect(redirect_url)
 
-
-# View to adjust the quantity of a specified cake in the basket
+# View to update the quantity of a specified cake in the basket
 def update_basket(request, cake_id):
-    """ Adjust the quantity of the specified cake in the shopping basket """
+    """ Update the quantity of the specified cake in the shopping basket """
 
     cake = get_object_or_404(Cake, pk=cake_id)
     quantity = request.POST.get('quantity')
