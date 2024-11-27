@@ -3,7 +3,7 @@ from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import Order, OrderLineItem
-from basket.contexts import bag_contents
+from basket.contexts import basket_contents
 from .forms import OrderForm
 
 # Create your views here.
@@ -15,8 +15,8 @@ def checkout(request):
         messages.error(request, "Your basket is empty")
         return redirect('products')
 
-    current_bag = bag_contents(request)
-    total = current_bag['grand_total']
+    current_basket = basket_contents(request)
+    total = current_basket['grand_total']
     stripe_total = round(total * 100)
     intent = stripe.PaymentIntent.create(
         amount=stripe_total,

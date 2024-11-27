@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404
 from products.models import Cake
 
 
-def bag_contents(request):
+def basket_contents(request):
     basket_items = []
     total = 0
     cake_count = 0

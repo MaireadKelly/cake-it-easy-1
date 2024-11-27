@@ -64,12 +64,12 @@
 
             <!-- Shopping Cart with total below -->
             <div class="shopping-cart">
-                <a href="#" class="btn btn-outline-secondary position-relative">
+                <a href="{% url 'view_basket' %}" class="cart-link">
                     <i class="bi bi-cart-fill"></i>
-                    <!-- Basket total below the icon -->
-                    <span class="basket-total d-block text-center">€0.00</span>
+                    <span>Basket Total: €{{ grand_total|floatformat:2 }}</span>
                 </a>
             </div>
+
         </div>
     </div>
 </header>

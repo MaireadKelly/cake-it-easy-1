@@ -94,6 +94,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",  # Required for authentication
                 "django.contrib.messages.context_processors.messages",  # Required for messages
                 # Any other context processors you need
+                "basket.contexts.basket_contents"
             ],
         },
     },

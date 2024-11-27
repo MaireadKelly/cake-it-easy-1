@@ -10,7 +10,8 @@
         </div>
 
         <!-- Hamburger menu button for mobile navigation -->
-        <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav" aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#mobileNav" aria-controls="mobileNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
@@ -41,13 +42,16 @@
             </div>
 
             <!-- Shopping Cart with total below -->
+            <!-- Example: mobile-top-header.html -->
             <div class="shopping-cart mt-3 w-100">
-                <a href="#" class="btn btn-outline-secondary position-relative w-100">
+                <a href="{% url 'view_basket' %}" class="btn btn-outline-secondary position-relative w-100">
                     <i class="bi bi-cart-fill"></i>
                     <!-- Basket total below the icon -->
-                    <span class="basket-total d-block text-center">€0.00</span>
+                    <span class="basket-total d-block text-center">€{{ total|floatformat:2 }}</span>
+                    <span class="basket-total d-block text-center">€{{ grand_total|floatformat:2 }}</span>
                 </a>
             </div>
+
         </nav>
     </div>
 </header>
