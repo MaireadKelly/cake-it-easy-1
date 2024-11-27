@@ -5,10 +5,11 @@ from django.db import models
 from django.utils.text import slugify
 from django.core.exceptions import ValidationError
 from cloudinary.models import CloudinaryField
+from home.customer import Customer # Import Customer from New customer.py file
 
 class Order(models.Model):
     product = models.ForeignKey("products.Product", on_delete=models.CASCADE, related_name="orders", default=1) 
-    customer = models.ForeignKey("Customer", on_delete=models.CASCADE, blank=True, null=True, related_name="orders")
+    customer = models.ForeignKey("home.Customer", on_delete=models.CASCADE, blank=True, null=True, related_name="orders")
     quantity = models.PositiveIntegerField()
     inscription = models.CharField(max_length=255, default="No inscription")
     price = models.DecimalField(max_digits=10, decimal_places=2, editable=False)
