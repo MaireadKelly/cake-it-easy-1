@@ -8,56 +8,53 @@ def view_basket(request):
     return render(request, 'basket/basket.html')
 
 # View to add a quantity of the specified cake to the shopping basket
-# basket/views.py
-
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
-from django.contrib import messages
-from products.models import Cake
-
-# View to add a quantity of the specified cake to the shopping basket
 def add_to_basket(request, cake_id):
     """ Add a quantity of the specified cake to the shopping basket """
 
+    # Get the cake instance
     cake = get_object_or_404(Cake, pk=cake_id)
     quantity = request.POST.get('quantity')
-    redirect_url = request.POST.get('redirect_url')
+    redirect_url = request.POST.get('redirect_url', reverse('products'))  # Default redirect URL
     size = None
     if 'cake_size' in request.POST:
         size = request.POST['cake_size']
+    
+    # Get the basket session or create a new one if not exist
     basket = request.session.get('basket', {})
 
-    # Handle the case where `quantity` or `redirect_url` is None
-    if quantity is None:
+    # Handle the case where quantity is missing
+    if not quantity:
         messages.error(request, "Quantity not specified. Please try again.")
-        return redirect('cake_list')
-
-    if redirect_url is None:
-        messages.error(request, "Something went wrong. Please try again.")
-        return redirect('cake_list')
-
+        return redirect(redirect_url)
+    
+    # Convert quantity to an integer and validate it
     try:
         quantity = int(quantity)
+        if quantity <= 0:
+            messages.error(request, "Please enter a valid quantity.")
+            return redirect(redirect_url)
     except ValueError:
-        messages.error(request, "Invalid quantity value. Please enter a valid number.")
-        return redirect('cake_list')
+        messages.error(request, "Invalid quantity. Please enter a valid number.")
+        return redirect(redirect_url)
 
+    # Adding items to basket with or without a specific size
     if size:
-        if cake_id in basket:
-            if size in basket[cake_id]['items_by_size']:
-                basket[cake_id]['items_by_size'][size] += quantity
-                messages.success(request, f'Updated size {size.upper()} {cake.name} quantity to {basket[cake_id]["items_by_size"][size]}')
+        if str(cake_id) in basket:
+            if size in basket[str(cake_id)]['items_by_size']:
+                basket[str(cake_id)]['items_by_size'][size] += quantity
+                messages.success(request, f'Updated size {size.upper()} {cake.name} quantity to {basket[str(cake_id)]["items_by_size"][size]}')
             else:
-                basket[cake_id]['items_by_size'][size] = quantity
+                basket[str(cake_id)]['items_by_size'][size] = quantity
                 messages.success(request, f'Added size {size.upper()} {cake.name} to your basket')
         else:
-            basket[cake_id] = {'items_by_size': {size: quantity}}
+            basket[str(cake_id)] = {'items_by_size': {size: quantity}}
             messages.success(request, f'Added size {size.upper()} {cake.name} to your basket')
     else:
-        if cake_id in basket:
-            basket[cake_id] += quantity
-            messages.success(request, f'Updated {cake.name} quantity to {basket[cake_id]}')
+        if str(cake_id) in basket:
+            basket[str(cake_id)] += quantity
+            messages.success(request, f'Updated {cake.name} quantity to {basket[str(cake_id)]}')
         else:
-            basket[cake_id] = quantity
+            basket[str(cake_id)] = quantity
             messages.success(request, f'Added {cake.name} to your basket')
 
     # Save the updated basket to the session
@@ -66,38 +63,48 @@ def add_to_basket(request, cake_id):
 
 # View to update the quantity of a specified cake in the basket
 def update_basket(request, cake_id):
-    """ Update the quantity of the specified cake in the shopping basket """
+    """ Adjust the quantity of the specified cake in the shopping basket """
 
     cake = get_object_or_404(Cake, pk=cake_id)
     quantity = request.POST.get('quantity')
     size = None
     if 'cake_size' in request.POST:
         size = request.POST['cake_size']
+    
+    # Get the basket session or create a new one if not exist
     basket = request.session.get('basket', {})
 
-    # Handle the case where `quantity` is None
-    if quantity is None:
+    # Handle the case where quantity is missing
+    if not quantity:
         messages.error(request, "Quantity not specified. Please try again.")
         return redirect('view_basket')
 
-    # Convert `quantity` to an integer
-    quantity = int(quantity)
+    # Convert quantity to an integer and validate it
+    try:
+        quantity = int(quantity)
+        if quantity < 0:
+            messages.error(request, "Please enter a valid quantity.")
+            return redirect('view_basket')
+    except ValueError:
+        messages.error(request, "Invalid quantity. Please enter a valid number.")
+        return redirect('view_basket')
 
+    # Update items in the basket with or without a specific size
     if size:
         if quantity > 0:
-            basket[cake_id]['items_by_size'][size] = quantity
-            messages.success(request, f'Updated size {size.upper()} {cake.name} quantity to {basket[cake_id]["items_by_size"][size]}')
+            basket[str(cake_id)]['items_by_size'][size] = quantity
+            messages.success(request, f'Updated size {size.upper()} {cake.name} quantity to {basket[str(cake_id)]["items_by_size"][size]}')
         else:
-            del basket[cake_id]['items_by_size'][size]
-            if not basket[cake_id]['items_by_size']:
-                basket.pop(cake_id)
+            del basket[str(cake_id)]['items_by_size'][size]
+            if not basket[str(cake_id)]['items_by_size']:
+                basket.pop(str(cake_id))
             messages.success(request, f'Removed size {size.upper()} {cake.name} from your basket')
     else:
         if quantity > 0:
-            basket[cake_id] = quantity
-            messages.success(request, f'Updated {cake.name} quantity to {basket[cake_id]}')
+            basket[str(cake_id)] = quantity
+            messages.success(request, f'Updated {cake.name} quantity to {basket[str(cake_id)]}')
         else:
-            basket.pop(cake_id)
+            basket.pop(str(cake_id))
             messages.success(request, f'Removed {cake.name} from your basket')
 
     # Save the updated basket to the session
@@ -113,15 +120,18 @@ def remove_from_basket(request, cake_id):
         size = None
         if 'cake_size' in request.POST:
             size = request.POST['cake_size']
+        
+        # Get the basket session or create a new one if not exist
         basket = request.session.get('basket', {})
 
+        # Remove items from the basket with or without a specific size
         if size:
-            del basket[cake_id]['items_by_size'][size]
-            if not basket[cake_id]['items_by_size']:
-                basket.pop(cake_id)
+            del basket[str(cake_id)]['items_by_size'][size]
+            if not basket[str(cake_id)]['items_by_size']:
+                basket.pop(str(cake_id))
             messages.success(request, f'Removed size {size.upper()} {cake.name} from your basket')
         else:
-            basket.pop(cake_id)
+            basket.pop(str(cake_id))
             messages.success(request, f'Removed {cake.name} from your basket')
 
         # Save the updated basket to the session
