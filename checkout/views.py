@@ -6,12 +6,13 @@ from .models import Order, OrderLineItem
 from basket.contexts import basket_contents
 from .forms import OrderForm
 from django.http import JsonResponse
+from products.models import Cake
+from basket.contexts import basket_contents
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 # Create your views here.
-
-
 def checkout(request):
-    stripe.api_key = settings.STRIPE_SECRET_KEY
     basket = request.session.get('basket', {})
     if not basket:
         messages.error(request, "Your basket is empty")

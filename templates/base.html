@@ -26,7 +26,7 @@
         rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-{% endblock %}
+    {% endblock %}
 
 
     {% block corejs %}
@@ -34,6 +34,8 @@
     </script>
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/d5ab71ba5d.js" crossorigin="anonymous"></script>
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
     {% endblock %}
 
     {% block extra_css %}
