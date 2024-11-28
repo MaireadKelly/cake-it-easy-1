@@ -11,7 +11,7 @@
             <h1>{{ product.name }}</h1>
             <p class="lead">€{{ product.price }}</p>
             <p>{{ product.description }}</p>
-            <form method="POST" action="{% url 'add_to_basket' product.id %}">
+            <form method="POST" action="{% url 'add_to_basket' cake.id %}">
                 {% csrf_token %}
                 <input type="number" name="quantity" value="1" min="1" />
                 <input type="hidden" name="redirect_url" value="{{ request.path }}" />

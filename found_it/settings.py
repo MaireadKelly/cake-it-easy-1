@@ -208,3 +208,6 @@ STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 
 stripe.api_key = STRIPE_SECRET_KEY
+
+# Standard delivery fixed charge (set this as needed)
+STANDARD_DELIVERY_CHARGE = 15.00

@@ -40,7 +40,7 @@ def add_to_basket(request, cake_id):
     # Adding items to basket with or without a specific size
     if size:
         if str(cake_id) in basket:
-            if size in basket[str(cake_id)]['items_by_size']:
+            if size in basket[str(cake_id)].get('items_by_size', {}):
                 basket[str(cake_id)]['items_by_size'][size] += quantity
                 messages.success(request, f'Updated size {size.upper()} {cake.name} quantity to {basket[str(cake_id)]["items_by_size"][size]}')
             else:

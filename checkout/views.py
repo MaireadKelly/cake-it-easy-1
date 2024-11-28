@@ -5,8 +5,10 @@ from django.contrib import messages
 from .models import Order, OrderLineItem
 from basket.contexts import basket_contents
 from .forms import OrderForm
+from django.http import JsonResponse
 
 # Create your views here.
+
 
 def checkout(request):
     stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -55,7 +57,8 @@ def checkout(request):
             messages.success(request, 'Order successfully processed!')
             return redirect('order_confirmation', order_number=order.order_number)
         else:
-            messages.error(request, 'There was an error with your form. Please double check your information.')
+            messages.error(
+                request, 'There was an error with your form. Please double check your information.')
 
     else:
         form = OrderForm()
@@ -72,9 +75,9 @@ def checkout(request):
 def order_confirmation(request, order_number):
     """ A view to handle successful order confirmations """
     order = get_object_or_404(Order, order_number=order_number)
-    
+
     context = {
         'order': order,
     }
-    
+
     return render(request, 'checkout/order_confirmation.html', context)
