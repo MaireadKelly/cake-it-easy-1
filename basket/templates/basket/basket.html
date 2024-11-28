@@ -1,21 +1,46 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container my-5">
-    <h1 class="text-center mb-4">Our Cakes</h1>
-    {% for cake in cakes %}
-    <div>
-        <h3>{{ cake.name }}</h3>
-        <p>{{ cake.description }}</p>
-        <!-- Add to basket button -->
-        <form method="POST" action="{% url 'add_to_basket' cake.pk %}">
-            {% csrf_token %}
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity" min="1" value="1">
-            <input type="hidden" name="redirect_url" value="{% url 'cake_list' %}">
-            <button type="submit" class="btn btn-success">Add to Basket</button>
-        </form>
-    </div>
-    {% endfor %}
+<div class="container mt-5">
+    <h1>Your Basket</h1>
+    {% if basket_items %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Size</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in basket_items %}
+                    <tr>
+                        <td>{{ item.cake.name }}</td>
+                        <td>{{ item.size|default:"N/A" }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>€{{ item.cake.price }}</td>
+                        <td>€{{ item.quantity|floatformat:2|add:item.cake.price }}</td>
+                        <td>
+                            <form method="POST" action="{% url 'remove_from_basket' item.cake_id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h3>Basket Total: €{{ total }}</h3>
+        <h3>Delivery: €{{ delivery }}</h3>
+        <h3>Grand Total: €{{ grand_total }}</h3>
+        <a href="{% url 'checkout' %}" class="btn btn-primary">Proceed to Checkout</a>
+
+    {% else %}
+        <p>Your basket is empty.</p>
+    {% endif %}
 </div>
 {% endblock %}

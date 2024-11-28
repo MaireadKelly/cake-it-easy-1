@@ -14,7 +14,7 @@ def add_to_basket(request, cake_id):
     # Get the cake instance
     cake = get_object_or_404(Cake, pk=cake_id)
     quantity = request.POST.get('quantity')
-    redirect_url = request.POST.get('redirect_url', reverse('products'))  # Default redirect URL
+    redirect_url = request.POST.get('redirect_url', reverse('view_basket'))  # Default redirect URL
     size = None
     if 'cake_size' in request.POST:
         size = request.POST['cake_size']
@@ -40,7 +40,7 @@ def add_to_basket(request, cake_id):
     # Adding items to basket with or without a specific size
     if size:
         if str(cake_id) in basket:
-            if size in basket[str(cake_id)].get('items_by_size', {}):
+            if size in  basket[str(cake_id)]['items_by_size']:
                 basket[str(cake_id)]['items_by_size'][size] += quantity
                 messages.success(request, f'Updated size {size.upper()} {cake.name} quantity to {basket[str(cake_id)]["items_by_size"][size]}')
             else:

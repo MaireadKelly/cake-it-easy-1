@@ -3,32 +3,46 @@ from django.conf import settings
 from django.shortcuts import get_object_or_404
 from products.models import Cake
 
-
 def basket_contents(request):
+    """
+    Context processor to make basket contents available across all templates.
+    """
     basket_items = []
     total = 0
     cake_count = 0
     basket = request.session.get("basket", {})
 
     for cake_id, item_data in basket.items():
-        cake = get_object_or_404(Cake, pk=cake_id)  # Make sure `cake` is defined here for both branches
-        if isinstance(item_data, int):
+        cake = get_object_or_404(Cake, pk=cake_id)
 
-            # Handle non-sized items
+        # If item_data is an integer, it means it's a simple quantity
+        if isinstance(item_data, int):
             total += item_data * cake.price
             cake_count += item_data
-            basket_items.append({"cake_id": cake_id, "quantity": item_data, "cake": cake,})
+            basket_items.append({
+                "cake_id": cake_id,
+                "quantity": item_data,
+                "cake": cake,
+            })
 
-        else:
-            # Handle items with sizes
-            items_by_size = item_data.get("items_by_size", {})
-            for size, quantity in items_by_size.items():
+        # If item_data is a dictionary, it indicates that items have specific sizes
+        elif isinstance(item_data, dict) and "items_by_size" in item_data:
+            for size, quantity in item_data["items_by_size"].items():
                 total += quantity * cake.price
                 cake_count += quantity
-                basket_items.append({"cake_id": cake_id, "quantity": quantity, "cake": cake, "size": size,})
+                basket_items.append({
+                    "cake_id": cake_id,
+                    "quantity": quantity,
+                    "cake": cake,
+                    "size": size,
+                })
+        else:
+            # Handle unexpected format for item_data gracefully
+            continue
 
-    # Use fixed delivery charge from settings
-    delivery = Decimal(getattr(settings, 'STANDARD_DELIVERY_CHARGE', 15.00))
+    # Set a standard delivery charge (not based on a percentage)
+    delivery = Decimal(settings.STANDARD_DELIVERY_CHARGE)
+
     grand_total = total + delivery
 
     context = {
