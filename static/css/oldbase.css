@@ -1,9 +1,14 @@
 :root {
-    --primary-color: #934d3b; /* Caput mortuum */
-    --secondary-color: #debda8; /* Champagne */
-    --accent-color: #f1eee3; /* Almond */
-    --text-color: #3b3d35; /* Dark Text */
-    --background-color: #ffffff; /* White for a cleaner background */
+    --primary-color: #934d3b;
+    /* Caput mortuum */
+    --secondary-color: #debda8;
+    /* Champagne */
+    --accent-color: #f1eee3;
+    /* Almond */
+    --text-color: #3b3d35;
+    /* Dark Text */
+    --background-color: #999578;
+    /* Columbia blue */
 }
 
 html,
@@ -16,6 +21,7 @@ body {
 body {
     background-color: var(--background-color);
     color: var(--text-color);
+    background: var(--secondary-color);
     display: flex;
     flex-direction: column;
 }
@@ -173,9 +179,90 @@ nav .nav-link:hover {
     color: var(--accent-color);
 }
 
-/* Active Toggler State */
+.navbar-toggler {
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.navbar-toggler-icon {
+    width: 30px;
+    height: 3px;
+    background-color: var(--secondary-color);
+    /* Matches the theme */
+    position: relative;
+    transition: all 0.3s;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+    content: "";
+    width: 30px;
+    height: 3px;
+    background-color: var(--secondary-color);
+    position: absolute;
+    transition: all 0.3s;
+}
+
+.navbar-toggler-icon::before {
+    top: -10px;
+}
+
+.navbar-toggler-icon::after {
+    bottom: -10px;
+}
+
+/* Active Toggler State (when open) */
 .navbar-toggler.collapsed .navbar-toggler-icon {
     background-color: transparent;
+}
+
+.navbar-toggler.collapsed .navbar-toggler-icon::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.navbar-toggler.collapsed .navbar-toggler-icon::after {
+    transform: rotate(-45deg);
+    bottom: 0;
+}
+
+
+/* Button hover effects */
+.btn-outline-secondary {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* Search bar */
+input[type="search"] {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--primary-color);
+    color: var(--text-color);
+}
+
+form.d-flex input[type="search"] {
+    background-color: var(--secondary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 5px 15px;
+    font-size: 16px;
 }
 
 /* Shopping Cart Styling */
@@ -193,7 +280,8 @@ nav .nav-link:hover {
 
 /* Shopping Cart Total Styling */
 .basket-page {
-    background-color: var(--accent-color); /* Update with desired color */
+    background-color: #f1eee3;
+    /* Update this with your desired color */
 }
 
 .shopping-cart .basket-total {
@@ -201,7 +289,43 @@ nav .nav-link:hover {
     color: var(--text-color);
 }
 
+/* Container Fluid Styling */
+.container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logout link */
+.logout-link {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.logout-link:hover {
+    color: var(--accent-color);
+}
+
+/* Overlay */
+.overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: rgba(241, 238, 227, 0.8);
+    /* Set to white with opacity */
+    z-index: -1;
+}
+
 /* Media Queries */
+
+/* Larger container on xl screens */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 80%;
+    }
+}
 
 /* Fixed top navbar on medium and up */
 @media (min-width: 992px) {
@@ -233,5 +357,24 @@ nav .nav-link:hover {
 
     .main-navigation {
         display: none;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .d-flex.align-items-end {
+        margin-top: 10px;
+        margin-left: 0;
+        gap: 10px;
+    }
+
+    nav .nav-link {
+        margin-right: 15px;
     }
 }

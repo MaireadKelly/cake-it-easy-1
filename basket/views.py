@@ -4,8 +4,11 @@ from products.models import Cake
 
 # View that renders the basket contents page
 def view_basket(request):
+    context = {
+        'body-class': 'basket/basket.html'
+    }
     """ A view that renders the basket contents page """
-    return render(request, 'basket/basket.html')
+    return render(request, 'basket/basket.html', context)
 
 # View to add a quantity of the specified cake to the shopping basket
 def add_to_basket(request, cake_id):
