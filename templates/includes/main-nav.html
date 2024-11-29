@@ -40,7 +40,7 @@
                 </div>
             </form>
 
-            <li class="nav-item dropdown">
+            <!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     Categories
@@ -51,7 +51,7 @@
                             href="{% url 'products' %}?category={{ category.id }}">{{ category.name }}</a></li>
                     {% endfor %}
                 </ul>
-            </li>
+            </li> -->
             <!-- Login/Register -->
             <div class="me-3 header-buttons">
                 {% if user.is_authenticated %}

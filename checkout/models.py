@@ -23,10 +23,10 @@ class Order(models.Model):
         max_digits=6, decimal_places=2, null=False, default=0
     )
     order_total = models.DecimalField(
-        max_digits=10, decimal_places=2, null=False, default=0
+        max_digits=12, decimal_places=2, null=False, default=0
     )
     grand_total = models.DecimalField(
-        max_digits=10, decimal_places=2, null=False, default=0
+        max_digits=12, decimal_places=2, null=False, default=0
     )
     stripe_pid = models.CharField(max_length=254, blank=True, null=True)
 
