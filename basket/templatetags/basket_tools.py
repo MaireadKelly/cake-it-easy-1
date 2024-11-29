@@ -1,12 +1,24 @@
+from django import template
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 from products.models import Product  # Update to match your project
 from decimal import Decimal
 
-def basket_contents(request):
+register = template.Library()
+
+@register.filter(name='calc_subtotal')
+def calc_subtotal(price, quantity):
     """
-    Makes the basket contents available globally in templates.
+    Template filter to calculate the subtotal of a product
     """
+    return price * quantity
+
+@register.inclusion_tag('basket/basket_summary.html', takes_context=True)
+def basket_summary(context):
+    """
+    Custom inclusion tag to provide basket summary details in templates.
+    """
+    request = context['request']
     basket = request.session.get('basket', {})
 
     basket_items = []
