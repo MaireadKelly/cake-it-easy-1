@@ -14,129 +14,46 @@
     <input type="hidden" id="id_stripe_public_key" value="{{ stripe_public_key }}">
     <input type="hidden" id="id_client_secret" value="{{ client_secret }}">
     <input type="hidden" name="save_info" id="id-save-info">
-    
-    <div class="form-group">
-        <label for="full_name">Full Name</label>
-        <input type="text" id="full_name" name="full_name" class="form-control" required>
+
+    <fieldset>
+        <legend>Details</legend>
+        <div class="form-group">
+            <label for="full_name">Full Name</label>
+            <input type="text" id="full_name" name="full_name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Delivery</legend>
+        <div class="form-group">
+            <label for="phone_number">Phone Number</label>
+            <input type="tel" id="phone_number" name="phone_number" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" name="street_address1" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="town_or_city" class="form-control" required>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Payment</legend>
+        <div id="card-element" class="form-group my-4"><!-- A Stripe Element will be inserted here --></div>
+        <div id="card-errors" role="alert"></div>
+    </fieldset>
+
+    <div class="submit-button">
+        <button id="submit-button" class="btn btn-primary">Pay Now</button>
     </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label for="phone_number">Phone Number</label>
-        <input type="tel" id="phone_number" name="phone_number" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label for="address">Address</label>
-        <input type="text" id="address" name="street_address1" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label for="city">City</label>
-        <input type="text" id="city" name="town_or_city" class="form-control" required>
-    </div>
-    <div id="card-element" class="form-group my-4"><!-- A Stripe Element will be inserted here --></div>
-    <button id="submit-button" class="btn btn-primary">Pay Now</button>
-    <div id="card-errors" role="alert"></div>
 </form>
-
-<!-- Display Basket Summary -->
-<div class="basket-summary">
-    <h3>Your Basket</h3>
-    <ul>
-        {% for item in basket_items %}
-            <li>
-                <strong>{{ item.product.name }}</strong> 
-                - {{ item.quantity }} @ {{ item.product.price }} each 
-                - Subtotal: {{ item.product.price|calc_subtotal:item.quantity }}
-            </li>
-        {% endfor %}
-    </ul>
-    <p><strong>Grand Total: {{ grand_total }}</strong></p>
-</div>
-
 {% endblock %}
 
-{% block extra_scripts %}
-<script src="https://js.stripe.com/v3/"></script>
-<script>
-    // Set up Stripe.js and Elements to use in checkout form
-    var stripePublicKey = document.getElementById("id_stripe_public_key").value;
-    var clientSecret = document.getElementById("id_client_secret").value;
-
-    var stripe = Stripe(stripePublicKey);
-    var elements = stripe.elements();
-
-    // Custom styling can be passed to the Stripe Elements.
-    var style = {
-        base: {
-            color: "#32325d",
-            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-            fontSmoothing: "antialiased",
-            fontSize: "16px",
-            "::placeholder": {
-                color: "#aab7c4"
-            }
-        },
-        invalid: {
-            color: "#fa755a",
-            iconColor: "#fa755a"
-        }
-    };
-
-    // Create an instance of the card Element.
-    var card = elements.create("card", {style: style});
-
-    // Mount the card Element into the `card-element` div.
-    card.mount("#card-element");
-
-    // Handle form submission.
-    var form = document.getElementById("payment-form");
-    form.addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        card.update({ 'disabled': true});
-        document.getElementById("submit-button").disabled = true;
-        document.getElementById("loading-overlay").classList.remove("d-none");
-
-        stripe.confirmCardPayment(clientSecret, {
-            payment_method: {
-                card: card,
-                billing_details: {
-                    name: document.getElementById('full_name').value,
-                    email: document.getElementById('email').value,
-                    phone: document.getElementById('phone_number').value,
-                    address: {
-                        line1: document.getElementById('address').value,
-                        city: document.getElementById('city').value,
-                    }
-                }
-            },
-            shipping: {
-                name: document.getElementById('full_name').value,
-                phone: document.getElementById('phone_number').value,
-                address: {
-                    line1: document.getElementById('address').value,
-                    city: document.getElementById('city').value,
-                }
-            },
-        }).then(function(result) {
-            if (result.error) {
-                // Display error.message in the `#card-errors` div.
-                document.getElementById("card-errors").textContent = result.error.message;
-                card.update({ 'disabled': false });
-                document.getElementById("submit-button").disabled = false;
-                document.getElementById("loading-overlay").classList.add("d-none");
-            } else {
-                // The payment has been processed.
-                if (result.paymentIntent.status === "succeeded") {
-                    form.submit(); // Submit the form to the backend
-                }
-            }
-        });
-    });
-</script>
-
-<script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
-
+{% block postloadjs %}
 {% endblock %}

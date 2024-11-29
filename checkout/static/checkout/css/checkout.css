@@ -21,6 +21,11 @@
   background-color: #fefde5 !important;
 }
 
+body.checkout-page {
+  background-color: #f1eee3; /* Replace with your desired color */
+}
+
+
 .stripe-style-input::placeholder {
     color: #aab7c4;
 }
