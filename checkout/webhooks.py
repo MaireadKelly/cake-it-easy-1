@@ -4,7 +4,7 @@ from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from checkout.models import Order
-from profiles.models import UserProfile
+# from profiles.models import UserProfile
 
 @csrf_exempt
 def stripe_webhook(request):
