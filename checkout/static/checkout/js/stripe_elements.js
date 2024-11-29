@@ -6,8 +6,14 @@
     https://stripe.com/docs/stripe-js
 */
 
+console.log("Stripe Elements Script Loaded");
+
 var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
+console.log("Stripe Public Key:", stripePublicKey);
+
 var clientSecret = $('#id_client_secret').text().slice(1, -1);
+console.log("Client Secret:", clientSecret);
+
 var stripe = Stripe(stripePublicKey);
 var elements = stripe.elements();
 var style = {
