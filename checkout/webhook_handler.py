@@ -25,14 +25,14 @@ class StripeWH_Handler:
         """
         Handle the payment_intent.succeeded webhook from Stripe
         """
-        intent = event.data.object
-        pid = intent.id
-        basket = intent.metadata.basket
-        save_info = intent.metadata.save_info
+        # intent = event.data.object
+        # pid = intent.id
+        # basket = intent.metadata.basket
+        # save_info = intent.metadata.save_info
 
-        billing_details = intent.charges.data[0].billing_details
-        shipping_details = intent.shipping
-        grand_total = round(intent.charges.data[0].amount / 100, 2)
+        # billing_details = intent.charges.data[0].billing_details
+        # shipping_details = intent.shipping
+        # grand_total = round(intent.charges.data[0].amount / 100, 2)
 
         # Clean data in the shipping details
         for field, value in shipping_details.address.items():
@@ -106,12 +106,10 @@ class StripeWH_Handler:
                     order.delete()
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
-                    status=500,
-                )
+                    status=500)
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
-            status=200,
-        )
+            status=200)
 
     def handle_payment_intent_payment_failed(self, event):
         """

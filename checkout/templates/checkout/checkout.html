@@ -11,6 +11,11 @@
 </div>
 <form id="payment-form" method="POST" action="{% url 'checkout' %}">
     {% csrf_token %}
+
+    <p>Stripe Public Key: {{ stripe_public_key }}</p>
+    <p>Client Secret: {{ client_secret }}</p>
+
+
     <input type="hidden" id="id_stripe_public_key" value="{{ stripe_public_key }}">
     <input type="hidden" id="id_client_secret" value="{{ client_secret }}">
     <input type="hidden" name="save_info" id="id-save-info">
