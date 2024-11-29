@@ -15,10 +15,6 @@
     <input type="hidden" id="id_client_secret" value="{{ client_secret }}">
     <input type="hidden" name="save_info" id="id-save-info">
 
-    <input type="hidden" id="id_stripe_public_key" value="{{ stripe_public_key }}">
-    <input type="hidden" id="id_client_secret" value="{{ client_secret }}">
-
-
     <fieldset>
         <legend>Details</legend>
         <div class="form-group">
@@ -53,12 +49,6 @@
             <label for="postcode">Postal Code</label>
             <input type="text" id="postcode" name="postcode" class="form-control" required>
         </div>
-        <!-- <div class="form-group">
-            <label for="country">Country</label>
-            <select id="country" name="country" class="form-control" required>
-                <!-- Country options go here -->
-        <!-- </select> -->
-        <!-- </div> --> -->
         <div class="form-group">
             <label for="county">County</label>
             <input type="text" id="county" name="county" class="form-control">
@@ -81,7 +71,5 @@
 
 {% block postloadjs %}
 {{ block.super }}
-{{ stripe_public_key|json_script:"id_stripe_public_key" }}
-{{ client_secret|json_script:"id_client_secret" }}
-<script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+<script src="{% static 'checkout/js/stripe_elements.js' %}" defer></script>
 {% endblock %}

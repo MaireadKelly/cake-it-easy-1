@@ -11,13 +11,12 @@ document.addEventListener("DOMContentLoaded", function() {
     // Retrieve public key and client secret from the hidden inputs in the checkout template
     var stripePublicKeyElement = document.getElementById('id_stripe_public_key');
     if (stripePublicKeyElement) {
-        var stripePublicKey = stripePublicKeyElement.getAttribute('value').trim();
+        var stripePublicKey = stripePublicKeyElement.value.trim();
         console.log("Stripe Public Key Retrieved:", stripePublicKey); // Log public key to confirm retrieval
     } else {
         console.error("Stripe Public Key element not found in DOM");
         return;
     }
-
 
     var clientSecretElement = document.getElementById('id_client_secret');
     if (clientSecretElement) {
@@ -28,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return;
     }
 
-    // Initialize Stripe
+    // Initialize Stripe only if the key is valid
     var stripe = Stripe(stripePublicKey);
     var elements = stripe.elements();
     console.log("Stripe initialized:", stripe); // Log to verify Stripe is initialized
@@ -52,9 +51,11 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     // Create an instance of the card element
-    var card = elements.create('card', { style: style });
+    var card = elements.create('card', {style: style});
+    console.log("Card element created:", card); // Log to verify card element creation
+    // Mount the card element to the div with id="card-element"
     card.mount('#card-element');
-    console.log("Card Element mounted to #card-element"); // Log to confirm the element is mounted
+    console.log("Card element mounted to #card-element"); // Log to confirm card element mounting
 
     // Handle real-time validation errors on the card element
     card.addEventListener('change', function(event) {
@@ -101,71 +102,70 @@ document.addEventListener("DOMContentLoaded", function() {
 
         var url = '/checkout/cache_checkout_data/';
         fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: new URLSearchParams(postData)
-            })
-            .then(function(response) {
-                console.log("Cache checkout data response:", response); // Log response from cache endpoint
-                return response.json();
-            })
-            .then(function() {
-                console.log("Payment confirmed, starting Stripe confirmation"); // Log before confirming payment
-                stripe.confirmCardPayment(clientSecret, {
-                    payment_method: {
-                        card: card,
-                        billing_details: {
-                            name: form.full_name.value.trim(),
-                            phone: form.phone_number.value.trim(),
-                            email: form.email.value.trim(),
-                            address: {
-                                line1: form.street_address1.value.trim(),
-                                line2: form.street_address2.value.trim(),
-                                city: form.town_or_city.value.trim(),
-                                country: form.country.value.trim(),
-                                state: form.county.value.trim(),
-                            }
-                        }
-                    },
-                    shipping: {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(postData)
+        })
+        .then(function(response) {
+            console.log("Cache checkout data response:", response); // Log response from cache endpoint
+            return response.json();
+        })
+        .then(function() {
+            console.log("Payment confirmed, starting Stripe confirmation"); // Log before confirming payment
+            stripe.confirmCardPayment(clientSecret, {
+                payment_method: {
+                    card: card,
+                    billing_details: {
                         name: form.full_name.value.trim(),
                         phone: form.phone_number.value.trim(),
+                        email: form.email.value.trim(),
                         address: {
                             line1: form.street_address1.value.trim(),
                             line2: form.street_address2.value.trim(),
                             city: form.town_or_city.value.trim(),
-                            country: form.country.value.trim(),
-                            postal_code: form.postcode.value.trim(),
                             state: form.county.value.trim(),
+                            postal_code: form.postcode.value.trim(),
                         }
-                    },
-                }).then(function(result) {
-                    if (result.error) {
-                        console.error("Payment Error:", result.error.message); // Log error if payment fails
-                        var errorDiv = document.getElementById('card-errors');
-                        var html = `
+                    }
+                },
+                shipping: {
+                    name: form.full_name.value.trim(),
+                    phone: form.phone_number.value.trim(),
+                    address: {
+                        line1: form.street_address1.value.trim(),
+                        line2: form.street_address2.value.trim(),
+                        city: form.town_or_city.value.trim(),
+                        state: form.county.value.trim(),
+                        postal_code: form.postcode.value.trim(),
+                    }
+                },
+            }).then(function(result) {
+                if (result.error) {
+                    console.error("Payment Error:", result.error.message); // Log error if payment fails
+                    var errorDiv = document.getElementById('card-errors');
+                    var html = `
                         <span class="icon" role="alert">
                         <i class="fas fa-times"></i>
                         </span>
                         <span>${result.error.message}</span>`;
-                        errorDiv.innerHTML = html;
-                        card.update({'disabled': false});
-                        document.getElementById('submit-button').removeAttribute('disabled');
-                        document.getElementById('loading-overlay').classList.add('d-none');
-                    } else {
-                        if (result.paymentIntent.status === 'succeeded') {
-                            console.log("Payment Succeeded!"); // Log when payment is successful
-                            form.submit();
-                        }
+                    errorDiv.innerHTML = html;
+                    card.update({'disabled': false});
+                    document.getElementById('submit-button').removeAttribute('disabled');
+                    document.getElementById('loading-overlay').classList.add('d-none');
+                } else {
+                    if (result.paymentIntent.status === 'succeeded') {
+                        console.log("Payment Succeeded!"); // Log when payment is successful
+                        form.submit();
                     }
-                });
-            })
-            .catch(function(error) {
-                console.error("Error during fetch or Stripe confirmation:", error); // Log fetch errors
-                // Reload the page if there is an error
-                location.reload();
+                }
             });
+        })
+        .catch(function(error) {
+            console.error("Error during fetch or Stripe confirmation:", error); // Log fetch errors
+            // Reload the page if there is an error
+            location.reload();
+        });
     });
 });
