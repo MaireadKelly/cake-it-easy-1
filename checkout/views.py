@@ -30,7 +30,13 @@ def checkout(request):
         form = OrderForm(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
-            pid = request.POST.get('client_secret').split('_secret')[0]
+            # Add a check to make sure `client_secret` exists
+            client_secret = request.POST.get('client_secret')
+            if not client_secret:
+                messages.error(request, "Client secret missing. Please try again.")
+                return redirect('checkout')
+
+            pid = client_secret.split('_secret')[0]
             order.stripe_pid = pid
             order.original_basket = basket
             order.save()
@@ -58,8 +64,7 @@ def checkout(request):
             messages.success(request, 'Order successfully processed!')
             return redirect('order_confirmation', order_number=order.order_number)
         else:
-            messages.error(
-                request, 'There was an error with your form. Please double check your information.')
+            messages.error(request, 'There was an error with your form. Please double-check your information.')
 
     else:
         form = OrderForm()
@@ -67,7 +72,7 @@ def checkout(request):
     context = {
         'form': form,
         'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
-        'client_secret': intent.client_secret,
+        'client_secret': intent.client_secret if intent else '',
     }
 
     return render(request, 'checkout/checkout.html', context)

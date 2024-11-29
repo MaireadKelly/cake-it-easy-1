@@ -6,12 +6,12 @@
     https://stripe.com/docs/stripe-js
 */
 
-console.log("Stripe Elements JS Loaded");
+console.log("Stripe Elements Script Loaded");
 
-var stripePublicKey = document.getElementById('id_stripe_public_key').value;
-var clientSecret = document.getElementById('id_client_secret').value;
-
+var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 console.log("Stripe Public Key:", stripePublicKey);
+
+var clientSecret = $('#id_client_secret').text().slice(1, -1);
 console.log("Client Secret:", clientSecret);
 
 var stripe = Stripe(stripePublicKey);
@@ -60,8 +60,6 @@ form.addEventListener('submit', function(ev) {
     $('#payment-form').fadeToggle(100);
     $('#loading-overlay').fadeToggle(100);
 
-    console.log("Form submitted - Initiating Payment Intent");
-
     var saveInfo = Boolean($('#id-save-info').attr('checked'));
     // From using {% csrf_token %} in the form
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
@@ -73,8 +71,6 @@ form.addEventListener('submit', function(ev) {
     var url = '/checkout/cache_checkout_data/';
 
     $.post(url, postData).done(function () {
-        console.log("Post to cache_checkout_data successful");
-
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
@@ -84,10 +80,25 @@ form.addEventListener('submit', function(ev) {
                     email: $.trim(form.email.value),
                     address:{
                         line1: $.trim(form.street_address1.value),
+                        line2: $.trim(form.street_address2.value),
                         city: $.trim(form.town_or_city.value),
+                        country: $.trim(form.country.value),
+                        state: $.trim(form.county.value),
                     }
                 }
-            }
+            },
+            shipping: {
+                name: $.trim(form.full_name.value),
+                phone: $.trim(form.phone_number.value),
+                address: {
+                    line1: $.trim(form.street_address1.value),
+                    line2: $.trim(form.street_address2.value),
+                    city: $.trim(form.town_or_city.value),
+                    country: $.trim(form.country.value),
+                    postal_code: $.trim(form.postcode.value),
+                    state: $.trim(form.county.value),
+                }
+            },
         }).then(function(result) {
             if (result.error) {
                 var errorDiv = document.getElementById('card-errors');
@@ -102,14 +113,18 @@ form.addEventListener('submit', function(ev) {
                 card.update({ 'disabled': false});
                 $('#submit-button').attr('disabled', false);
             } else {
-                if (result.paymentIntent.status === 'succeeded') {
-                    form.submit();
+                if (result.paymentIntent.status === "succeeded") {
+                    console.log("Payment succeeded. Now attempting to submit the form...");
+                    // Make the form submit visible for a better trace
+                    setTimeout(function () {
+                        form.submit();
+                    }, 1000);
                 }
+                
             }
         });
     }).fail(function () {
         // just reload the page, the error will be in django messages
-        console.error("Failed to cache checkout data");
         location.reload();
     })
 });

@@ -94,7 +94,9 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",  # Required for authentication
                 "django.contrib.messages.context_processors.messages",  # Required for messages
                 # Any other context processors you need
-                "basket.contexts.basket_contents",
+                # "basket.contexts.basket_contents",
+                'django.template.context_processors.media',
+                'basket.contexts.basket_contents',  # Custom context processor for basket
             ],
         },
     },
@@ -211,4 +213,5 @@ STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 stripe.api_key = STRIPE_SECRET_KEY
 
 # Standard delivery fixed charge (set this as needed)
+FREE_DELIVERY_THRESHOLD = 50 
 STANDARD_DELIVERY_CHARGE = 15.00
