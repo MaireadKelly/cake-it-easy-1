@@ -13,7 +13,6 @@ class CakeAdmin(admin.ModelAdmin):
     list_filter = ('occasion', 'category',)
     prepopulated_fields = {"slug": ("name",)}
     ordering = ('name', 'category',)
-    filter_horizontal = ('sizes',)  # Add this line for the sizes field
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -27,4 +26,3 @@ class CakeSizeAdmin(admin.ModelAdmin):
 class CustomCakeAdmin(admin.ModelAdmin):
     list_display = ('flavor', 'filling', 'inscription', 'price', 'image',)
     prepopulated_fields = {"slug": ("flavor", "filling",)}
-    filter_horizontal = ('sizes',)  # Add this line for the sizes field
