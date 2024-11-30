@@ -20,7 +20,8 @@ class OrderForm(forms.ModelForm):
 class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ['address', 'phone_number', 'email']  # Add other fields as needed
+        fields = ['first_name', 'last_name', 'email', 'phone_number', 'address_line1', 'address_line2', 'city', 'county', 'postal_code'
+        ]
         
 
 class CustomSignupForm(SignupForm):

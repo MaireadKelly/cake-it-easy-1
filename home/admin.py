@@ -10,4 +10,4 @@ class OrderAdmin(admin.ModelAdmin):
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('user', 'address', 'phone_number', 'email')
+    list_display = ('user', 'first_name', 'last_name', 'email', 'phone_number', 'city', 'county')
