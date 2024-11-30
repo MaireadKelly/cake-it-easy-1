@@ -8,7 +8,7 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=50)
     email = models.EmailField()
     phone_number = models.CharField(max_length=20, blank=True, null=True)
-    address_line1 = models.CharField(max_length=255)  # Street address
+    address_line1 = models.CharField(max_length=255, blank=True, null=True)  # Street address
     address_line2 = models.CharField(max_length=255, blank=True, null=True)  # Optional second line
     city = models.CharField(max_length=100)
     county = models.CharField(max_length=100)  # Changed from state to county

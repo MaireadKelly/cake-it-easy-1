@@ -7,6 +7,7 @@ from django.core.exceptions import ValidationError
 from cloudinary.models import CloudinaryField
 from home.customer import Customer # Import Customer from New customer.py file
 
+
 class Order(models.Model):
     product = models.ForeignKey("products.Product", on_delete=models.CASCADE, related_name="orders", default=1) 
     customer = models.ForeignKey("home.Customer", on_delete=models.CASCADE, blank=True, null=True, related_name="orders")
