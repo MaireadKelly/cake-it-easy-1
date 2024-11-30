@@ -24,12 +24,25 @@ class Category(models.Model):
 
 
 class CakeSize(models.Model):
-    name = models.CharField(max_length=50)  # E.g., "8 inch Round"
+    CAKE_SIZE_CHOICES = [
+        ("8_inch_round", "8 inch Round"),
+        ("10_inch_round", "10 inch Round"),
+        ("12_inch_round", "12 inch Round"),
+        ("8_inch_square", "8 inch Square"),
+        ("10_inch_square", "10 inch Square"),
+        ("12_inch_square", "12 inch Square"),
+    ]
+
+    name = models.CharField(
+        max_length=50,
+        choices=CAKE_SIZE_CHOICES,
+        unique=True,  # Prevent duplicate sizes
+    )
     description = models.TextField(blank=True, null=True)  # Optional details
     price = models.DecimalField(max_digits=6, decimal_places=2)  # Price for this size
 
     def __str__(self):
-        return f"{self.name} - €{self.price}"
+        return f"{self.get_name_display()} - €{self.price}"
 
 
 class Cake(models.Model):
@@ -44,13 +57,14 @@ class Cake(models.Model):
         ("christening", "Christening"),
         ("other", "Other"),
     ]
-
     occasion = models.CharField(
         max_length=50, choices=OCCASION_CHOICES, default="other"
     )
     name = models.CharField(max_length=255)
     description = models.TextField()
-    sizes = models.ManyToManyField(CakeSize, related_name="cakes")  # Multiple sizes per cake
+    sizes = models.ManyToManyField(
+        CakeSize, related_name="cakes"
+    )  # Multiple sizes per cake
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = CloudinaryField("image", blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True)
