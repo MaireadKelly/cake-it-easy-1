@@ -1,16 +1,41 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from home.customer import Customer
 from .models import Order
-from .forms import OrderForm
+from .forms import OrderForm, CustomerForm
 from django.contrib.auth.decorators import login_required
 from products.models import Product
+from django.conf import settings
 
 
 def index(request):
-    featured_products = Product.objects.all()[
-        :3
-    ]  # Get the first 3 products, for example
-    return render(request, "home/index.html", {"featured_products": featured_products})
+    # Safely fetch the STANDARD_DELIVERY_CHARGE, defaulting to 0 if not set
+    delivery_charge = getattr(settings, "STANDARD_DELIVERY_CHARGE", 0)
+
+    # Get the first 3 products to feature on the homepage
+    featured_products = Product.objects.all()[:3]
+
+    # Pass the featured products and delivery charge to the template
+    return render(
+        request,
+        "home/index.html",
+        {
+            "featured_products": featured_products,
+            "delivery_charge": delivery_charge,
+        },
+    )
+
+
+@login_required
+def profile(request):
+    customer, created = Customer.objects.get_or_create(user=request.user)
+    if request.method == "POST":
+        form = CustomerForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+            return redirect("profile")
+    else:
+        form = CustomerForm(instance=customer)
+    return render(request, "home/profile.html", {"form": form})
 
 
 # Shop View

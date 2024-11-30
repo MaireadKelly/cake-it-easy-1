@@ -90,11 +90,9 @@ TEMPLATES = [
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
-                "django.template.context_processors.request",
+                "django.template.context_processors.request",  # Required for Allauth
                 "django.contrib.auth.context_processors.auth",  # Required for authentication
                 "django.contrib.messages.context_processors.messages",  # Required for messages
-                # Any other context processors you need
-                # "basket.contexts.basket_contents",
                 'django.template.context_processors.media',
                 'basket.contexts.basket_contents',  # Custom context processor for basket
             ],
@@ -123,6 +121,11 @@ LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 
+# **Added ACCOUNT_FORMS**
+ACCOUNT_FORMS = {
+    "signup": "home.forms.CustomSignupForm",  # Path to your custom signup form
+}
+
 WSGI_APPLICATION = "found_it.wsgi.application"
 
 
@@ -133,20 +136,6 @@ DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
 CSRF_TRUSTED_ORIGINS = ["https://*.codeinstitute-ide.net/", "https://*.herokuapp.com"]
 
-
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
-
-
-# CSRF_TRUSTED_ORIGINS = [
-#     "https://8000-maireadkelly-foundit-vs9ytjoojur.ws.codeinstitute-ide.net",
-#     "https://*.herokuapp.com",
-#     "https://*.codeinstitute-ide.net/",
-# ]
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -210,8 +199,4 @@ STRIPE_CURRENCY = 'eur'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 
-stripe.api_key = STRIPE_SECRET_KEY
-
-# Standard delivery fixed charge (set this as needed)
-FREE_DELIVERY_THRESHOLD = 50 
 STANDARD_DELIVERY_CHARGE = 15.00

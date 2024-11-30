@@ -3,16 +3,13 @@ from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import Order, OrderLineItem
-from basket.contexts import basket_contents
 from .forms import OrderForm
-from django.http import JsonResponse
-from products.models import Cake
-from basket.contexts import basket_contents
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from products.models import Cake
+from basket.contexts import basket_contents
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
-
 
 # Create your views here.
 def checkout(request):
@@ -33,7 +30,6 @@ def checkout(request):
         form = OrderForm(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
-            # Add a check to make sure `client_secret` exists
             client_secret = request.POST.get("client_secret")
             if not client_secret:
                 messages.error(request, "Client secret missing. Please try again.")
@@ -83,11 +79,8 @@ def checkout(request):
 
     return render(request, "checkout/checkout.html", context)
 
-
 @csrf_exempt
 def stripe_webhook(request):
-    # Set your secret key. Remember to switch to your live secret key in production.
-    # You can find your endpoint's secret in your webhook settings in Stripe.
     endpoint_secret = settings.STRIPE_WH_SECRET
     payload = request.body
     sig_header = request.META["HTTP_STRIPE_SIGNATURE"]
@@ -95,32 +88,21 @@ def stripe_webhook(request):
     try:
         event = stripe.Webhook.construct_event(payload, sig_header, endpoint_secret)
     except ValueError as e:
-        # Invalid payload
         return HttpResponse(status=400)
     except stripe.error.SignatureVerificationError as e:
-        # Invalid signature
         return HttpResponse(status=400)
 
     # Handle the event
     if event["type"] == "payment_intent.succeeded":
         payment_intent = event["data"]["object"]
-        # Handle the successful payment here
         print(f"Payment for {payment_intent['amount']} succeeded.")
-
     elif event["type"] == "payment_intent.payment_failed":
         payment_intent = event["data"]["object"]
         print(f"Payment for {payment_intent['amount']} failed.")
 
-    # Add other relevant event types you need to handle
     return HttpResponse(status=200)
 
-
 def order_confirmation(request, order_number):
-    """A view to handle successful order confirmations"""
     order = get_object_or_404(Order, order_number=order_number)
-
-    context = {
-        "order": order,
-    }
-
+    context = {"order": order}
     return render(request, "checkout/order_confirmation.html", context)

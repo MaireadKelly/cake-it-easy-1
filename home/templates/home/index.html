@@ -1,58 +1,64 @@
-    {% extends "base.html" %}
+{% extends "base.html" %}
 
-    {% load static %}
+{% load static %}
 
-    {% block page_header %}
-    <div class="container header-container">
-      <div class="row">
-        <div class="col"></div>
+{% block page_header %}
+<div class="container header-container">
+  <div class="row">
+    <div class="col"></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <!-- Hero section with a call-to-action -->
+  <section class="hero-section text-center py-5">
+    <h1 class="display-4">Welcome to Cake it Easy</h1>
+    <p class="lead">Delicious products made to perfection for every occasion</p>
+  </section>
+
+  <!-- Featured section -->
+  <section class="featured-products py-5">
+    <h2 class="text-center">Featured Cakes</h2>
+    <div class="row">
+      {% for product in featured_products %}
+      <div class="col-md-4">
+        <div class="card">
+          {% if product.image %}
+          <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+          {% else %}
+          <img src="{% static 'images/placeholder.png' %}" class="card-img-top" alt="No image available">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <a href="{% url 'product_detail' product.id %}" class="btn btn-secondary">View Details</a>
+          </div>
+        </div>
       </div>
+      {% endfor %}
     </div>
-    {% endblock %}
+  </section>
 
-    {% block content %}
-    <div class="container">
-      <!-- Hero section with a call-to-action -->
-      <section class="hero-section text-center py-5">
-        <h1 class="display-4">Welcome to Cake it Easy</h1>
-        <p class="lead">Delicious products made to perfection for every occasion</p>
-      </section>
+  <!-- Delivery Charge (Optional) -->
+  <section class="delivery-charge text-center py-3">
+    <p>Our standard delivery charge is: €{{ delivery_charge }}</p>
+  </section>
 
-      <!-- Featured section -->
-      <section class="featured-products py-5">
-        <h2 class="text-center">Featured Cakes</h2>
-        <div class="row">
-            {% for product in featured_products %}
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
-    
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text">{{ product.description }}</p>
-                        <a href="{% url 'product_detail' product.id %}" class="btn btn-secondary">View Details</a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
-    
+  <!-- About Us section -->
+  <section class="about-us py-5">
+    <h2 class="text-center">Our Story</h2>
+    <p class="text-center">Cake it Easy baking sweet memories to last a lifetime...</p>
+  </section>
 
-
-      <!-- About Us section -->
-      <section class="about-us py-5">
-        <h2 class="text-center">Our Story</h2>
-        <p class="text-center">Cake it Easy baking sweet memories to last a lifetime...</p>
-      </section>
-
-      <!-- Testimonials (optional) -->
-      <section class="testimonials py-5">
-        <h2 class="text-center">What Our Customers Say</h2>
-        <div class="row">
-          <!-- Add testimonials here -->
-        </div>
-      </section>
+  <!-- Testimonials (optional) -->
+  <section class="testimonials py-5">
+    <h2 class="text-center">What Our Customers Say</h2>
+    <div class="row">
+      <!-- Add testimonials here -->
     </div>
+  </section>
+</div>
 
-    {% endblock %}
+{% endblock %}
