@@ -23,10 +23,11 @@ class Category(models.Model):
         return self.name
 
 
+
 class CakeSize(models.Model):
-    name = models.CharField(max_length=50)
-    description = models.TextField(blank=True, null=True)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    name = models.CharField(max_length=50)  # E.g., "Small," "Medium," "Large"
+    description = models.TextField(blank=True, null=True)  # Optional details
+    price = models.DecimalField(max_digits=6, decimal_places=2)  # Price for this size
 
     def __str__(self):
         return f"{self.name} - €{self.price}"
@@ -75,15 +76,6 @@ class Cake(models.Model):
         if not self.slug:
             self.slug = self.generate_unique_slug()
         super().save(*args, **kwargs)
-
-
-class CakeSize(models.Model):
-    name = models.CharField(max_length=50)  # E.g., "Small," "Medium," "Large"
-    description = models.TextField(blank=True, null=True)  # Optional details
-    price = models.DecimalField(max_digits=6, decimal_places=2)  # Price for this size
-
-    def __str__(self):
-        return f"{self.name} - €{self.price}"
 
 
 class CustomCake(models.Model):
