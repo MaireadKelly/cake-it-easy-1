@@ -10,4 +10,15 @@ class OrderAdmin(admin.ModelAdmin):
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('user', 'first_name', 'last_name', 'email', 'phone_number', 'city', 'county')
+    list_display = (
+        'user',                # The related user
+        'full_name',           # Replace first_name and last_name with full_name
+        'email',               # Email
+        'phone_number',        # Phone number
+        'street_address1',     # Street address
+        'town_or_city',        # Town or city
+        'county',              # County (replaces city)
+        'postcode',            # Postcode
+    )
+    search_fields = ('user__username', 'email', 'phone_number')  # Optional, for admin search
+

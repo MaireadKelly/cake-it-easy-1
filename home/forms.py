@@ -8,7 +8,7 @@ from allauth.account.forms import SignupForm
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'preview_description', 'description', 'price', 'slug', 'category', 'image']
+        fields = ['name', 'description', 'price', 'slug', 'category', 'image']
 
 class OrderForm(forms.ModelForm):
     delivery_time = forms.DateTimeField(widget=forms.DateTimeInput(attrs={"type": "datetime-local"}))  # Date and time picker
@@ -20,8 +20,7 @@ class OrderForm(forms.ModelForm):
 class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ['first_name', 'last_name', 'email', 'phone_number', 'address_line1', 'address_line2', 'city', 'county', 'postal_code'
-        ]
+        fields = ['full_name', 'email', 'phone_number', 'street_address1', 'street_address2', 'town_or_city', 'postcode', 'county']
         
 
 class CustomSignupForm(SignupForm):

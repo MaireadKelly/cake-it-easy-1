@@ -4,15 +4,14 @@ from django.contrib.auth.models import User
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='customer')
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    email = models.EmailField()
+    full_name = models.CharField(max_length=255, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
     phone_number = models.CharField(max_length=20, blank=True, null=True)
-    address_line1 = models.CharField(max_length=255, blank=True, null=True)  # Street address
-    address_line2 = models.CharField(max_length=255, blank=True, null=True)  # Optional second line
-    city = models.CharField(max_length=100, blank=True, null=True)
-    county = models.CharField(max_length=100, blank=True, null=True)  # Changed from state to county
-    postal_code = models.CharField(max_length=20, blank=True, null=True)
+    street_address1 = models.CharField(max_length=255, blank=True, null=True)
+    street_address2 = models.CharField(max_length=255, blank=True, null=True)
+    town_or_city = models.CharField(max_length=100, blank=True, null=True)
+    postcode = models.CharField(max_length=20, blank=True, null=True)
+    county = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return f"{self.user.username} - Customer Profile"

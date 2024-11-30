@@ -1,8 +1,33 @@
 from django.db import models
 from django.utils.text import slugify
 from cloudinary.models import CloudinaryField
-from django.contrib import admin
 
+
+class Product(models.Model):
+    PRODUCT_TYPE_CHOICES = [
+        ("cake", "Cake"),
+        ("accessory", "Accessory"),
+    ]
+
+    name = models.CharField(max_length=255)
+    product_type = models.CharField(
+        max_length=50, choices=PRODUCT_TYPE_CHOICES, default="cake"
+    )
+    description = models.TextField(blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    category = models.ForeignKey(
+        "Category", on_delete=models.CASCADE, related_name="products"
+    )
+    image = CloudinaryField("image", blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
 
 class Category(models.Model):
     class Meta:
@@ -10,21 +35,18 @@ class Category(models.Model):
 
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
-    parent = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True, related_name="subcategories",)
+    parent = models.ForeignKey(
+        "self",
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        related_name="subcategories",
+    )
 
     def __str__(self):
         if self.parent:
             return f"{self.parent.name} -> {self.name}"
         return self.name
-
-
-class CakeSize(models.Model):
-    name = models.CharField(max_length=50)
-    description = models.TextField(blank=True, null=True)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-
-    def __str__(self):
-        return f"{self.name} - €{self.price}"
 
 
 class Cake(models.Model):
@@ -44,9 +66,6 @@ class Cake(models.Model):
     )
     name = models.CharField(max_length=255)
     description = models.TextField()
-    sizes = models.ManyToManyField(
-        CakeSize, related_name="cakes"
-    )  # Multiple sizes per cake
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = CloudinaryField("image", blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True)
@@ -65,7 +84,6 @@ class Cake(models.Model):
             slug = f"{base_slug}-{counter}"
             counter += 1
         return slug
-
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -91,9 +109,10 @@ class CustomCake(models.Model):
     ]
 
     flavor = models.CharField(max_length=50, choices=FLAVOR_CHOICES, default="vanilla")
-    filling = models.CharField(max_length=50, choices=FILLING_CHOICES, default="buttercream")
+    filling = models.CharField(
+        max_length=50, choices=FILLING_CHOICES, default="buttercream"
+    )
     inscription = models.CharField(max_length=255, blank=True, null=True)
-    sizes = models.ManyToManyField(CakeSize, related_name="custom_cakes", blank=True)  # Multiple sizes per cake
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = CloudinaryField("image", blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True)
@@ -101,20 +120,21 @@ class CustomCake(models.Model):
     def __str__(self):
         return f"Custom Cake - {self.flavor} with {self.filling} filling"
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(f"{self.flavor}-{self.filling}")
+        super().save(*args, **kwargs)
 
-class Product(models.Model):
-    PRODUCT_TYPE_CHOICES = [
-        ("cake", "Cake"),
-        ("cupcake", "Cupcake"),
-        ("other", "Other"),
+
+class Accessory(models.Model):
+    ACCESSORY_TYPE_CHOICES = [
+        ("candles", "Candles"),
+        ("toppers", "Toppers"),
     ]
-
-    product_type = models.CharField(max_length=50, choices=PRODUCT_TYPE_CHOICES, default="cake")
     name = models.CharField(max_length=255)
-    preview_description = models.CharField(max_length=255, blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    category = models.ForeignKey("Category", on_delete=models.SET_NULL, related_name="products", null=True, blank=True,)
+    accessory_type = models.CharField(max_length=50, choices=ACCESSORY_TYPE_CHOICES, default="candles")
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="accessories", null=True, blank=True)
     image = CloudinaryField("image", blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True)
 
