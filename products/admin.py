@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import Category, Product, Cake, CakeSize, CustomCake
 
-
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'price', 'image', 'slug', 'category', 'product_type')
@@ -19,7 +18,7 @@ class CakeAdmin(admin.ModelAdmin):
 
     # Custom method to display sizes in list view
     def get_sizes(self, obj):
-        return ", ".join([size.get_name_display() for size in obj.sizes.all()])
+        return ", ".join([size.name for size in obj.sizes.all()])
     get_sizes.short_description = "Sizes"
 
 
@@ -32,17 +31,15 @@ class CustomCakeAdmin(admin.ModelAdmin):
 
     # Custom method to display sizes in list view
     def get_sizes(self, obj):
-        return ", ".join([size.get_name_display() for size in obj.sizes.all()])
+        return ", ".join([size.name for size in obj.sizes.all()])
     get_sizes.short_description = "Sizes"
 
 
 @admin.register(CakeSize)
 class CakeSizeAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'price')
-    list_filter = ('name',)
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'parent', 'description')
-    list_filter = ('parent',)
