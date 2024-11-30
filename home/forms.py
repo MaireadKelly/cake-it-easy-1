@@ -24,28 +24,28 @@ class CustomerForm(forms.ModelForm):
         
 
 class CustomSignupForm(SignupForm):
-    # Default fields provided by Allauth (username, email, password) are already included
-    first_name = forms.CharField(max_length=30, required=True, label="First Name")
-    last_name = forms.CharField(max_length=30, required=True, label="Last Name")
-    address = forms.CharField(max_length=255, required=True, label="Address")
-    phone_number = forms.CharField(max_length=20, required=False, label="Phone Number")
+    address = forms.CharField(max_length=255, required=False)
+    phone_number = forms.CharField(max_length=20, required=False)
 
     def save(self, request):
-        # Save the user using the default Allauth save method
+        # Save the User object using Allauth's save method
         user = super().save(request)
-        
-        # Save additional fields to the Customer model
-        Customer.objects.create(
+
+        # Check if a Customer profile already exists before creating one
+        customer, created = Customer.objects.get_or_create(
             user=user,
-            address=self.cleaned_data['address'],
-            phone_number=self.cleaned_data['phone_number'],
+            defaults={
+                'address': self.cleaned_data.get('address', ''),
+                'phone_number': self.cleaned_data.get('phone_number', ''),
+            }
         )
-        
-        # Update user's first and last name
-        user.first_name = self.cleaned_data['first_name']
-        user.last_name = self.cleaned_data['last_name']
-        user.save()
-        
+
+        # If a profile already exists, update its fields
+        if not created:
+            customer.address = self.cleaned_data.get('address', '')
+            customer.phone_number = self.cleaned_data.get('phone_number', '')
+            customer.save()
+
         return user
 
 

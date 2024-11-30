@@ -12,32 +12,12 @@
 
   <form class="form p-2" id="signup_form" method="post" action="{% url 'account_signup' %}">
     {% csrf_token %}
-    
-    <!-- Render the form fields -->
     {{ form.as_p }}
 
-    <!-- Handle redirect fields if present -->
     {% if redirect_field_value %}
     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
     {% endif %}
 
-    <!-- Display form errors -->
-    {% if form.errors %}
-    <div class="alert alert-danger">
-      <ul>
-        {% for field in form %}
-          {% for error in field.errors %}
-            <li>{{ field.label }}: {{ error }}</li>
-          {% endfor %}
-        {% endfor %}
-        {% for error in form.non_field_errors %}
-          <li>{{ error }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %}
-
-    <!-- Submit button -->
     <button type="submit" class="btn btn-primary w-25">{% trans "Sign Up" %}</button>
   </form>
 </div>
