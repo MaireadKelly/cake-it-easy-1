@@ -10,9 +10,9 @@ class Customer(models.Model):
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     address_line1 = models.CharField(max_length=255, blank=True, null=True)  # Street address
     address_line2 = models.CharField(max_length=255, blank=True, null=True)  # Optional second line
-    city = models.CharField(max_length=100)
-    county = models.CharField(max_length=100)  # Changed from state to county
-    postal_code = models.CharField(max_length=20)
+    city = models.CharField(max_length=100, blank=True, null=True)
+    county = models.CharField(max_length=100, blank=True, null=True)  # Changed from state to county
+    postal_code = models.CharField(max_length=20, blank=True, null=True)
 
     def __str__(self):
         return f"{self.user.username} - Customer Profile"
