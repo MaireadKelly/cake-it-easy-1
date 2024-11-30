@@ -1,0 +1,548 @@
+[
+{
+  "model": "products.product",
+  "pk": 1,
+  "fields": {
+    "product_type": "cake",
+    "name": "Twinkle Cake",
+    "preview_description": "The perfect centrepiece for celebrating the arrival of a precious little one!",
+    "description": "This 8″ round white sponge cake, layered with creamy vanilla buttercream, is sure to delight your guests with its light and fluffy texture.\r\n\r\nServing approximately 20-30 people, our Baby Shower Cake comes standard in a charming pastel green hue, creating a serene and welcoming atmosphere for the celebration. Adorning the top is our elegant ‘Welcome Baby’ Topper, adding a touch of sweetness to the occasion.\r\n\r\nFor the filling, we offer a standard combination of white buttercream and confectioners jam, ensuring every bite is bursting with flavour. If desired, you can customize the buttercream colour to pastel pink or pastel blue, adding an extra layer of personalization to your cake.\r\n\r\nBut the customization doesn’t stop there! Elevate your cake with adorable accessories such as the Baby in Blanket, Teddy, or Baby Blocks, which not only enhance the cake’s visual appeal but also serve as cherished keepsakes for the Mum-to-Be.\r\n\r\nCelebrate this joyous occasion in style with our Baby Shower Cake, where every detail is crafted with love and care to make your event truly unforgettable. Order now and create beautiful memories that will last a lifetime!",
+    "price": "65.00",
+    "category": 2,
+    "image": "image/upload/v1731962676/gut4zlhrfply58lvjw3u.jpg",
+    "slug": "twinkle-cake"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 2,
+  "fields": {
+    "product_type": "cake",
+    "name": "Kinder Drip Cake",
+    "preview_description": "the ultimate indulgence for any fun occasion!",
+    "description": "ayers of decadent chocolate sponge cake, generously filled with creamy hazelnut cream and luscious chocolate buttercream. But that’s not all – nestled between each layer are chunks of smashed up Kinder bars, adding a delicious crunch. \r\n\r\nAnd the pièce de résistance? A chocolate extravaganza on top, featuring a drip effect that’s as mesmerizing as it is mouthwatering. Its irresistible combination of flavours and textures are sure to steal the show at any celebration.\r\n\r\nSo why wait? Treat yourself and your loved ones to a slice of pure bliss with our Kinder Drip Cake today!",
+    "price": "45.00",
+    "category": 3,
+    "image": "image/upload/v1732012496/stykdygdvrbxvlvfrsbn.jpg",
+    "slug": "kinder-drip-cake"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 3,
+  "fields": {
+    "product_type": "cake",
+    "name": "Gender Reveal",
+    "preview_description": "Share the excitement with friends and family",
+    "description": "As early as your 20 week scan you’ll be able to find if your baby is a girl or boy.   Whether you share with family friends straight away or closer to the birth of your new baby we’re here to make it a sweet surprise.  Our Gender Reveal cake is a white sponge cake filled with either pink or blue buttercream.  We have finished the cake with white smooth buttercream and a blue and pink ombre  to keep the mystery alive.  Topped with metallic pink and blue meringues we have also given this cake a final flourish with an edible Topper.",
+    "price": "50.00",
+    "category": 4,
+    "image": "image/upload/v1732012602/nr8segqnny3vqkft5xph.jpg",
+    "slug": "gender-reveal"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "product_type": "cake",
+    "name": "Cute-A-Saurus",
+    "preview_description": "A Roarsome Cake for Dinosaur lovers",
+    "description": "Ah Comere’ is this the cutest cake you’ve seen lately? Perfect for your baby/toddler celebrations, this five-layer cake is suitable for 20-25 people.  It’s available in three different flavours and all are finished with the same colour & themed accessories.  Choose between vanilla, chocolate, and red velvet, and give us a couple of days’ notice.",
+    "price": "45.00",
+    "category": 3,
+    "image": "image/upload/v1732012793/eysrdoxlqminlhg4bsuk.jpg",
+    "slug": "cute-a-saurus"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 5,
+  "fields": {
+    "product_type": "cake",
+    "name": "Princess",
+    "preview_description": "For all doll lovers",
+    "description": "Our Princess Doll is available in a range of flavours filled and finished with a beautiful buttercream.  The top of the doll’s dress will be finished in vanilla buttercream, and you can choose the accent colour for the lower part of her dress, as you see in the image here.  We will pop some pressed flowers to compliment to the colour you have chosen for the finished look.\r\n\r\nThe message is hand piped with Belgian chocolate and can be personalised to your wishes.",
+    "price": "45.00",
+    "category": 3,
+    "image": "image/upload/v1732012869/ujekyl4f4pot7vnenqib.jpg",
+    "slug": "princess"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 6,
+  "fields": {
+    "product_type": "cake",
+    "name": "Pink Unicorn Cake",
+    "preview_description": "Storm – The Golden Unicorn Cake",
+    "description": "Our buttercream cakes have been transformed into a new ‘unicorn’ range.  We have taken our white or chocolate sponge, covered them in white buttercream and transformed them into beautiful unicorns hand piped rosettes and edible decorative accessories including the horn, ears and the eyes of the unicorn.\r\n\r\nThey are a tall 8″ cake serving approx. 20 people.\r\n\r\nWe can accommodate a short message on the board of this cake max 4/5 words.",
+    "price": "45.00",
+    "category": 3,
+    "image": "image/upload/v1732012937/xyvntsr8xceizhrynhm1.jpg",
+    "slug": "pink-unicorn-cake"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 7,
+  "fields": {
+    "product_type": "cake",
+    "name": "Oreo Drip Cake",
+    "preview_description": "Indulge in the ultimate treat for your taste buds with our irresistible Oreo Drip Cake",
+    "description": "Crafted to perfection, this decadent delight features layers of rich, moist chocolate cake, generously filled with our signature Oreo Crumb Vanilla buttercream.\r\n\r\nEach bite is a symphony of flavours, with the intense chocolatey goodness of the cake perfectly complemented by the creamy texture and irresistible taste of the Oreo buttercream. But we didn’t stop there – we’ve taken this cake to new heights by offering it in not one, but three sizes, standard, Tall & Showstopper\r\n\r\nWhether you’re celebrating a birthday, anniversary, or simply indulging in a well-deserved treat, our Oreo Drip Cake is the perfect choice. So go ahead, treat yourself and your loved ones to a slice of pure indulgence today!\r\n\r\nAvailable to pre-order with 2 days notice for delivery or collection from any of our locations.",
+    "price": "45.00",
+    "category": 1,
+    "image": "image/upload/v1732013013/zmmbcospoiqub76l1o1t.jpg",
+    "slug": "oreo-drip-cake"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 8,
+  "fields": {
+    "product_type": "cake",
+    "name": "Chocolate Fudge Cake",
+    "preview_description": "A delicious cake perfect for any occasion.",
+    "description": "This chocolate fudge cake is made with love and the finest ingredients.",
+    "price": "25.00",
+    "category": null,
+    "image": "image/upload/https://example.com/images/chocolate_fudge_cake.jpg",
+    "slug": "chocolate-fudge-cake"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 9,
+  "fields": {
+    "product_type": "cupcake",
+    "name": "Vanilla Cupcake",
+    "preview_description": "Classic vanilla cupcake with buttercream frosting.",
+    "description": "This vanilla cupcake is perfect for parties and celebrations.",
+    "price": "3.00",
+    "category": null,
+    "image": "image/upload/https://example.com/images/vanilla_cupcake.jpg",
+    "slug": "vanilla-cupcake"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 11,
+  "fields": {
+    "product_type": "cupcake",
+    "name": "Product 1",
+    "preview_description": "Preview for Product 1",
+    "description": "Detailed description for Product 1.",
+    "price": "26.71",
+    "category": 1,
+    "image": "image/upload/https://example.com/images/product_1.jpg",
+    "slug": "product-1"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 12,
+  "fields": {
+    "product_type": "cupcake",
+    "name": "Product 2",
+    "preview_description": "Preview for Product 2",
+    "description": "Detailed description for Product 2.",
+    "price": "8.08",
+    "category": 5,
+    "image": "image/upload/https://example.com/images/product_2.jpg",
+    "slug": "product-2"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 13,
+  "fields": {
+    "product_type": "cupcake",
+    "name": "Product 3",
+    "preview_description": "Preview for Product 3",
+    "description": "Detailed description for Product 3.",
+    "price": "22.56",
+    "category": 3,
+    "image": "image/upload/https://example.com/images/product_3.jpg",
+    "slug": "product-3"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 14,
+  "fields": {
+    "product_type": "other",
+    "name": "Product 4",
+    "preview_description": "Preview for Product 4",
+    "description": "Detailed description for Product 4.",
+    "price": "19.81",
+    "category": 3,
+    "image": "image/upload/https://example.com/images/product_4.jpg",
+    "slug": "product-4"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 15,
+  "fields": {
+    "product_type": "cupcake",
+    "name": "Product 5",
+    "preview_description": "Preview for Product 5",
+    "description": "Detailed description for Product 5.",
+    "price": "28.52",
+    "category": 1,
+    "image": "image/upload/https://example.com/images/product_5.jpg",
+    "slug": "product-5"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 16,
+  "fields": {
+    "product_type": "other",
+    "name": "Product 6",
+    "preview_description": "Preview for Product 6",
+    "description": "Detailed description for Product 6.",
+    "price": "10.80",
+    "category": 5,
+    "image": "image/upload/https://example.com/images/product_6.jpg",
+    "slug": "product-6"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 17,
+  "fields": {
+    "product_type": "cupcake",
+    "name": "Product 7",
+    "preview_description": "Preview for Product 7",
+    "description": "Detailed description for Product 7.",
+    "price": "25.08",
+    "category": 2,
+    "image": "image/upload/https://example.com/images/product_7.jpg",
+    "slug": "product-7"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 18,
+  "fields": {
+    "product_type": "other",
+    "name": "Product 8",
+    "preview_description": "Preview for Product 8",
+    "description": "Detailed description for Product 8.",
+    "price": "18.30",
+    "category": 1,
+    "image": "image/upload/https://example.com/images/product_8.jpg",
+    "slug": "product-8"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 19,
+  "fields": {
+    "product_type": "cupcake",
+    "name": "Product 9",
+    "preview_description": "Preview for Product 9",
+    "description": "Detailed description for Product 9.",
+    "price": "14.15",
+    "category": 4,
+    "image": "image/upload/https://example.com/images/product_9.jpg",
+    "slug": "product-9"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 20,
+  "fields": {
+    "product_type": "cake",
+    "name": "Product 10",
+    "preview_description": "Preview for Product 10",
+    "description": "Detailed description for Product 10.",
+    "price": "6.67",
+    "category": 1,
+    "image": "image/upload/https://example.com/images/product_10.jpg",
+    "slug": "product-10"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 21,
+  "fields": {
+    "product_type": "other",
+    "name": "Product 11",
+    "preview_description": "Preview for Product 11",
+    "description": "Detailed description for Product 11.",
+    "price": "22.98",
+    "category": 4,
+    "image": "image/upload/https://example.com/images/product_11.jpg",
+    "slug": "product-11"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 22,
+  "fields": {
+    "product_type": "other",
+    "name": "Product 12",
+    "preview_description": "Preview for Product 12",
+    "description": "Detailed description for Product 12.",
+    "price": "25.18",
+    "category": 5,
+    "image": "image/upload/https://example.com/images/product_12.jpg",
+    "slug": "product-12"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 23,
+  "fields": {
+    "product_type": "cupcake",
+    "name": "Product 13",
+    "preview_description": "Preview for Product 13",
+    "description": "Detailed description for Product 13.",
+    "price": "12.18",
+    "category": 1,
+    "image": "image/upload/https://example.com/images/product_13.jpg",
+    "slug": "product-13"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 24,
+  "fields": {
+    "product_type": "other",
+    "name": "Product 14",
+    "preview_description": "Preview for Product 14",
+    "description": "Detailed description for Product 14.",
+    "price": "24.27",
+    "category": 5,
+    "image": "image/upload/https://example.com/images/product_14.jpg",
+    "slug": "product-14"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 25,
+  "fields": {
+    "product_type": "other",
+    "name": "Product 15",
+    "preview_description": "Preview for Product 15",
+    "description": "Detailed description for Product 15.",
+    "price": "9.23",
+    "category": 3,
+    "image": "image/upload/https://example.com/images/product_15.jpg",
+    "slug": "product-15"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 26,
+  "fields": {
+    "product_type": "cupcake",
+    "name": "Product 16",
+    "preview_description": "Preview for Product 16",
+    "description": "Detailed description for Product 16.",
+    "price": "21.91",
+    "category": 2,
+    "image": "image/upload/https://example.com/images/product_16.jpg",
+    "slug": "product-16"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 27,
+  "fields": {
+    "product_type": "cupcake",
+    "name": "Product 17",
+    "preview_description": "Preview for Product 17",
+    "description": "Detailed description for Product 17.",
+    "price": "18.39",
+    "category": 1,
+    "image": "image/upload/https://example.com/images/product_17.jpg",
+    "slug": "product-17"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 28,
+  "fields": {
+    "product_type": "cupcake",
+    "name": "Product 18",
+    "preview_description": "Preview for Product 18",
+    "description": "Detailed description for Product 18.",
+    "price": "27.71",
+    "category": 4,
+    "image": "image/upload/https://example.com/images/product_18.jpg",
+    "slug": "product-18"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 29,
+  "fields": {
+    "product_type": "other",
+    "name": "Product 19",
+    "preview_description": "Preview for Product 19",
+    "description": "Detailed description for Product 19.",
+    "price": "29.23",
+    "category": 1,
+    "image": "image/upload/https://example.com/images/product_19.jpg",
+    "slug": "product-19"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 30,
+  "fields": {
+    "product_type": "cake",
+    "name": "Product 20",
+    "preview_description": "Preview for Product 20",
+    "description": "Detailed description for Product 20.",
+    "price": "5.51",
+    "category": 5,
+    "image": "image/upload/https://example.com/images/product_20.jpg",
+    "slug": "product-20"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 31,
+  "fields": {
+    "product_type": "cake",
+    "name": "Product 21",
+    "preview_description": "Preview for Product 21",
+    "description": "Detailed description for Product 21.",
+    "price": "7.19",
+    "category": 1,
+    "image": "image/upload/https://example.com/images/product_21.jpg",
+    "slug": "product-21"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 32,
+  "fields": {
+    "product_type": "cake",
+    "name": "Product 22",
+    "preview_description": "Preview for Product 22",
+    "description": "Detailed description for Product 22.",
+    "price": "22.68",
+    "category": 4,
+    "image": "image/upload/https://example.com/images/product_22.jpg",
+    "slug": "product-22"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 33,
+  "fields": {
+    "product_type": "cupcake",
+    "name": "Product 23",
+    "preview_description": "Preview for Product 23",
+    "description": "Detailed description for Product 23.",
+    "price": "10.97",
+    "category": 3,
+    "image": "image/upload/https://example.com/images/product_23.jpg",
+    "slug": "product-23"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 34,
+  "fields": {
+    "product_type": "cake",
+    "name": "Product 24",
+    "preview_description": "Preview for Product 24",
+    "description": "Detailed description for Product 24.",
+    "price": "7.93",
+    "category": 2,
+    "image": "image/upload/https://example.com/images/product_24.jpg",
+    "slug": "product-24"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 35,
+  "fields": {
+    "product_type": "cake",
+    "name": "Product 25",
+    "preview_description": "Preview for Product 25",
+    "description": "Detailed description for Product 25.",
+    "price": "10.87",
+    "category": 5,
+    "image": "image/upload/https://example.com/images/product_25.jpg",
+    "slug": "product-25"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 36,
+  "fields": {
+    "product_type": "cupcake",
+    "name": "Product 26",
+    "preview_description": "Preview for Product 26",
+    "description": "Detailed description for Product 26.",
+    "price": "26.36",
+    "category": 3,
+    "image": "image/upload/https://example.com/images/product_26.jpg",
+    "slug": "product-26"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 37,
+  "fields": {
+    "product_type": "cupcake",
+    "name": "Product 27",
+    "preview_description": "Preview for Product 27",
+    "description": "Detailed description for Product 27.",
+    "price": "19.00",
+    "category": 3,
+    "image": "image/upload/https://example.com/images/product_27.jpg",
+    "slug": "product-27"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 38,
+  "fields": {
+    "product_type": "cupcake",
+    "name": "Product 28",
+    "preview_description": "Preview for Product 28",
+    "description": "Detailed description for Product 28.",
+    "price": "23.19",
+    "category": 1,
+    "image": "image/upload/https://example.com/images/product_28.jpg",
+    "slug": "product-28"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 39,
+  "fields": {
+    "product_type": "cupcake",
+    "name": "Product 29",
+    "preview_description": "Preview for Product 29",
+    "description": "Detailed description for Product 29.",
+    "price": "5.88",
+    "category": 2,
+    "image": "image/upload/https://example.com/images/product_29.jpg",
+    "slug": "product-29"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 40,
+  "fields": {
+    "product_type": "cake",
+    "name": "Product 30",
+    "preview_description": "Preview for Product 30",
+    "description": "Detailed description for Product 30.",
+    "price": "11.10",
+    "category": 1,
+    "image": "image/upload/https://example.com/images/product_30.jpg",
+    "slug": "product-30"
+  }
+}
+]
