@@ -7,39 +7,24 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ('product_type', 'category',)
     prepopulated_fields = {"slug": ("name",)}
 
-
 @admin.register(Cake)
 class CakeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'category', 'occasion', 'price', 'image', 'get_sizes')
-    list_filter = ('occasion', 'category')
+    list_display = ('name', 'description', 'category', 'occasion', 'price', 'image',)
+    list_filter = ('occasion', 'category',)
     prepopulated_fields = {"slug": ("name",)}
     ordering = ('name', 'category',)
-    filter_horizontal = ('sizes',)  # For ManyToManyField sizes
-
-    # Custom method to display sizes in list view
-    def get_sizes(self, obj):
-        return ", ".join([size.name for size in obj.sizes.all()])
-    get_sizes.short_description = "Sizes"
-
-
-@admin.register(CustomCake)
-class CustomCakeAdmin(admin.ModelAdmin):
-    list_display = ('flavor', 'filling', 'inscription', 'price', 'image', 'get_sizes')
-    list_filter = ('flavor', 'filling')
-    prepopulated_fields = {"slug": ("flavor", "filling")}
-    filter_horizontal = ('sizes',)  # For ManyToManyField sizes
-
-    # Custom method to display sizes in list view
-    def get_sizes(self, obj):
-        return ", ".join([size.name for size in obj.sizes.all()])
-    get_sizes.short_description = "Sizes"
-
-
-@admin.register(CakeSize)
-class CakeSizeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'price')
-
+    filter_horizontal = ('sizes',)  # Add this line for the sizes field
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'parent', 'description')
+    list_display = ('name', 'parent', 'description',)
+
+@admin.register(CakeSize)
+class CakeSizeAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'price',)
+
+@admin.register(CustomCake)
+class CustomCakeAdmin(admin.ModelAdmin):
+    list_display = ('flavor', 'filling', 'inscription', 'price', 'image',)
+    prepopulated_fields = {"slug": ("flavor", "filling",)}
+    filter_horizontal = ('sizes',)  # Add this line for the sizes field
