@@ -32,17 +32,12 @@ class CakeSize(models.Model):
         ("10_inch_square", "10 inch Square"),
         ("12_inch_square", "12 inch Square"),
     ]
-
-    name = models.CharField(
-        max_length=50,
-        choices=CAKE_SIZE_CHOICES,
-        unique=True,  # Prevent duplicate sizes
-    )
-    description = models.TextField(blank=True, null=True)  # Optional details
-    price = models.DecimalField(max_digits=6, decimal_places=2)  # Price for this size
+    name = models.CharField(max_length=50, choices=CAKE_SIZE_CHOICES, unique=True)
+    description = models.TextField(blank=True, null=True)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):
-        return f"{self.get_name_display()} - €{self.price}"
+        return f"{self.name} - €{self.price}"
 
 
 class Cake(models.Model):
@@ -52,9 +47,9 @@ class Cake(models.Model):
         ("anniversary", "Anniversary"),
         ("baby_shower", "Baby Shower"),
         ("gender_reveal", "Gender Reveal"),
-        ("communion", "Communion"),
-        ("confirmation", "Confirmation"),
-        ("christening", "Christening"),
+        ("Communion", "Communion"),
+        ("Confirmation", "Confirmation"),
+        ("Christening", "Christening"),
         ("other", "Other"),
     ]
     occasion = models.CharField(
@@ -75,9 +70,18 @@ class Cake(models.Model):
     def __str__(self):
         return self.name
 
+    def generate_unique_slug(self):
+        base_slug = slugify(self.name)
+        slug = base_slug
+        counter = 1
+        while Cake.objects.filter(slug=slug).exists():
+            slug = f"{base_slug}-{counter}"
+            counter += 1
+        return slug
+
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            self.slug = self.generate_unique_slug()
         super().save(*args, **kwargs)
 
 
