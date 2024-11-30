@@ -10,18 +10,22 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = ['name', 'preview_description', 'description', 'price', 'slug', 'category', 'image']
 
+
 class OrderForm(forms.ModelForm):
-    delivery_time = forms.DateTimeField(widget=forms.DateTimeInput(attrs={"type": "datetime-local"}))  # Date and time picker
+    delivery_time = forms.DateTimeField(
+        widget=forms.DateTimeInput(attrs={"type": "datetime-local"})  # Date and time picker widget
+    )
+
     class Meta:
         model = Order
-        fields = ["product", "quantity", "inscription", "delivery_time", "delivery_address"]  # Only order-related fields
-        
+        fields = ["product", "quantity", "inscription", "delivery_time", "delivery_address"]
+
 
 class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ['address', 'phone_number', 'email']  # Add other fields as needed
-        
+        fields = ['address', 'phone_number', 'email']
+
 
 class CustomSignupForm(SignupForm):
     address = forms.CharField(max_length=255, required=False)
@@ -31,7 +35,7 @@ class CustomSignupForm(SignupForm):
         # Save the User object using Allauth's save method
         user = super().save(request)
 
-        # Check if a Customer profile already exists before creating one
+        # Check if a Customer profile already exists or create one
         customer, created = Customer.objects.get_or_create(
             user=user,
             defaults={
@@ -40,7 +44,7 @@ class CustomSignupForm(SignupForm):
             }
         )
 
-        # If a profile already exists, update its fields
+        # Update existing customer fields if needed
         if not created:
             customer.address = self.cleaned_data.get('address', '')
             customer.phone_number = self.cleaned_data.get('phone_number', '')
@@ -52,10 +56,10 @@ class CustomSignupForm(SignupForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ["content"]  # Only the comment content is needed
+        fields = ["content"]
 
 
 class RatingForm(forms.ModelForm):
     class Meta:
         model = Rating
-        fields = ["rating"]  # Only the rating field
+        fields = ["rating"]

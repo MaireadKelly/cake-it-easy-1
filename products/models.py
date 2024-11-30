@@ -23,9 +23,8 @@ class Category(models.Model):
         return self.name
 
 
-
 class CakeSize(models.Model):
-    name = models.CharField(max_length=50)  # E.g., "Small," "Medium," "Large"
+    name = models.CharField(max_length=50)  # E.g., "8 inch Round"
     description = models.TextField(blank=True, null=True)  # Optional details
     price = models.DecimalField(max_digits=6, decimal_places=2)  # Price for this size
 
@@ -40,19 +39,18 @@ class Cake(models.Model):
         ("anniversary", "Anniversary"),
         ("baby_shower", "Baby Shower"),
         ("gender_reveal", "Gender Reveal"),
-        ("Communion", "Communion"),
-        ("Confirmation", "Confirmation"),
-        ("Christening", "Christening"),
+        ("communion", "Communion"),
+        ("confirmation", "Confirmation"),
+        ("christening", "Christening"),
         ("other", "Other"),
     ]
+
     occasion = models.CharField(
         max_length=50, choices=OCCASION_CHOICES, default="other"
     )
     name = models.CharField(max_length=255)
     description = models.TextField()
-    sizes = models.ManyToManyField(
-        CakeSize, related_name="cakes"
-    )  # Multiple sizes per cake
+    sizes = models.ManyToManyField(CakeSize, related_name="cakes")  # Multiple sizes per cake
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = CloudinaryField("image", blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True)
@@ -63,18 +61,9 @@ class Cake(models.Model):
     def __str__(self):
         return self.name
 
-    def generate_unique_slug(self):
-        base_slug = slugify(self.name)
-        slug = base_slug
-        counter = 1
-        while Cake.objects.filter(slug=slug).exists():
-            slug = f"{base_slug}-{counter}"
-            counter += 1
-        return slug
-
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = self.generate_unique_slug()
+            self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
 
