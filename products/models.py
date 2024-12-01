@@ -117,7 +117,7 @@ class Accessory(Product):
         ("toppers", "Toppers"),
     ]
     accessory_type = models.CharField(
-        max_length=50, choices=ACCESSORY_TYPE_CHOICES, default="candles"
+        max_length=50, choices=ACCESSORY_TYPE_CHOICES, default="candles", blank=True, null=True
     )
 
     class Meta:
