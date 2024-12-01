@@ -8,7 +8,6 @@
             <thead>
                 <tr>
                     <th>Product</th>
-                    <th>Size</th>
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>Subtotal</th>
@@ -19,7 +18,6 @@
                 {% for item in basket_items %}
                     <tr>
                         <td>{{ item.cake.name }}</td>
-                        <td>{{ item.size|default:"N/A" }}</td>
                         <td>{{ item.quantity }}</td>
                         <td>€{{ item.cake.price }}</td>
                         <td>€{{ item.quantity|floatformat:2|add:item.cake.price }}</td>

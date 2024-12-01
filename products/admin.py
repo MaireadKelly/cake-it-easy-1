@@ -16,8 +16,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Cake)
 class CakeAdmin(admin.ModelAdmin):
-    list_display = ("name", "price", "category", "image", "slug")
-    list_filter = ("category",)  # Use a tuple for single field
+    list_display = ("name", "occasion", "price", "category", "image", "slug")
+    list_filter = ("occasion", "category",)  # Use a tuple for single field
     prepopulated_fields = {"slug": ("name",)}
 
 

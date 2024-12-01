@@ -6,7 +6,7 @@ from home.models import Comment, Rating
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ["name", "price", "category", "image"]
+        fields = ["name", "description", "price", "category", "image"]
 
 
 class CommentForm(forms.ModelForm):
