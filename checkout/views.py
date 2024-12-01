@@ -135,22 +135,26 @@ def order_confirmation(request, order_number):
     context = {"order": order}
     return render(request, "checkout/order_confirmation.html", context)
 
+
 def checkout_success(request, order_number):
     """
     Handle successful checkouts
     """
-    save_info = request.session.get('save_info')
+    save_info = request.session.get("save_info")
     order = get_object_or_404(Order, order_number=order_number)
-    messages.success(request, f'Order successfully processed! \
+    messages.success(
+        request,
+        f"Order successfully processed! \
         Your order number is {order_number}. A confirmation \
-        email will be sent to {order.email}.')
+        email will be sent to {order.email}.",
+    )
 
-    if 'basket' in request.session:
-        del request.session['basket']
+    if "basket" in request.session:
+        del request.session["basket"]
 
-    template = 'checkout/checkout_success.html'
+    template = "checkout/checkout_success.html"
     context = {
-        'order': order,
+        "order": order,
     }
 
     return render(request, template, context)
