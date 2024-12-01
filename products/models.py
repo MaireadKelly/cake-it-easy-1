@@ -34,7 +34,6 @@ class Product(models.Model):
         max_length=50, choices=PRODUCT_TYPE_CHOICES, default="cake"
     )
     description = models.TextField(blank=True, null=True)
-    preview_description = models.CharField(max_length=255, blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.ForeignKey(
         Category,
@@ -117,7 +116,7 @@ class Accessory(Product):
         ("toppers", "Toppers"),
     ]
     accessory_type = models.CharField(
-        max_length=50, choices=ACCESSORY_TYPE_CHOICES, default="candles", blank=True, null=True
+        max_length=50, choices=ACCESSORY_TYPE_CHOICES, default="candles"
     )
 
     class Meta:
