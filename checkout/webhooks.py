@@ -1,64 +1,109 @@
+from django.http import HttpResponse
+from .models import Order, OrderLineItem
+from products.models import Cake
 import json
-import stripe
-from django.http import JsonResponse, HttpResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.conf import settings
-from checkout.models import Order
-# from profiles.models import UserProfile
+import time
 
-@csrf_exempt
-def stripe_webhook(request):
-    """
-    Listen for webhooks from Stripe
-    """
-    # Set up Stripe API key
-    stripe.api_key = settings.STRIPE_SECRET_KEY
 
-    # Get the webhook secret from settings
-    webhook_secret = settings.STRIPE_WH_SECRET
+class StripeWH_Handler:
+    """Handle Stripe webhooks"""
 
-    # Get the request payload and headers
-    payload = request.body
-    sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
+    def __init__(self, request):
+        self.request = request
 
-    # Create an empty event
-    event = None
-
-    try:
-        # Verify the webhook signature to ensure it came from Stripe
-        event = stripe.Webhook.construct_event(
-            payload, sig_header, webhook_secret
+    def handle_event(self, event):
+        """
+        Handle a generic/unknown/unexpected webhook event
+        """
+        return HttpResponse(
+            content=f'Unhandled webhook received: {event["type"]}', status=200
         )
-    except ValueError as e:
-        # Invalid payload
-        return HttpResponse(status=400)
-    except stripe.error.SignatureVerificationError as e:
-        # Invalid signature
-        return HttpResponse(status=400)
 
-    # Handle the event type
-    if event and event['type'] == 'payment_intent.succeeded':
-        payment_intent = event['data']['object']
+    def handle_payment_intent_succeeded(self, event):
+        """
+        Handle the payment_intent.succeeded webhook from Stripe
+        """
+        intent = event.data.object
+        pid = intent.id
+        basket = intent.metadata.basket
+        save_info = intent.metadata.save_info
 
-        # Retrieve payment intent details
-        client_secret = payment_intent['client_secret']
-        billing_details = payment_intent['charges']['data'][0]['billing_details']
-        shipping_details = payment_intent['shipping']
+        billing_details = intent.charges.data[0].billing_details
+        shipping_details = intent.shipping
+        grand_total = round(intent.charges.data[0].amount / 100, 2)
 
-        # Assuming metadata is used to pass the order number
-        order_number = payment_intent['metadata']['order_number']
+        # Clean data in the shipping details
+        for field, value in shipping_details.address.items():
+            if value == "":
+                shipping_details.address[field] = None
 
-        # Fetch the order and update status
-        order = Order.objects.get(order_number=order_number)
-        if order:
-            order.stripe_pid = payment_intent.id
-            order.original_bag = json.dumps(payment_intent['metadata'])
-            order.save()
+        order_exists = False
+        attempt = 1
+        while attempt <= 5:
+            try:
+                order = Order.objects.get(
+                    full_name__iexact=shipping_details.name,
+                    email__iexact=billing_details.email,
+                    phone_number__iexact=shipping_details.phone,
+                    postcode__iexact=shipping_details.address.postal_code,
+                    town_or_city__iexact=shipping_details.address.city,
+                    street_address1__iexact=shipping_details.address.line1,
+                    street_address2__iexact=shipping_details.address.line2,
+                    county__iexact=shipping_details.address.state,
+                    grand_total=grand_total,
+                    original_basket=basket,
+                    stripe_pid=pid,
+                )
+                order_exists = True
+                break
+            except Order.DoesNotExist:
+                attempt += 1
+                time.sleep(1)
 
-    elif event and event['type'] == 'payment_intent.payment_failed':
-        payment_intent = event['data']['object']
-        print(f"Payment failed for PaymentIntent {payment_intent.id}")
+        if order_exists:
+            return HttpResponse(
+                content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
+                status=200,
+            )
+        else:
+            order = None
+            try:
+                order = Order.objects.create(
+                    full_name=shipping_details.name,
+                    email=billing_details.email,
+                    phone_number=shipping_details.phone,
+                    postcode=shipping_details.address.postal_code,
+                    town_or_city=shipping_details.address.city,
+                    street_address1=shipping_details.address.line1,
+                    street_address2=shipping_details.address.line2,
+                    county=shipping_details.address.state,
+                    original_basket=basket,
+                    stripe_pid=pid,
+                )
+                for item_id, item_data in json.loads(basket).items():
+                    cake = Cake.objects.get(id=item_id)
+                    if isinstance(item_data, int):
+                        # Simple case: add quantity directly
+                        order_line_item = OrderLineItem(
+                            order=order,
+                            cake=cake,
+                            quantity=item_data,
+                        )
+                        order_line_item.save()
+            except Exception as e:
+                if order:
+                    order.delete()
+                return HttpResponse(
+                    content=f'Webhook received: {event["type"]} | ERROR: {e}',
+                    status=500,
+                )
+        return HttpResponse(
+            content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
+            status=200,
+        )
 
-    # Add more event types here as needed, like 'checkout.session.completed'
-
-    return HttpResponse(status=200)
+    def handle_payment_intent_payment_failed(self, event):
+        """
+        Handle the payment_intent.payment_failed webhook from Stripe
+        """
+        return HttpResponse(content=f'Webhook received: {event["type"]}', status=200)

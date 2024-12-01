@@ -1,131 +1,242 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Cake It Easy
 
-Welcome Máiréad O'Shea,
-
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
-
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **June 18, 2024**
-
-## Gitpod Reminders
-
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
-
-`python3 -m http.server`
-
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
-
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
-
-### Connecting your Mongo database
-
-- **Connect to Mongo CLI on a IDE**
-- navigate to your MongoDB Clusters Sandbox
-- click **"Connect"** button
-- select **"Connect with the MongoDB shell"**
-- select **"I have the mongo shell installed"**
-- choose **mongosh (2.0 or later)** for : **"Select your mongo shell version"**
-- choose option: **"Run your connection string in your command line"**
-- in the terminal, paste the copied code `mongo "mongodb+srv://<CLUSTER-NAME>.mongodb.net/<DBname>" --apiVersion 1 --username <USERNAME>`
-  - replace all `<angle-bracket>` keys with your own data
-- enter password _(will not echo **\*\*\*\*** on screen)_
-
-------
-
-## Release History
-
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
-
-**June 18, 2024,** Add Mongo back into template
-
-**June 14, 2024,** Temporarily remove Mongo until the key issue is resolved
-
-**May 28 2024:** Fix Mongo and Links installs
-
-**April 26 2024:** Update node version to 16
-
-**September 20 2023:** Update Python version to 3.9.17.
-
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
-
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
-
-**July 2 2021:** Remove extensions that are not available in Open VSX.
-
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
-
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
-
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
-
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+## Table of Contents
+1. [Project Overview](#project-overview)
+2. [Features](#features)
+3. [Technology Stack](#technology-stack)
+4. [Setup Instructions](#setup-instructions)
+5. [User Stories](#user-stories)
+6. [Testing](#testing)
+7. [SEO and Marketing](#seo-and-marketing)
+8. [Deployment](#deployment)
+9. [Credits](#credits)
 
 ---
 
-Happy coding!
+## 1. Project Overview
+**Cake It Easy** is a custom occasion cake e-commerce platform where users can browse cakes, customize orders, and purchase securely. It demonstrates skills in full-stack development, focusing on user-friendly e-commerce functionality. This project aims to build a feature-complete e-commerce solution with payment integration, advanced SEO, and marketing strategies to reach a broader audience.
+
+---
+
+## 2. Features
+- **User Authentication**: Secure user registration, login, logout, and profile management.
+- **Product Browsing**: View available cakes with filtering, sorting, and search capabilities.
+- **Basket Management**: Add, update, or remove items, with a dynamically updated total.
+- **Secure Checkout**: Stripe-powered payment integration with order confirmation.
+- **User Profiles**: Manage personal information and view order history.
+- **Guest Checkout**: Allow users to complete a purchase without registering.
+- **Home Page**: A well-designed homepage (`home/index.html`) that showcases featured cakes, categories, and other relevant information.
+- **Forms**: Custom forms for user interactions, including order forms, profile management, and feedback.
+- **Product Management**:
+  - Add, edit, or delete products through a user-friendly interface (`add_product.html`, `edit_product.html`, `delete_product.html`).
+  - View product details, including cake types and customization options.
+  - Custom cakes and accessories can be added to enhance the offerings.
+- **Order Processing**:
+  - Users fill in order forms, submit payment details, and receive confirmation.
+  - Payment processed securely via Stripe, with webhook integration to ensure order accuracy.
+- **About Us Page**: Learn about the business's mission and background.
+- **404 Error Page**: Custom error page for non-existent content.
+- **SEO & Marketing**: Integration of SEO elements, social media presence, and a marketing funnel.
+
+---
+
+## 3. Technology Stack
+- **Frontend**: HTML, CSS, JavaScript, Bootstrap
+- **Backend**: Python, Django
+- **Database**: PostgreSQL or MySQL
+- **Media Management**: Cloudinary
+- **Payment Gateway**: Stripe
+- **Hosting**: Heroku (for deployment)
+
+---
+
+## 4. Setup Instructions
+### Prerequisites
+1. Python 3.8+
+2. Git
+3. Virtual Environment Tool (`venv` or similar)
+4. PostgreSQL/MySQL database
+5. Heroku CLI (for deployment)
+6. Stripe account (for payment integration)
+
+### Steps
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/<your-username>/cake-it-easy.git
+   cd cake-it-easy
+   ```
+
+2. **Set Up a Virtual Environment**:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. **Install Dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+   
+   **Dependencies include**:
+   - `asgiref==3.8.1`
+   - `black==24.10.0`
+   - `click==8.1.7`
+   - `cloudinary==1.41.0`
+   - `dj-database-url==2.3.0`
+   - `Django==4.2`
+   - `django-allauth==65.0.2`
+   - `django-cloudinary-storage==0.3.0`
+   - `gunicorn==23.0.0`
+   - `pathspec==0.12.1`
+   - `pillow==10.4.0`
+   - `psycopg2-binary==2.9.10`
+   - `python-dotenv==1.0.1`
+   - `pytz==2024.2`
+   - `sqlparse==0.5.1`
+   - `stripe==11.1.1`
+   - `svgwrite==1.4.3`
+   - `Tree==0.2.4`
+   - `whitenoise==6.8.2`
+
+4. **Set Up Environment Variables**:
+   Create a `.env` file in the root directory:
+   ```
+   SECRET_KEY=<your-secret-key>
+   DEBUG=False
+   DATABASE_URL=<your-database-url>
+   CLOUDINARY_URL=<your-cloudinary-url>
+   STRIPE_PUBLIC_KEY=<your-stripe-public-key>
+   STRIPE_SECRET_KEY=<your-stripe-secret-key>
+   STRIPE_WH_SECRET=<your-stripe-webhook-secret>
+   ```
+
+5. **Update Project Settings**:
+   - In `found_it/settings.py`, update the following:
+     - Ensure `DEBUG` is set to `False` for production.
+     - Update the `DATABASES` setting with your PostgreSQL/MySQL credentials.
+     - Add the URL of your deployed site to `ALLOWED_HOSTS`.
+     - Configure `CLOUDINARY` settings to handle media uploads.
+
+6. **Apply Database Migrations**:
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+   ```
+
+7. **Run the Server**:
+   ```bash
+   python manage.py runserver
+   ```
+
+8. **Load Initial Data** (if using fixtures):
+   ```bash
+   python manage.py loaddata <fixture_name>.json
+   ```
+
+---
+
+## 5. User Stories
+### As a customer, I want to:
+- View and filter cakes by category or occasion.
+- Add cakes to my basket and customize my order.
+- Checkout securely and receive an order confirmation.
+- Use guest checkout if I prefer not to create an account.
+- Browse featured cakes easily from the home page.
+- Customize my cake with options like flavors, filling, and additional accessories.
+
+### As a site administrator, I want to:
+- Manage products, orders, and user accounts efficiently.
+- View customer orders and sales analytics.
+- Update the homepage content, including featured products and categories.
+- Add, edit, or delete products through an admin panel.
+
+---
+
+## 6. Testing
+### Testing Goals
+- **Functionality Testing**: Ensure CRUD operations and Stripe payment work seamlessly.
+- **Usability Testing**: Confirm intuitive navigation and design responsiveness.
+- **Security Testing**: Protect sensitive data and validate user inputs.
+
+### Testing Approach
+- **Manual Testing**:
+  - Test product CRUD operations through the admin panel and forms.
+  - Verify basket updates (add/remove items, quantity changes).
+  - Simulate payment flow using Stripe test keys.
+  - Check user registration, login, and profile updates.
+  - Test guest checkout feature to ensure no login is required.
+  - Verify homepage functionality, including featured cakes and category listings.
+  - Test adding custom cakes and accessories during checkout.
+- **Automated Testing**:
+  - Write unit tests for key models (`Product`, `Basket`, `Order`, `Comment`).
+  - Test views for correct HTTP responses and redirects.
+  - **Stripe Integration Tests**: Test successful and failed payments using the webhook handler.
+
+### Tools
+- Django testing framework
+- W3C HTML/CSS validators
+- Manual browser testing (Chrome, Firefox, mobile browsers)
+
+---
+
+## 7. SEO and Marketing
+- **SEO**: Includes `robots.txt`, `sitemap.xml`, and optimized meta tags.
+- **Marketing**:
+  - Facebook page for promotions.
+  - Accessories (candles, toppers, e-gift vouchers) to replace newsletter subscriptions.
+  - Guest checkout to minimize friction during purchase.
+  - Custom 404 page to enhance user experience.
+  - Featured products on the home page to engage users immediately.
+  - User-friendly forms for easy product customization and checkout.
+
+---
+
+## 8. Deployment
+### Platform
+Deployed on Heroku.
+
+### Deployment Steps
+1. **Prepare the App for Deployment**:
+   - Update settings in `found_it/settings.py` to use environment variables for production.
+   - Disable `DEBUG` mode.
+   - Ensure static and media files are properly configured (using Cloudinary).
+
+2. **Deploy via Git**:
+   ```bash
+   git push heroku main
+   ```
+
+3. **Configure Environment Variables** on Heroku:
+   Use the Heroku dashboard to set up the same `.env` variables.
+
+4. **Run Migrations**:
+   ```bash
+   heroku run python manage.py migrate
+   ```
+
+5. **Collect Static Files**:
+   ```bash
+   heroku run python manage.py collectstatic
+   ```
+
+6. **Set Up Stripe Webhooks**:
+   - Navigate to the Stripe dashboard.
+   - Set up a webhook endpoint to listen for `payment_intent.succeeded` events.
+   - Use the generated webhook secret (`STRIPE_WH_SECRET`) in your environment variables.
+
+7. **Create a Superuser** (optional):
+   ```bash
+   heroku run python manage.py createsuperuser
+   ```
+
+8. **Testing Deployed Version**:
+   - Navigate to the deployed URL and ensure all functionality matches the development environment.
+   - Test user registration, basket, checkout, and profile management.
+   - Verify the homepage displays featured cakes and categories correctly.
+   - Test adding and customizing products from the `products` app.
+
+---
+
+## 9. Credits
+- **Code Walkthroughs**: Tutorials and
+

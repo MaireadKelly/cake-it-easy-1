@@ -107,19 +107,3 @@ class CustomCake(Product):
 
     def __str__(self):
         return f"Custom Cake - {self.flavor} with {self.filling} filling"
-
-
-# class Accessory(Product):
-#     ACCESSORY_TYPE_CHOICES = [
-#         ("candles", "Candles"),
-#         ("toppers", "Toppers"),
-#     ]
-#     accessory_type = models.CharField(
-#         max_length=50, choices=ACCESSORY_TYPE_CHOICES, default="candles"
-#     )
-
-#     class Meta:
-#         ordering = ["name"]
-
-#     def __str__(self):
-#         return f"{self.name} ({self.accessory_type})"
