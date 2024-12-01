@@ -60,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
             iconColor: '#dc3545'
         }
     };
+    console.log("Initializing Stripe card element with style:", style);
 
     // Create an instance of the card element
     var card = elements.create('card', { style: style });

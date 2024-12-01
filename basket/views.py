@@ -95,8 +95,8 @@ def remove_from_basket(request, cake_id):
 
         # Save the updated basket to the session
         request.session['basket'] = basket
-        return HttpResponse(status=200)
+        return redirect('view_basket')
 
     except Exception as e:
         messages.error(request, f'Error removing item: {e}')
-        return HttpResponse(status=500)
+        return redirect('view_basket')
