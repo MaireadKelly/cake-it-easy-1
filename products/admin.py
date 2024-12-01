@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, Cake, CustomCake, Accessory
+from .models import Category, Product, Cake, CustomCake
 
 
 @admin.register(Product)
@@ -35,8 +35,8 @@ class CustomCakeAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("flavor", "filling")}
 
 
-@admin.register(Accessory)
-class AccessoryAdmin(admin.ModelAdmin):
-    list_display = ("name", "accessory_type", "price", "category", "image", "slug")
-    list_filter = ("accessory_type", "category")
-    prepopulated_fields = {"slug": ("name",)}
+# @admin.register(Accessory)
+# class AccessoryAdmin(admin.ModelAdmin):
+#     list_display = ("name", "accessory_type", "price", "category", "image", "slug")
+#     list_filter = ("accessory_type", "category")
+#     prepopulated_fields = {"slug": ("name",)}
