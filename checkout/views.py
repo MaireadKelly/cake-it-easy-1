@@ -1,6 +1,7 @@
 import stripe
 from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.http import require_POST
 from django.contrib import messages
 from .models import Order, OrderLineItem
 from .forms import OrderForm
@@ -12,6 +13,31 @@ from basket.contexts import basket_contents
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 # Create your views here.
+
+
+@require_POST
+def cache_checkout_data(request):
+    try:
+        pid = request.POST.get("client_secret").split("_secret")[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(
+            pid,
+            metadata={
+                "basket": json.dumps(request.session.get("basket", {})),
+                "save_info": request.POST.get("save_info"),
+                "username": request.user,
+            },
+        )
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(
+            request,
+            "Sorry, your payment cannot be \
+            processed right now. Please try again later.",
+        )
+        return HttpResponse(content=e, status=400)
+
+
 def checkout(request):
     basket = request.session.get("basket", {})
     if not basket:
@@ -79,6 +105,7 @@ def checkout(request):
 
     return render(request, "checkout/checkout.html", context)
 
+
 @csrf_exempt
 def stripe_webhook(request):
     endpoint_secret = settings.STRIPE_WH_SECRET
@@ -102,7 +129,28 @@ def stripe_webhook(request):
 
     return HttpResponse(status=200)
 
+
 def order_confirmation(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
     context = {"order": order}
     return render(request, "checkout/order_confirmation.html", context)
+
+def checkout_success(request, order_number):
+    """
+    Handle successful checkouts
+    """
+    save_info = request.session.get('save_info')
+    order = get_object_or_404(Order, order_number=order_number)
+    messages.success(request, f'Order successfully processed! \
+        Your order number is {order_number}. A confirmation \
+        email will be sent to {order.email}.')
+
+    if 'basket' in request.session:
+        del request.session['basket']
+
+    template = 'checkout/checkout_success.html'
+    context = {
+        'order': order,
+    }
+
+    return render(request, template, context)
