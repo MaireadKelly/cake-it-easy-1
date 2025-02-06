@@ -16,7 +16,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "fallback_secret_key")
 
 # SECURITY WARNING: Don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "").lower() in ["true", "1"]
+DEBUG = True
+
+# os.getenv("DEBUG", "").lower() in ["true", "1"]
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
@@ -52,6 +54,27 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "found_it.urls"
+
+# Templates Configuration
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [os.path.join(BASE_DIR, "templates")],  # Ensure BASE_DIR is correct
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",  # Required for Django Admin and Allauth
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.media",
+                "basket.contexts.basket_contents",  # Custom context processor for basket
+            ],
+        },
+    },
+]
+
+
 
 DATABASES = {"default": dj_database_url.parse(os.getenv("DATABASE_URL", "sqlite:///db.sqlite3"))}
 
