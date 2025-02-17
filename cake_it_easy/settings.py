@@ -53,7 +53,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "found_it.urls"
+ROOT_URLCONF = "cake_it_easy.urls"
 
 # Templates Configuration
 TEMPLATES = [
