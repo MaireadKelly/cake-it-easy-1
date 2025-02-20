@@ -12,22 +12,22 @@ class ProductForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['content']
+        fields = ["content"]
 
 
 class RatingForm(forms.ModelForm):
     class Meta:
         model = Rating
-        fields = ['rating']
+        fields = ["rating"]
 
 
 class CustomCakeForm(forms.ModelForm):
     class Meta:
         model = CustomCake
-        fields = ['flavor', 'filling', 'inscription', 'price', 'image']
+        fields = ["flavor", "filling", "inscription", "price", "image"]
 
 
 class CakeForm(forms.ModelForm):
     class Meta:
         model = Cake
-        fields = ['occasion', 'name', 'description', 'price', 'image', 'category']
+        fields = ["occasion", "name", "description", "price", "image", "category"]

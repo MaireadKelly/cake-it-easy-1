@@ -9,6 +9,7 @@ existing_slugs = set(Cake.objects.values_list("slug", flat=True))
 input_file = "products/fixtures/cakes_fixed_unique.json"
 output_file = "products/fixtures/cakes_unique_slugs_final.json"
 
+
 # Function to generate unique slugs
 def generate_unique_slug(name, existing_slugs):
     base_slug = slugify(name)
@@ -19,6 +20,7 @@ def generate_unique_slug(name, existing_slugs):
         counter += 1
     existing_slugs.add(slug)
     return slug
+
 
 # Update the fixture
 with open(input_file, "r") as file:

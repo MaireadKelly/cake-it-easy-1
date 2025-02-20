@@ -7,6 +7,7 @@ from .models import Product, Cake, Category, CustomCake
 from .forms import ProductForm, CommentForm, RatingForm, CustomCakeForm
 from home.models import Comment, Rating
 
+
 # View to list all products
 def all_products(request):
     categories = Category.objects.all()

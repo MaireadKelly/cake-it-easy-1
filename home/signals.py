@@ -3,6 +3,7 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 from home.customer import Customer  # Importing Customer model
 
+
 @receiver(post_save, sender=User)
 def create_or_update_customer_profile(sender, instance, created, **kwargs):
     if created:

@@ -9,6 +9,7 @@ output_file = "products/fixtures/filtered_fixtures_products.json"
 # Load existing slugs from the database
 existing_slugs = set(Product.objects.values_list("slug", flat=True))
 
+
 # Filter and fix the JSON file
 def filter_fixtures(input_file, output_file, existing_slugs):
     with open(input_file, "r") as file:
@@ -44,6 +45,7 @@ def filter_fixtures(input_file, output_file, existing_slugs):
     print(f"Filtered {len(data) - len(filtered_data)} duplicate or invalid entries.")
     print(f"Skipped {skipped_entries} entries with missing 'name'.")
     print(f"Saved filtered data to {output_file}.")
+
 
 # Run the filtering process
 filter_fixtures(input_file, output_file, existing_slugs)

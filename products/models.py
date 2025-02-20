@@ -9,13 +9,7 @@ class Category(models.Model):
 
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
-    parent = models.ForeignKey(
-        "self",
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True,
-        related_name="subcategories",
-    )
+    parent = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True, related_name="subcategories")
 
     def __str__(self):
         if self.parent:
@@ -35,14 +29,15 @@ class Product(models.Model):
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     category = models.ForeignKey(
-        Category,
-        on_delete=models.SET_NULL,
-        related_name="products",
-        null=True,
-        blank=True,
+        Category, on_delete=models.SET_NULL, related_name="products", null=True, blank=True
     )
     image = CloudinaryField("image", blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True)
+    is_gluten_free = models.BooleanField(default=False)  # New field
+    is_vegan = models.BooleanField(default=False)  # New field
+    allergens = models.TextField(blank=True, null=True)  # New field
+    rating = models.FloatField(default=0)  # New field
+    num_reviews = models.IntegerField(default=0)  # New field
 
     class Meta:
         ordering = ["name"]

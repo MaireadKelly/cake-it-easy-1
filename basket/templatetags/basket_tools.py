@@ -6,20 +6,22 @@ from decimal import Decimal
 
 register = template.Library()
 
-@register.filter(name='calc_subtotal')
+
+@register.filter(name="calc_subtotal")
 def calc_subtotal(price, quantity):
     """
     Template filter to calculate the subtotal of a product
     """
     return price * quantity
 
-@register.inclusion_tag('basket/basket_summary.html', takes_context=True)
+
+@register.inclusion_tag("basket/basket_summary.html", takes_context=True)
 def basket_summary(context):
     """
     Custom inclusion tag to provide basket summary details in templates.
     """
-    request = context['request']
-    basket = request.session.get('basket', {})
+    request = context["request"]
+    basket = request.session.get("basket", {})
 
     basket_items = []
     total = 0
@@ -30,21 +32,25 @@ def basket_summary(context):
         if isinstance(item_data, int):
             total += item_data * product.price
             product_count += item_data
-            basket_items.append({
-                'product': product,
-                'quantity': item_data,
-                'subtotal': item_data * product.price,
-            })
+            basket_items.append(
+                {
+                    "product": product,
+                    "quantity": item_data,
+                    "subtotal": item_data * product.price,
+                }
+            )
         else:
-            for size, quantity in item_data['items_by_size'].items():
+            for size, quantity in item_data["items_by_size"].items():
                 total += quantity * product.price
                 product_count += quantity
-                basket_items.append({
-                    'product': product,
-                    'quantity': quantity,
-                    'size': size,
-                    'subtotal': quantity * product.price,
-                })
+                basket_items.append(
+                    {
+                        "product": product,
+                        "quantity": quantity,
+                        "size": size,
+                        "subtotal": quantity * product.price,
+                    }
+                )
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = settings.STANDARD_DELIVERY_COST
@@ -56,13 +62,13 @@ def basket_summary(context):
     grand_total = total + delivery
 
     context = {
-        'basket_items': basket_items,
-        'total': total,
-        'product_count': product_count,
-        'delivery': delivery,
-        'free_delivery_delta': free_delivery_delta,
-        'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
-        'grand_total': grand_total,
+        "basket_items": basket_items,
+        "total": total,
+        "product_count": product_count,
+        "delivery": delivery,
+        "free_delivery_delta": free_delivery_delta,
+        "free_delivery_threshold": settings.FREE_DELIVERY_THRESHOLD,
+        "grand_total": grand_total,
     }
 
     return context

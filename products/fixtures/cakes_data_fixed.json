@@ -1,0 +1,802 @@
+[
+    {
+        "model": "products.product",
+        "pk": 1,
+        "fields": {
+            "name": "Cake 1",
+            "description": "A delicious anniversary cake with high-quality ingredients.",
+            "price": 35.87,
+            "category": 2,
+                        "rating": 3.3,
+            "num_reviews": 187,
+            "allergens": "Soy",
+            "is_vegan": false,
+            "is_gluten_free": true,
+            "created_at": "2025-02-13"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 2,
+        "fields": {
+            "name": "Cake 2",
+            "description": "A delicious cupcake with high-quality ingredients.",
+            "price": 26.85,
+            "category": 3,
+                        "rating": 4.8,
+            "num_reviews": 137,
+            "allergens": "Eggs",
+            "is_vegan": true,
+            "is_gluten_free": false,
+            "created_at": "2024-06-21"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 3,
+        "fields": {
+            "name": "Cake 3",
+            "description": "A delicious custom cake with high-quality ingredients.",
+            "price": 65.74,
+            "category": 1,
+                        "rating": 3.4,
+            "num_reviews": 187,
+            "allergens": "Dairy",
+            "is_vegan": true,
+            "is_gluten_free": true,
+            "created_at": "2024-06-12"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 4,
+        "fields": {
+            "name": "Cake 4",
+            "description": "A delicious birthday cake with high-quality ingredients.",
+            "price": 117.02,
+            "category": 3,
+                        "rating": 5.0,
+            "num_reviews": 147,
+            "allergens": "Gluten",
+            "is_vegan": true,
+            "is_gluten_free": false,
+            "created_at": "2024-08-24"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 5,
+        "fields": {
+            "name": "Cake 5",
+            "description": "A delicious birthday cake with high-quality ingredients.",
+            "price": 92.28,
+            "category": 5,
+                        "rating": 3.8,
+            "num_reviews": 54,
+            "allergens": "Nuts",
+            "is_vegan": false,
+            "is_gluten_free": true,
+            "created_at": "2024-07-12"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 6,
+        "fields": {
+            "name": "Cake 6",
+            "description": "A delicious anniversary cake with high-quality ingredients.",
+            "price": 26.94,
+            "category": 4,
+                        "rating": 3.8,
+            "num_reviews": 69,
+            "allergens": "Soy",
+            "is_vegan": true,
+            "is_gluten_free": true,
+            "created_at": "2024-03-08"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 7,
+        "fields": {
+            "name": "Cake 7",
+            "description": "A delicious cupcake with high-quality ingredients.",
+            "price": 79.58,
+            "category": 2,
+                        "rating": 4.1,
+            "num_reviews": 146,
+            "allergens": "Soy",
+            "is_vegan": false,
+            "is_gluten_free": true,
+            "created_at": "2024-08-05"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 8,
+        "fields": {
+            "name": "Cake 8",
+            "description": "A delicious cupcake with high-quality ingredients.",
+            "price": 114.13,
+            "category": 3,
+                        "rating": 5.0,
+            "num_reviews": 57,
+            "allergens": "Gluten",
+            "is_vegan": false,
+            "is_gluten_free": false,
+            "created_at": "2024-09-01"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 9,
+        "fields": {
+            "name": "Cake 9",
+            "description": "A delicious custom cake with high-quality ingredients.",
+            "price": 65.68,
+            "category": 3,
+                        "rating": 5.0,
+            "num_reviews": 44,
+            "allergens": "Soy",
+            "is_vegan": true,
+            "is_gluten_free": false,
+            "created_at": "2024-06-19"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 10,
+        "fields": {
+            "name": "Cake 10",
+            "description": "A delicious wedding cake with high-quality ingredients.",
+            "price": 30.16,
+            "category": 2,
+                        "rating": 4.7,
+            "num_reviews": 171,
+            "allergens": "Dairy",
+            "is_vegan": true,
+            "is_gluten_free": true,
+            "created_at": "2024-10-27"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 11,
+        "fields": {
+            "name": "Cake 11",
+            "description": "A delicious custom cake with high-quality ingredients.",
+            "price": 29.49,
+            "category": 2,
+                        "rating": 4.2,
+            "num_reviews": 80,
+            "allergens": "None",
+            "is_vegan": true,
+            "is_gluten_free": false,
+            "created_at": "2024-12-26"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 12,
+        "fields": {
+            "name": "Cake 12",
+            "description": "A delicious anniversary cake with high-quality ingredients.",
+            "price": 78.73,
+            "category": 4,
+                        "rating": 3.1,
+            "num_reviews": 105,
+            "allergens": "Dairy",
+            "is_vegan": false,
+            "is_gluten_free": false,
+            "created_at": "2025-01-27"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 13,
+        "fields": {
+            "name": "Cake 13",
+            "description": "A delicious anniversary cake with high-quality ingredients.",
+            "price": 66.61,
+            "category": 4,
+                        "rating": 4.5,
+            "num_reviews": 166,
+            "allergens": "None",
+            "is_vegan": true,
+            "is_gluten_free": true,
+            "created_at": "2024-06-04"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 14,
+        "fields": {
+            "name": "Cake 14",
+            "description": "A delicious wedding cake with high-quality ingredients.",
+            "price": 104.73,
+            "category": 3,
+                        "rating": 4.2,
+            "num_reviews": 144,
+            "allergens": "Nuts",
+            "is_vegan": true,
+            "is_gluten_free": true,
+            "created_at": "2024-09-27"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 15,
+        "fields": {
+            "name": "Cake 15",
+            "description": "A delicious birthday cake with high-quality ingredients.",
+            "price": 113.02,
+            "category": 4,
+                        "rating": 4.8,
+            "num_reviews": 85,
+            "allergens": "Nuts",
+            "is_vegan": true,
+            "is_gluten_free": true,
+            "created_at": "2024-05-07"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 16,
+        "fields": {
+            "name": "Cake 16",
+            "description": "A delicious custom cake with high-quality ingredients.",
+            "price": 70.89,
+            "category": 1,
+                        "rating": 3.1,
+            "num_reviews": 87,
+            "allergens": "Soy",
+            "is_vegan": true,
+            "is_gluten_free": true,
+            "created_at": "2024-10-10"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 17,
+        "fields": {
+            "name": "Cake 17",
+            "description": "A delicious wedding cake with high-quality ingredients.",
+            "price": 107.35,
+            "category": 1,
+                        "rating": 4.5,
+            "num_reviews": 34,
+            "allergens": "Dairy",
+            "is_vegan": true,
+            "is_gluten_free": true,
+            "created_at": "2024-03-11"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 18,
+        "fields": {
+            "name": "Cake 18",
+            "description": "A delicious custom cake with high-quality ingredients.",
+            "price": 75.14,
+            "category": 4,
+                        "rating": 3.3,
+            "num_reviews": 27,
+            "allergens": "Nuts",
+            "is_vegan": true,
+            "is_gluten_free": true,
+            "created_at": "2024-03-07"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 19,
+        "fields": {
+            "name": "Cake 19",
+            "description": "A delicious custom cake with high-quality ingredients.",
+            "price": 73.47,
+            "category": 1,
+                        "rating": 3.0,
+            "num_reviews": 14,
+            "allergens": "None",
+            "is_vegan": false,
+            "is_gluten_free": true,
+            "created_at": "2024-04-27"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 20,
+        "fields": {
+            "name": "Cake 20",
+            "description": "A delicious birthday cake with high-quality ingredients.",
+            "price": 53.2,
+            "category": 2,
+                        "rating": 4.8,
+            "num_reviews": 10,
+            "allergens": "Nuts",
+            "is_vegan": true,
+            "is_gluten_free": true,
+            "created_at": "2024-10-29"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 21,
+        "fields": {
+            "name": "Cake 21",
+            "description": "A delicious anniversary cake with high-quality ingredients.",
+            "price": 63.46,
+            "category": 2,
+                        "rating": 3.1,
+            "num_reviews": 20,
+            "allergens": "Nuts",
+            "is_vegan": false,
+            "is_gluten_free": true,
+            "created_at": "2024-11-17"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 22,
+        "fields": {
+            "name": "Cake 22",
+            "description": "A delicious wedding cake with high-quality ingredients.",
+            "price": 85.07,
+            "category": 3,
+                        "rating": 4.0,
+            "num_reviews": 89,
+            "allergens": "Soy",
+            "is_vegan": false,
+            "is_gluten_free": false,
+            "created_at": "2024-12-01"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 23,
+        "fields": {
+            "name": "Cake 23",
+            "description": "A delicious anniversary cake with high-quality ingredients.",
+            "price": 60.25,
+            "category": 4,
+                        "rating": 3.4,
+            "num_reviews": 192,
+            "allergens": "None",
+            "is_vegan": true,
+            "is_gluten_free": true,
+            "created_at": "2024-10-19"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 24,
+        "fields": {
+            "name": "Cake 24",
+            "description": "A delicious birthday cake with high-quality ingredients.",
+            "price": 54.48,
+            "category": 2,
+                        "rating": 3.4,
+            "num_reviews": 77,
+            "allergens": "Dairy",
+            "is_vegan": true,
+            "is_gluten_free": false,
+            "created_at": "2024-08-12"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 25,
+        "fields": {
+            "name": "Cake 25",
+            "description": "A delicious birthday cake with high-quality ingredients.",
+            "price": 30.49,
+            "category": 5,
+                        "rating": 3.3,
+            "num_reviews": 47,
+            "allergens": "Soy",
+            "is_vegan": true,
+            "is_gluten_free": true,
+            "created_at": "2025-01-12"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 26,
+        "fields": {
+            "name": "Cake 26",
+            "description": "A delicious anniversary cake with high-quality ingredients.",
+            "price": 63.93,
+            "category": 1,
+                        "rating": 3.1,
+            "num_reviews": 86,
+            "allergens": "Eggs",
+            "is_vegan": true,
+            "is_gluten_free": false,
+            "created_at": "2024-05-01"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 27,
+        "fields": {
+            "name": "Cake 27",
+            "description": "A delicious anniversary cake with high-quality ingredients.",
+            "price": 96.41,
+            "category": 1,
+                        "rating": 3.1,
+            "num_reviews": 140,
+            "allergens": "Gluten",
+            "is_vegan": true,
+            "is_gluten_free": false,
+            "created_at": "2024-08-08"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 28,
+        "fields": {
+            "name": "Cake 28",
+            "description": "A delicious wedding cake with high-quality ingredients.",
+            "price": 76.87,
+            "category": 2,
+                        "rating": 3.6,
+            "num_reviews": 14,
+            "allergens": "Eggs",
+            "is_vegan": true,
+            "is_gluten_free": false,
+            "created_at": "2024-07-01"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 29,
+        "fields": {
+            "name": "Cake 29",
+            "description": "A delicious anniversary cake with high-quality ingredients.",
+            "price": 106.15,
+            "category": 2,
+                        "rating": 4.6,
+            "num_reviews": 33,
+            "allergens": "Soy",
+            "is_vegan": true,
+            "is_gluten_free": false,
+            "created_at": "2024-04-12"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 30,
+        "fields": {
+            "name": "Cake 30",
+            "description": "A delicious wedding cake with high-quality ingredients.",
+            "price": 107.32,
+            "category": 2,
+                        "rating": 4.4,
+            "num_reviews": 131,
+            "allergens": "Dairy",
+            "is_vegan": true,
+            "is_gluten_free": false,
+            "created_at": "2024-07-13"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 31,
+        "fields": {
+            "name": "Cake 31",
+            "description": "A delicious anniversary cake with high-quality ingredients.",
+            "price": 78.1,
+            "category": 4,
+                        "rating": 4.8,
+            "num_reviews": 37,
+            "allergens": "Eggs",
+            "is_vegan": false,
+            "is_gluten_free": false,
+            "created_at": "2024-08-12"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 32,
+        "fields": {
+            "name": "Cake 32",
+            "description": "A delicious custom cake with high-quality ingredients.",
+            "price": 18.22,
+            "category": 2,
+                        "rating": 3.1,
+            "num_reviews": 149,
+            "allergens": "None",
+            "is_vegan": false,
+            "is_gluten_free": false,
+            "created_at": "2024-09-13"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 33,
+        "fields": {
+            "name": "Cake 33",
+            "description": "A delicious cupcake with high-quality ingredients.",
+            "price": 51.31,
+            "category": 5,
+                        "rating": 4.7,
+            "num_reviews": 12,
+            "allergens": "Gluten",
+            "is_vegan": false,
+            "is_gluten_free": false,
+            "created_at": "2024-03-13"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 34,
+        "fields": {
+            "name": "Cake 34",
+            "description": "A delicious anniversary cake with high-quality ingredients.",
+            "price": 95.45,
+            "category": 2,
+                        "rating": 5.0,
+            "num_reviews": 8,
+            "allergens": "Dairy",
+            "is_vegan": true,
+            "is_gluten_free": false,
+            "created_at": "2024-05-20"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 35,
+        "fields": {
+            "name": "Cake 35",
+            "description": "A delicious anniversary cake with high-quality ingredients.",
+            "price": 12.31,
+            "category": 3,
+                        "rating": 3.1,
+            "num_reviews": 172,
+            "allergens": "Soy",
+            "is_vegan": false,
+            "is_gluten_free": true,
+            "created_at": "2024-07-15"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 36,
+        "fields": {
+            "name": "Cake 36",
+            "description": "A delicious custom cake with high-quality ingredients.",
+            "price": 49.77,
+            "category": 3,
+                        "rating": 4.9,
+            "num_reviews": 121,
+            "allergens": "Nuts",
+            "is_vegan": false,
+            "is_gluten_free": false,
+            "created_at": "2025-01-16"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 37,
+        "fields": {
+            "name": "Cake 37",
+            "description": "A delicious wedding cake with high-quality ingredients.",
+            "price": 82.13,
+            "category": 3,
+                        "rating": 4.1,
+            "num_reviews": 193,
+            "allergens": "Eggs",
+            "is_vegan": false,
+            "is_gluten_free": true,
+            "created_at": "2025-01-21"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 38,
+        "fields": {
+            "name": "Cake 38",
+            "description": "A delicious wedding cake with high-quality ingredients.",
+            "price": 92.02,
+            "category": 4,
+                        "rating": 4.6,
+            "num_reviews": 35,
+            "allergens": "Soy",
+            "is_vegan": true,
+            "is_gluten_free": false,
+            "created_at": "2024-07-28"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 39,
+        "fields": {
+            "name": "Cake 39",
+            "description": "A delicious wedding cake with high-quality ingredients.",
+            "price": 44.26,
+            "category": 4,
+                        "rating": 4.7,
+            "num_reviews": 153,
+            "allergens": "Gluten",
+            "is_vegan": true,
+            "is_gluten_free": false,
+            "created_at": "2024-07-02"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 40,
+        "fields": {
+            "name": "Cake 40",
+            "description": "A delicious birthday cake with high-quality ingredients.",
+            "price": 56.37,
+            "category": 1,
+                        "rating": 3.3,
+            "num_reviews": 141,
+            "allergens": "Gluten",
+            "is_vegan": false,
+            "is_gluten_free": false,
+            "created_at": "2025-02-19"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 41,
+        "fields": {
+            "name": "Cake 41",
+            "description": "A delicious birthday cake with high-quality ingredients.",
+            "price": 101.96,
+            "category": 2,
+                        "rating": 3.5,
+            "num_reviews": 181,
+            "allergens": "Soy",
+            "is_vegan": false,
+            "is_gluten_free": false,
+            "created_at": "2024-06-10"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 42,
+        "fields": {
+            "name": "Cake 42",
+            "description": "A delicious wedding cake with high-quality ingredients.",
+            "price": 74.38,
+            "category": 2,
+                        "rating": 4.9,
+            "num_reviews": 79,
+            "allergens": "Gluten",
+            "is_vegan": true,
+            "is_gluten_free": true,
+            "created_at": "2024-03-06"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 43,
+        "fields": {
+            "name": "Cake 43",
+            "description": "A delicious cupcake with high-quality ingredients.",
+            "price": 59.87,
+            "category": 1,
+                        "rating": 4.2,
+            "num_reviews": 65,
+            "allergens": "Eggs",
+            "is_vegan": true,
+            "is_gluten_free": true,
+            "created_at": "2024-03-18"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 44,
+        "fields": {
+            "name": "Cake 44",
+            "description": "A delicious birthday cake with high-quality ingredients.",
+            "price": 43.09,
+            "category": 4,
+                        "rating": 4.9,
+            "num_reviews": 76,
+            "allergens": "Gluten",
+            "is_vegan": false,
+            "is_gluten_free": true,
+            "created_at": "2024-03-14"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 45,
+        "fields": {
+            "name": "Cake 45",
+            "description": "A delicious birthday cake with high-quality ingredients.",
+            "price": 60.31,
+            "category": 1,
+                        "rating": 3.0,
+            "num_reviews": 150,
+            "allergens": "Gluten",
+            "is_vegan": false,
+            "is_gluten_free": true,
+            "created_at": "2024-11-19"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 46,
+        "fields": {
+            "name": "Cake 46",
+            "description": "A delicious anniversary cake with high-quality ingredients.",
+            "price": 102.02,
+            "category": 3,
+                        "rating": 4.9,
+            "num_reviews": 168,
+            "allergens": "Nuts",
+            "is_vegan": false,
+            "is_gluten_free": false,
+            "created_at": "2025-02-16"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 47,
+        "fields": {
+            "name": "Cake 47",
+            "description": "A delicious wedding cake with high-quality ingredients.",
+            "price": 11.2,
+            "category": 3,
+                        "rating": 3.5,
+            "num_reviews": 12,
+            "allergens": "Dairy",
+            "is_vegan": true,
+            "is_gluten_free": false,
+            "created_at": "2024-08-30"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 48,
+        "fields": {
+            "name": "Cake 48",
+            "description": "A delicious cupcake with high-quality ingredients.",
+            "price": 89.11,
+            "category": 3,
+                        "rating": 3.4,
+            "num_reviews": 187,
+            "allergens": "Nuts",
+            "is_vegan": true,
+            "is_gluten_free": false,
+            "created_at": "2024-11-03"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 49,
+        "fields": {
+            "name": "Cake 49",
+            "description": "A delicious custom cake with high-quality ingredients.",
+            "price": 55.37,
+            "category": 5,
+                        "rating": 3.9,
+            "num_reviews": 124,
+            "allergens": "Soy",
+            "is_vegan": false,
+            "is_gluten_free": true,
+            "created_at": "2024-07-28"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 50,
+        "fields": {
+            "name": "Cake 50",
+            "description": "A delicious custom cake with high-quality ingredients.",
+            "price": 70.44,
+            "category": 1,
+                        "rating": 3.1,
+            "num_reviews": 27,
+            "allergens": "Soy",
+            "is_vegan": false,
+            "is_gluten_free": false,
+            "created_at": "2024-08-16"
+        }
+    }
+]

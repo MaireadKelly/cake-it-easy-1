@@ -7,7 +7,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ("name", "product_type", "price", "category", "image", "slug")
     list_filter = ("product_type", "category")
     prepopulated_fields = {"slug": ("name",)}
-    
+
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -17,7 +17,10 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Cake)
 class CakeAdmin(admin.ModelAdmin):
     list_display = ("name", "occasion", "price", "category", "image", "slug")
-    list_filter = ("occasion", "category",)  # Use a tuple for single field
+    list_filter = (
+        "occasion",
+        "category",
+    )  # Use a tuple for single field
     prepopulated_fields = {"slug": ("name",)}
 
 

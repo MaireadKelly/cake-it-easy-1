@@ -75,8 +75,9 @@ TEMPLATES = [
 ]
 
 
-
-DATABASES = {"default": dj_database_url.parse(os.getenv("DATABASE_URL", "sqlite:///db.sqlite3"))}
+DATABASES = {
+    "default": dj_database_url.parse(os.getenv("DATABASE_URL", "sqlite:///db.sqlite3"))
+}
 
 CSRF_TRUSTED_ORIGINS = ["https://*.codeinstitute-ide.net/", "https://*.herokuapp.com"]
 
@@ -97,7 +98,7 @@ CLOUDINARY_STORAGE = {
 
 # DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
-STRIPE_CURRENCY = 'eur'
+STRIPE_CURRENCY = "eur"
 STRIPE_PUBLIC_KEY = os.getenv("STRIPE_PUBLIC_KEY", "dummy_public_key")
 STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY", "dummy_secret_key")
 STRIPE_WH_SECRET = os.getenv("STRIPE_WH_SECRET", "dummy_wh_secret")

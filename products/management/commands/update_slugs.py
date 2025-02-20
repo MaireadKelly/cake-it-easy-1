@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand
 from django.utils.text import slugify
 from products.models import Product, Cake, CustomCake
 
+
 class Command(BaseCommand):
     help = "Ensure all product-related models have unique slugs"
 
@@ -11,7 +12,7 @@ class Command(BaseCommand):
 
         def ensure_unique_slug(obj):
             """Generate a unique slug for an object and save it."""
-            base_slug = slugify(obj.name if hasattr(obj, 'name') else obj.flavor)
+            base_slug = slugify(obj.name if hasattr(obj, "name") else obj.flavor)
             slug = base_slug
             counter = 1
             while slug in processed_slugs:

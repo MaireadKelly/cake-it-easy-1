@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 
+
 # Function to generate ERD using NetworkX and Matplotlib
 def generate_erd():
     # Create a directed graph
@@ -8,8 +9,14 @@ def generate_erd():
 
     # Adding entities and relationships
     entities = [
-        "User", "CustomerProfile", "Order", "OrderLineItem", 
-        "Cake", "Category", "Basket", "BasketItem"
+        "User",
+        "CustomerProfile",
+        "Order",
+        "OrderLineItem",
+        "Cake",
+        "Category",
+        "Basket",
+        "BasketItem",
     ]
 
     # Define relationships
@@ -41,14 +48,26 @@ def generate_erd():
     # Draw the ERD
     pos = nx.spring_layout(G, seed=42)
     plt.figure(figsize=(15, 10))
-    nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=3000, font_size=10, font_weight='bold', arrows=True)
+    nx.draw(
+        G,
+        pos,
+        with_labels=True,
+        node_color="lightblue",
+        node_size=3000,
+        font_size=10,
+        font_weight="bold",
+        arrows=True,
+    )
 
     # Adding edge labels
     edge_labels = {(src, tgt): rel for src, tgt, rel in relationships}
-    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_color='red', font_size=8)
+    nx.draw_networkx_edge_labels(
+        G, pos, edge_labels=edge_labels, font_color="red", font_size=8
+    )
 
     plt.title("Entity Relationship Diagram (ERD) for Cake It Easy Project")
     plt.show()
+
 
 # Generate the ERD
 generate_erd()
