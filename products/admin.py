@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Category, Product, Cake, CustomCake
+from .models import Category, Product, Cake, CustomCake, Accessory
+from django.utils.html import format_html
 
 
 @admin.register(Product)
@@ -38,8 +39,12 @@ class CustomCakeAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("flavor", "filling")}
 
 
-# @admin.register(Accessory)
-# class AccessoryAdmin(admin.ModelAdmin):
-#     list_display = ("name", "accessory_type", "price", "category", "image", "slug")
-#     list_filter = ("accessory_type", "category")
-#     prepopulated_fields = {"slug": ("name",)}
+@admin.register(Accessory)
+class AccessoryAdmin(admin.ModelAdmin):
+    list_display = ("name", "accessory_type", "price", "category", "image_preview", "slug")
+    list_filter = ("accessory_type", "category")
+    prepopulated_fields = {"slug": ("name",)}
+
+    def image_preview(self, obj):
+        return format_html('<img src="{}" width="50" height="50" />', obj.image.url) if obj.image else "-"
+    image_preview.short_description = "Image Preview"

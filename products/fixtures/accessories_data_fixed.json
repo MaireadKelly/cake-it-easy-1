@@ -1,0 +1,262 @@
+[
+    {
+        "model": "products.accessory",
+        "pk": 51,
+        "fields": {
+            "name": "Balloons 51",
+            "description": "A high-quality balloons to complement your cake.",
+            "price": 7.88,
+            "category": 13,
+            "image": "",
+            "accessory_type": "balloons",
+            "slug": "balloons-51"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 52,
+        "fields": {
+            "name": "Balloons 52",
+            "description": "A high-quality balloons to complement your cake.",
+            "price": 6.17,
+            "category": 13,
+            "image": "",
+            "accessory_type": "balloons",
+            "slug": "balloons-52"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 53,
+        "fields": {
+            "name": "Balloons 53",
+            "description": "A high-quality balloons to complement your cake.",
+            "price": 13.01,
+            "category": 13,
+            "image": "",
+            "accessory_type": "balloons",
+            "slug": "balloons-53"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 54,
+        "fields": {
+            "name": "Banners 54",
+            "description": "A high-quality banners to complement your cake.",
+            "price": 13.37,
+            "category": 12,
+            "image": "",
+            "accessory_type": "banners",
+            "slug": "banners-54"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 55,
+        "fields": {
+            "name": "Balloons 55",
+            "description": "A high-quality balloons to complement your cake.",
+            "price": 16.55,
+            "category": 13,
+            "image": "",
+            "accessory_type": "balloons",
+            "slug": "balloons-55"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 56,
+        "fields": {
+            "name": "Toppers 56",
+            "description": "A high-quality toppers to complement your cake.",
+            "price": 17.25,
+            "category": 11,
+            "image": "",
+            "accessory_type": "toppers",
+            "slug": "toppers-56"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 57,
+        "fields": {
+            "name": "Banners 57",
+            "description": "A high-quality banners to complement your cake.",
+            "price": 6.97,
+            "category": 12,
+            "image": "",
+            "accessory_type": "banners",
+            "slug": "banners-57"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 58,
+        "fields": {
+            "name": "Candles 58",
+            "description": "A high-quality candles to complement your cake.",
+            "price": 7.12,
+            "category": 10,
+            "image": "",
+            "accessory_type": "candles",
+            "slug": "candles-58"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 59,
+        "fields": {
+            "name": "Toppers 59",
+            "description": "A high-quality toppers to complement your cake.",
+            "price": 13.23,
+            "category": 11,
+            "image": "",
+            "accessory_type": "toppers",
+            "slug": "toppers-59"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 60,
+        "fields": {
+            "name": "Balloons 60",
+            "description": "A high-quality balloons to complement your cake.",
+            "price": 14.75,
+            "category": 13,
+            "image": "",
+            "accessory_type": "balloons",
+            "slug": "balloons-60"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 61,
+        "fields": {
+            "name": "Toppers 61",
+            "description": "A high-quality toppers to complement your cake.",
+            "price": 17.25,
+            "category": 11,
+            "image": "",
+            "accessory_type": "toppers",
+            "slug": "toppers-61"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 62,
+        "fields": {
+            "name": "Candles 62",
+            "description": "A high-quality candles to complement your cake.",
+            "price": 12.72,
+            "category": 10,
+            "image": "",
+            "accessory_type": "candles",
+            "slug": "candles-62"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 63,
+        "fields": {
+            "name": "Balloons 63",
+            "description": "A high-quality balloons to complement your cake.",
+            "price": 14.02,
+            "category": 13,
+            "image": "",
+            "accessory_type": "balloons",
+            "slug": "balloons-63"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 64,
+        "fields": {
+            "name": "Balloons 64",
+            "description": "A high-quality balloons to complement your cake.",
+            "price": 10.34,
+            "category": 13,
+            "image": "",
+            "accessory_type": "balloons",
+            "slug": "balloons-64"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 65,
+        "fields": {
+            "name": "Banners 65",
+            "description": "A high-quality banners to complement your cake.",
+            "price": 2.26,
+            "category": 12,
+            "image": "",
+            "accessory_type": "banners",
+            "slug": "banners-65"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 66,
+        "fields": {
+            "name": "Banners 66",
+            "description": "A high-quality banners to complement your cake.",
+            "price": 12.32,
+            "category": 12,
+            "image": "",
+            "accessory_type": "banners",
+            "slug": "banners-66"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 67,
+        "fields": {
+            "name": "Candles 67",
+            "description": "A high-quality candles to complement your cake.",
+            "price": 17.92,
+            "category": 10,
+            "image": "",
+            "accessory_type": "candles",
+            "slug": "candles-67"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 68,
+        "fields": {
+            "name": "Banners 68",
+            "description": "A high-quality banners to complement your cake.",
+            "price": 19.57,
+            "category": 12,
+            "image": "",
+            "accessory_type": "banners",
+            "slug": "banners-68"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 69,
+        "fields": {
+            "name": "Toppers 69",
+            "description": "A high-quality toppers to complement your cake.",
+            "price": 17.77,
+            "category": 11,
+            "image": "",
+            "accessory_type": "toppers",
+            "slug": "toppers-69"
+        }
+    },
+    {
+        "model": "products.accessory",
+        "pk": 70,
+        "fields": {
+            "name": "Balloons 70",
+            "description": "A high-quality balloons to complement your cake.",
+            "price": 14.18,
+            "category": 13,
+            "image": "",
+            "accessory_type": "balloons",
+            "slug": "balloons-70"
+        }
+    }
+]
