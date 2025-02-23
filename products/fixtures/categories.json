@@ -3,63 +3,24 @@
         "model": "products.category",
         "pk": 1,
         "fields": {
-            "name": "Cakes",
-            "description": "Delicious cakes for every occasion.",
-            "parent": null
+            "name": "Standard Cakes",
+            "description": "Delicious signature cakes for all occasions."
         }
     },
     {
         "model": "products.category",
         "pk": 2,
         "fields": {
-            "name": "Birthday Cakes",
-            "description": "Special cakes for birthday celebrations.",
-            "parent": 1
+            "name": "Custom Cakes",
+            "description": "Fully customizable cakes with flavors, fillings, and decorations."
         }
     },
     {
         "model": "products.category",
         "pk": 3,
         "fields": {
-            "name": "Wedding Cakes",
-            "description": "Elegant cakes for weddings.",
-            "parent": 1
-        }
-    },
-    {
-        "model": "products.category",
-        "pk": 4,
-        "fields": {
             "name": "Cupcakes",
-            "description": "Tasty and beautifully decorated cupcakes.",
-            "parent": null
-        }
-    },
-    {
-        "model": "products.category",
-        "pk": 5,
-        "fields": {
-            "name": "Vegan Cakes",
-            "description": "Delicious cakes made without animal products.",
-            "parent": 1
-        }
-    },
-    {
-        "model": "products.category",
-        "pk": 6,
-        "fields": {
-            "name": "Gluten-Free Cakes",
-            "description": "Cakes suitable for gluten-free diets.",
-            "parent": 1
-        }
-    },
-    {
-        "model": "products.category",
-        "pk": 7,
-        "fields": {
-            "name": "Accessories",
-            "description": "Cake accessories including candles, toppers, and decorations.",
-            "parent": null
+            "description": "Custom cupcakes with assorted flavors and toppers."
         }
     }
 ]

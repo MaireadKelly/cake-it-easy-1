@@ -1,0 +1,33 @@
+[
+    {
+        "model": "products.category",
+        "pk": 1,
+        "fields": {"name": "Standard Cakes", "description": "Non-customizable cakes for any occasion."}
+    },
+    {
+        "model": "products.category",
+        "pk": 2,
+        "fields": {"name": "Custom Cakes", "description": "Fully customizable cakes for special occasions."}
+    },
+    {
+        "model": "products.category",
+        "pk": 3,
+        "fields": {"name": "Cupcakes", "description": "Small customizable cupcakes."}
+    },
+    {
+        "model": "products.category",
+        "pk": 4,
+        "fields": {"name": "Accessories", "description": "Cake toppers, candles, and more."}
+    },
+    {
+        "model": "products.product",
+        "pk": 1,
+        "fields": {
+            "name": "Classic Chocolate Cake",
+            "price": 20.00,
+            "description": "A delicious chocolate cake.",
+            "category": 1,
+            "image": "https://res.cloudinary.com/mkswdev/image/upload/v1/chocolate_cake.jpg"
+        }
+    }
+]

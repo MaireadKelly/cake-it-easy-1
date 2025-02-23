@@ -125,6 +125,16 @@ class CustomCake(Product):
 
     def __str__(self):
         return f"Custom Cake - {self.flavor} with {self.filling} filling"
+    
+    
+class Cupcake(Product):  # ✅ Inherit from Product
+    flavor = models.CharField(max_length=50)
+    filling = models.CharField(max_length=50, blank=True, null=True)
+    custom_message = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Custom Cupcake - {self.flavor}"
+
 
 
 class Accessory(Product):
