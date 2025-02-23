@@ -4,7 +4,7 @@ from django.db import models
 from django.db.models import Sum
 from django.contrib.auth.models import User
 from django.conf import settings
-from products.models import Cake
+from products.models import Product, Cake, CustomCake
 
 
 class Order(models.Model):

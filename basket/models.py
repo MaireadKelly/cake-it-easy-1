@@ -1,5 +1,5 @@
 from django.db import models
-from products.models import Cake
+from products.models import Product, Cake, CustomCake
 from home.customer import Customer
 
 
@@ -30,9 +30,10 @@ class Basket(models.Model):
 
 class BasketItem(models.Model):
     basket = models.ForeignKey(Basket, on_delete=models.CASCADE, related_name="items")
-    cake = models.ForeignKey(Cake, on_delete=models.CASCADE)
+    cake = models.ForeignKey(Cake, on_delete=models.CASCADE, null=True, blank=True)  # ✅ For standard cakes
+    custom_cake = models.ForeignKey(CustomCake, on_delete=models.CASCADE, null=True, blank=True)  # ✅ For custom cakes
     quantity = models.PositiveIntegerField(default=1)
 
     @property
     def total_price(self):
-        return self.quantity * self.cake.price
+        return self.quantity * self.product.price  # ✅ Fixed price calculation to work for all products

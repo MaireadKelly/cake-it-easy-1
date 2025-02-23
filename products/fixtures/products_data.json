@@ -1,0 +1,90 @@
+[
+    {
+        "model": "products.product",
+        "pk": 1,
+        "fields": {
+            "name": "Chocolate Cake",
+            "description": "A delicious chocolate cake made with premium ingredients.",
+            "price": 25.50,
+            "category": 1,
+            "slug": "chocolate-cake"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 2,
+        "fields": {
+            "name": "Vanilla Cake",
+            "description": "A delicious vanilla cake made with premium ingredients.",
+            "price": 22.99,
+            "category": 1,
+            "slug": "vanilla-cake"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 3,
+        "fields": {
+            "name": "Red Velvet Cake",
+            "description": "A delicious red velvet cake made with premium ingredients.",
+            "price": 28.75,
+            "category": 1,
+            "slug": "red-velvet-cake"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 4,
+        "fields": {
+            "name": "Lemon Cake",
+            "description": "A delicious lemon cake made with premium ingredients.",
+            "price": 24.30,
+            "category": 1,
+            "slug": "lemon-cake"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 5,
+        "fields": {
+            "name": "Carrot Cake",
+            "description": "A delicious carrot cake made with premium ingredients.",
+            "price": 26.00,
+            "category": 1,
+            "slug": "carrot-cake"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 6,
+        "fields": {
+            "name": "Strawberry Cake",
+            "description": "A delicious strawberry cake made with premium ingredients.",
+            "price": 27.45,
+            "category": 1,
+            "slug": "strawberry-cake"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 7,
+        "fields": {
+            "name": "Black Forest Cake",
+            "description": "A delicious black forest cake made with premium ingredients.",
+            "price": 29.99,
+            "category": 1,
+            "slug": "black-forest-cake"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 8,
+        "fields": {
+            "name": "Fruit Cake",
+            "description": "A delicious fruit cake made with premium ingredients.",
+            "price": 30.25,
+            "category": 1,
+            "slug": "fruit-cake"
+        }
+    }
+]

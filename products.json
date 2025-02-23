@@ -1,0 +1,55 @@
+[
+    {
+        "model": "products.product",
+        "pk": 1,
+        "fields": {
+            "name": "Chocolate Lovers Cake",
+            "slug": "chocolate-lovers-cake",
+            "price": 25.00,
+            "description": "A rich chocolate cake perfect for chocolate enthusiasts.",
+            "category": 1,
+            "image": "https://res.cloudinary.com/your-cloud-name/image/upload/v1/chocolate_lovers_cake.jpg"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 2,
+        "fields": {
+            "name": "Vanilla Celebration Cake",
+            "slug": "vanilla-celebration-cake",
+            "price": 22.00,
+            "description": "A classic vanilla cake suitable for all occasions.",
+            "category": 1,
+            "image": "https://res.cloudinary.com/your-cloud-name/image/upload/v1/vanilla_celebration_cake.jpg"
+        }
+    },
+    {
+        "model": "products.product",
+        "pk": 3,
+        "fields": {
+            "name": "Red Velvet Drip Cake",
+            "slug": "red-velvet-drip-cake",
+            "price": 28.00,
+            "description": "A luxurious red velvet cake with a cream cheese frosting.",
+            "category": 1,
+            "image": "https://res.cloudinary.com/your-cloud-name/image/upload/v1/red_velvet_drip_cake.jpg"
+        }
+    },
+    {
+        "model": "products.customcake",
+        "pk": 1,
+        "fields": {
+            "name": "Custom Chocolate Cake",
+            "slug": "custom-chocolate-cake",
+            "price": 30.00,
+            "description": "A fully customizable chocolate cake.",
+            "category": 1,
+            "size": "20-30 people",
+            "flavor": "Chocolate",
+            "color": "Brown",
+            "custom_message": true,
+            "toppers": ["Chocolate Shavings", "Gold Leaf"],
+            "image": "https://res.cloudinary.com/your-cloud-name/image/upload/v1/custom_chocolate_cake.jpg"
+        }
+    }
+]

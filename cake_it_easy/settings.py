@@ -76,9 +76,11 @@ TEMPLATES = [
     },
 ]
 
-
 DATABASES = {
-    "default": dj_database_url.parse(os.getenv("DATABASE_URL", "sqlite:///db.sqlite3"))
+    "default": dj_database_url.config(
+        default="sqlite:///db.sqlite3",
+        engine="django.db.backends.postgresql"
+    )
 }
 
 CSRF_TRUSTED_ORIGINS = ["https://*.codeinstitute-ide.net/", "https://*.herokuapp.com"]
