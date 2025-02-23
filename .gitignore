@@ -11,3 +11,4 @@ cloudinary_python.txt
 *.pyc
 .env
 .venv
+project_backup.zip
