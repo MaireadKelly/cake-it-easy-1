@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from cloudinary.models import CloudinaryField
 
-
+# ---- CATEGORY MODEL ----
 class Category(models.Model):
     class Meta:
         verbose_name_plural = "Categories"
@@ -18,14 +18,16 @@ class Category(models.Model):
             return f"{self.parent.name} -> {self.name}"
         return self.name
 
-
+# ---- BASE PRODUCT MODEL ----
 class Product(models.Model):
     PRODUCT_TYPE_CHOICES = [
         ("cake", "Cake"),
+        ("custom_cake", "Custom Cake"),
+        ("cupcake", "Cupcake"),
         ("accessory", "Accessory"),
     ]
 
-    name = models.CharField(max_length=255, unique=True)  # ✅ Ensure unique names
+    name = models.CharField(max_length=255, unique=True)
     product_type = models.CharField(
         max_length=50, choices=PRODUCT_TYPE_CHOICES, default="cake"
     )
@@ -59,13 +61,8 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-
+# ---- STANDARD CAKE MODEL ----
 class Cake(Product):
-    """
-    Standard cakes that are NOT customizable.
-    Customers can add toppers from the Accessory model.
-    """
-
     OCCASION_CHOICES = [
         ("wedding", "Wedding"),
         ("birthday", "Birthday"),
@@ -80,9 +77,9 @@ class Cake(Product):
     occasion = models.CharField(
         max_length=50, choices=OCCASION_CHOICES, default="other"
     )
-    size = models.CharField(max_length=50, blank=True, null=True)  # Fixed size
-    color = models.CharField(max_length=50, blank=True, null=True)  # Fixed color
-    toppers_allowed = models.BooleanField(default=True)  # Allow adding toppers
+    size = models.CharField(max_length=50, blank=True, null=True)
+    color = models.CharField(max_length=50, blank=True, null=True)
+    toppers_allowed = models.BooleanField(default=True)
 
     class Meta:
         ordering = ["name"]
@@ -90,12 +87,8 @@ class Cake(Product):
     def __str__(self):
         return f"{self.name} ({self.occasion})"
 
-
+# ---- CUSTOM CAKE MODEL ----
 class CustomCake(Product):
-    """
-    Custom cakes where customers can choose flavor, filling, size, etc.
-    """
-
     FLAVOR_CHOICES = [
         ("vanilla", "Vanilla"),
         ("chocolate", "Chocolate"),
@@ -114,20 +107,20 @@ class CustomCake(Product):
 
     flavor = models.CharField(max_length=50, choices=FLAVOR_CHOICES, default="vanilla")
     filling = models.CharField(max_length=50, choices=FILLING_CHOICES, default="buttercream")
-    size = models.CharField(max_length=50, blank=True, null=True)  # Custom size
-    color = models.CharField(max_length=50, blank=True, null=True)  # Custom color
+    size = models.CharField(max_length=50, blank=True, null=True)
+    color = models.CharField(max_length=50, blank=True, null=True)
     custom_message = models.BooleanField(default=False)
-    inscription = models.CharField(max_length=255, blank=True, null=True)  # Custom message
-    toppers = models.JSONField(default=list, blank=True, null=True)  # Toppers for custom cakes
+    inscription = models.CharField(max_length=255, blank=True, null=True)
+    toppers = models.JSONField(default=list, blank=True, null=True)
 
     class Meta:
         ordering = ["name"]
 
     def __str__(self):
         return f"Custom Cake - {self.flavor} with {self.filling} filling"
-    
-    
-class Cupcake(Product):  # ✅ Inherit from Product
+
+# ---- CUPCAKE MODEL ----
+class Cupcake(Product):
     flavor = models.CharField(max_length=50)
     filling = models.CharField(max_length=50, blank=True, null=True)
     custom_message = models.BooleanField(default=False)
@@ -135,13 +128,8 @@ class Cupcake(Product):  # ✅ Inherit from Product
     def __str__(self):
         return f"Custom Cupcake - {self.flavor}"
 
-
-
+# ---- ACCESSORY MODEL ----
 class Accessory(Product):
-    """
-    Accessories like candles, banners, balloons, and cake toppers.
-    """
-
     ACCESSORY_TYPE_CHOICES = [
         ("candles", "Candles"),
         ("toppers", "Cake Toppers"),
