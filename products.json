@@ -45,7 +45,7 @@
             "description": "A fully customizable chocolate cake.",
             "category": 1,
             "size": "20-30 people",
-            "flavor": "Chocolate",
+            "Flavour": "Chocolate",
             "color": "Brown",
             "custom_message": true,
             "toppers": ["Chocolate Shavings", "Gold Leaf"],

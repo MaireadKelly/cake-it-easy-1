@@ -24,7 +24,7 @@ class RatingForm(forms.ModelForm):
 class CustomCakeForm(forms.ModelForm):
     class Meta:
         model = CustomCake
-        fields = ["flavor", "filling", "inscription", "price", "image"]
+        fields = ["flavour", "filling", "inscription", "price", "image"]
 
 
 class CakeForm(forms.ModelForm):

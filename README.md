@@ -142,7 +142,7 @@
 - Checkout securely and receive an order confirmation.
 - Use guest checkout if I prefer not to create an account.
 - Browse featured cakes easily from the home page.
-- Customize my cake with options like flavors, filling, and additional accessories.
+- Customize my cake with options like Flavours, filling, and additional accessories.
 
 ### As a site administrator, I want to:
 - Manage products, orders, and user accounts efficiently.

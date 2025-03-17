@@ -1,0 +1,26 @@
+[
+    {
+        "model": "products.category",
+        "pk": 1,
+        "fields": {
+            "name": "Standard Cakes",
+            "description": "Delicious signature cakes for all occasions."
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": 2,
+        "fields": {
+            "name": "Custom Cakes",
+            "description": "Fully customizable cakes with Flavours, fillings, and decorations."
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": 3,
+        "fields": {
+            "name": "Cupcakes",
+            "description": "Custom cupcakes with assorted Flavours and toppers."
+        }
+    }
+]

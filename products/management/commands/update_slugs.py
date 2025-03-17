@@ -12,7 +12,7 @@ class Command(BaseCommand):
 
         def ensure_unique_slug(obj):
             """Generate a unique slug for an object and save it."""
-            base_slug = slugify(obj.name if hasattr(obj, "name") else obj.flavor)
+            base_slug = slugify(obj.name if hasattr(obj, "name") else obj.Flavour)
             slug = base_slug
             counter = 1
             while slug in processed_slugs:

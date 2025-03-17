@@ -87,28 +87,44 @@ class Cake(Product):
     def __str__(self):
         return f"{self.name} ({self.occasion})"
 
+# ---- CUSTOMIZATION MODELS ----
+class Flavour(models.Model):
+    """ Cake and Cupcake flavours """
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = "Flavours"
+
+    def __str__(self):
+        return self.name
+
+class Filling(models.Model):
+    """ Fillings for custom cakes """
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class Frosting(models.Model):
+    """ Frosting/Icing options for custom cakes """
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class CakeSize(models.Model):
+    """ Cake size options for custom cakes """
+    size = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.size
+
 # ---- CUSTOM CAKE MODEL ----
 class CustomCake(Product):
-    FLAVOR_CHOICES = [
-        ("vanilla", "Vanilla"),
-        ("chocolate", "Chocolate"),
-        ("red_velvet", "Red Velvet"),
-        ("lemon", "Lemon"),
-        ("carrot", "Carrot"),
-    ]
-
-    FILLING_CHOICES = [
-        ("chocolate", "Chocolate"),
-        ("buttercream", "Buttercream"),
-        ("raspberry", "Raspberry"),
-        ("lemon", "Lemon"),
-        ("cream_cheese", "Cream Cheese"),
-    ]
-
-    flavor = models.CharField(max_length=50, choices=FLAVOR_CHOICES, default="vanilla")
-    filling = models.CharField(max_length=50, choices=FILLING_CHOICES, default="buttercream")
-    size = models.CharField(max_length=50, blank=True, null=True)
-    color = models.CharField(max_length=50, blank=True, null=True)
+    flavour = models.ForeignKey(Flavour, on_delete=models.SET_NULL, null=True)
+    filling = models.ForeignKey(Filling, on_delete=models.SET_NULL, null=True)
+    frosting = models.ForeignKey(Frosting, on_delete=models.SET_NULL, null=True)
+    size = models.ForeignKey(CakeSize, on_delete=models.SET_NULL, null=True, blank=True)
     custom_message = models.BooleanField(default=False)
     inscription = models.CharField(max_length=255, blank=True, null=True)
     toppers = models.JSONField(default=list, blank=True, null=True)
@@ -117,16 +133,16 @@ class CustomCake(Product):
         ordering = ["name"]
 
     def __str__(self):
-        return f"Custom Cake - {self.flavor} with {self.filling} filling"
+        return f"Custom Cake - {self.flavour.name if self.flavour else 'No Flavour'} with {self.filling.name if self.filling else 'No Filling'}"
 
 # ---- CUPCAKE MODEL ----
 class Cupcake(Product):
-    flavor = models.CharField(max_length=50)
-    filling = models.CharField(max_length=50, blank=True, null=True)
+    flavour = models.ForeignKey(Flavour, on_delete=models.SET_NULL, null=True)
+    frosting = models.ForeignKey(Frosting, on_delete=models.SET_NULL, null=True)
     custom_message = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"Custom Cupcake - {self.flavor}"
+        return f"Custom Cupcake - {self.flavour.name if self.flavour else 'No Flavour'}"
 
 # ---- ACCESSORY MODEL ----
 class Accessory(Product):

@@ -75,9 +75,9 @@ class OrderLineItem(models.Model):
     cake_size = models.CharField(
         max_length=20, null=True, blank=True
     )  # Customized for cake size
-    cake_flavor = models.CharField(
+    cake_Flavour = models.CharField(
         max_length=30, null=True, blank=True
-    )  # Customized for cake flavor
+    )  # Customized for cake Flavour
     cake_filling = models.CharField(
         max_length=30, null=True, blank=True
     )  # Customized for cake filling

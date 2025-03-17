@@ -1,50 +1,57 @@
 from django.contrib import admin
-from .models import Category, Product, Cake, CustomCake, Accessory
 from django.utils.html import format_html
+from .models import Product, Cake, CustomCake, Cupcake, Accessory, Category, Flavour, Filling, Frosting, CakeSize
 
+# ---- HELPER FUNCTION TO DISPLAY FOREIGN KEY IN ADMIN ----
+def get_flavour(obj):
+    return obj.flavour.name if obj.flavour else "No Flavour"
+get_flavour.admin_order_field = 'flavour'  # Allows sorting by flavour
+get_flavour.short_description = 'Flavour'  # Sets column name in admin panel
 
+# ---- BASE PRODUCT ADMIN (For all product types) ----
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ("name", "product_type", "price", "category", "image", "slug")
-    list_filter = ("product_type", "category")
+    list_display = ('name', 'product_type', 'category', 'price', 'image_preview')
+    list_filter = ('product_type', 'category')
+    search_fields = ('name', 'description')
     prepopulated_fields = {"slug": ("name",)}
-
-
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ("name", "description", "parent")
-
-
-@admin.register(Cake)
-class CakeAdmin(admin.ModelAdmin):
-    list_display = ("name", "occasion", "price", "category", "image", "slug")
-    list_filter = (
-        "occasion",
-        "category",
-    )  # Use a tuple for single field
-    prepopulated_fields = {"slug": ("name",)}
-
-
-@admin.register(CustomCake)
-class CustomCakeAdmin(admin.ModelAdmin):
-    list_display = (
-        "flavor",
-        "filling",
-        "inscription",
-        "price",
-        "image",
-        "slug",
-    )
-    list_filter = ("flavor", "filling")
-    prepopulated_fields = {"slug": ("flavor", "filling")}
-
-
-@admin.register(Accessory)
-class AccessoryAdmin(admin.ModelAdmin):
-    list_display = ("name", "accessory_type", "price", "category", "image_preview", "slug")
-    list_filter = ("accessory_type", "category")
-    prepopulated_fields = {"slug": ("name",)}
+    ordering = ['product_type', 'name']
 
     def image_preview(self, obj):
-        return format_html('<img src="{}" width="50" height="50" />', obj.image.url) if obj.image else "-"
-    image_preview.short_description = "Image Preview"
+        """Show an image preview in the admin panel."""
+        if obj.image:
+            return format_html('<img src="{}" style="width: 50px; height: 50px; border-radius: 5px;"/>', obj.image.url)
+        return "No Image"
+
+    image_preview.short_description = "Image"
+
+# ---- CUSTOM CAKE ADMIN ----
+@admin.register(CustomCake)
+class CustomCakeAdmin(ProductAdmin):
+    list_display = ('name', get_flavour, 'filling', 'price', 'image_preview')
+    list_filter = ('flavour', 'filling')
+
+# ---- CUPCAKE ADMIN ----
+@admin.register(Cupcake)
+class CupcakeAdmin(ProductAdmin):
+    list_display = ('name', get_flavour, 'price', 'image_preview')
+    list_filter = ('flavour',)
+
+# ---- ACCESSORY ADMIN ----
+@admin.register(Accessory)
+class AccessoryAdmin(ProductAdmin):
+    list_display = ('name', 'accessory_type', 'price', 'image_preview')
+    list_filter = ('accessory_type',)
+
+# ---- CATEGORY ADMIN ----
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'parent')
+    search_fields = ('name',)
+    list_filter = ('parent',)
+
+# ---- CUSTOMIZATION OPTIONS ADMIN ----
+admin.site.register(Flavour)
+admin.site.register(Filling)
+admin.site.register(Frosting)
+admin.site.register(CakeSize)
