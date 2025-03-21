@@ -15,15 +15,15 @@ def generate_erd():
         "OrderLineItem",
         "Cake",
         "Category",
-        "Basket",
-        "BasketItem",
+        "bag",
+        "bagItem",
     ]
 
     # Define relationships
     relationships = [
         ("User", "CustomerProfile", "has many"),
         ("User", "Order", "has many"),
-        ("User", "Basket", "has many"),
+        ("User", "bag", "has many"),
         ("CustomerProfile", "User", "belongs to"),
         ("Order", "User", "belongs to"),
         ("Order", "OrderLineItem", "has many"),
@@ -31,10 +31,10 @@ def generate_erd():
         ("OrderLineItem", "Cake", "belongs to"),
         ("Cake", "Category", "belongs to"),
         ("Category", "Cake", "has many"),
-        ("Basket", "User", "belongs to"),
-        ("Basket", "BasketItem", "has many"),
-        ("BasketItem", "Basket", "belongs to"),
-        ("BasketItem", "Cake", "belongs to"),
+        ("bag", "User", "belongs to"),
+        ("bag", "bagItem", "has many"),
+        ("bagItem", "bag", "belongs to"),
+        ("bagItem", "Cake", "belongs to"),
     ]
 
     # Add nodes (entities)

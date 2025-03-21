@@ -64,9 +64,9 @@
 
             <!-- Shopping Cart with total below -->
             <div class="shopping-cart">
-                <a href="{% url 'view_basket' %}" class="cart-link">
+                <a href="{% url 'view_bag' %}" class="cart-link">
                     <i class="bi bi-cart-fill"></i>
-                    <span>Basket Total: €{{ grand_total|floatformat:2 }}</span>
+                    <span>bag Total: €{{ grand_total|floatformat:2 }}</span>
                 </a>
             </div>
 

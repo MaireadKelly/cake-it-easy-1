@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% load basket_filters %}
+{% load bag_filters %}
 
 {% block content %}
 <div class="container mt-5">
-    <h1>Your Basket</h1>
-    {% if basket_items %}
+    <h1>Your bag</h1>
+    {% if bag_items %}
     <table class="table">
         <thead>
             <tr>
@@ -17,11 +17,11 @@
             </tr>
         </thead>
         <tbody>
-            {% for item in basket_items %}
+            {% for item in bag_items %}
             <tr>
                 <td>{{ item.cake.name }}</td>
                 <td>
-                    <form method="POST" action="{% url 'update_basket' item.cake_id %}">
+                    <form method="POST" action="{% url 'update_bag' item.cake_id %}">
                         {% csrf_token %}
                         <button name="quantity" value="{{ item.quantity|add:-1 }}"
                             class="btn btn-sm btn-secondary">-</button>
@@ -33,7 +33,7 @@
                 <td>€{{ item.cake.price }}</td>
                 <td>€{{ item.quantity|floatformat:2|add:item.cake.price }}</td>
                 <td>
-                    <form method="POST" action="{% url 'remove_from_basket' item.cake_id %}">
+                    <form method="POST" action="{% url 'remove_from_bag' item.cake_id %}">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger btn-sm">Remove</button>
                     </form>
@@ -43,12 +43,12 @@
         </tbody>
     </table>
 
-    <h3>Basket Total: €{{ total }}</h3>
+    <h3>bag Total: €{{ total }}</h3>
     <h3>Delivery: €{{ delivery }}</h3>
     <h3>Grand Total: €{{ grand_total }}</h3>
     <a href="{% url 'checkout' %}" class="btn btn-primary">Proceed to Checkout</a>
     {% else %}
-    <p>Your basket is empty.</p>
+    <p>Your bag is empty.</p>
     {% endif %}
 </div>
 {% endblock %}

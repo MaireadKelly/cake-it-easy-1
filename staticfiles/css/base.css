@@ -274,7 +274,7 @@ form.d-flex input[type="search"] {
 }
 
 /* Shopping Cart Total Styling */
-.shopping-cart .basket-total {
+.shopping-cart .bag-total {
     font-size: 14px;
     color: var(--text-color);
 }

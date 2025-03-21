@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "cloudinary",
     "cloudinary_storage",
     "home",
-    "basket",
+    "bag",
     "checkout",
     "products",
 ]
@@ -70,7 +70,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "django.template.context_processors.media",
-                "basket.contexts.basket_contents",  # Custom context processor for basket
+                "bag.contexts.bag_contents",  # Custom context processor for bag
             ],
         },
     },

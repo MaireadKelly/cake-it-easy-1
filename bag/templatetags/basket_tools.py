@@ -15,24 +15,24 @@ def calc_subtotal(price, quantity):
     return price * quantity
 
 
-@register.inclusion_tag("basket/basket_summary.html", takes_context=True)
-def basket_summary(context):
+@register.inclusion_tag("bag/bag_summary.html", takes_context=True)
+def bag_summary(context):
     """
-    Custom inclusion tag to provide basket summary details in templates.
+    Custom inclusion tag to provide bag summary details in templates.
     """
     request = context["request"]
-    basket = request.session.get("basket", {})
+    bag = request.session.get("bag", {})
 
-    basket_items = []
+    bag_items = []
     total = 0
     product_count = 0
 
-    for item_id, item_data in basket.items():
+    for item_id, item_data in bag.items():
         product = get_object_or_404(Product, pk=item_id)
         if isinstance(item_data, int):
             total += item_data * product.price
             product_count += item_data
-            basket_items.append(
+            bag_items.append(
                 {
                     "product": product,
                     "quantity": item_data,
@@ -43,7 +43,7 @@ def basket_summary(context):
             for size, quantity in item_data["items_by_size"].items():
                 total += quantity * product.price
                 product_count += quantity
-                basket_items.append(
+                bag_items.append(
                     {
                         "product": product,
                         "quantity": quantity,
@@ -62,7 +62,7 @@ def basket_summary(context):
     grand_total = total + delivery
 
     context = {
-        "basket_items": basket_items,
+        "bag_items": bag_items,
         "total": total,
         "product_count": product_count,
         "delivery": delivery,

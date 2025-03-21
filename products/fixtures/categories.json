@@ -3,24 +3,60 @@
         "model": "products.category",
         "pk": 1,
         "fields": {
-            "name": "Standard Cakes",
-            "description": "Delicious signature cakes for all occasions."
+            "name": "Cakes",
+            "description": "Occasion cakes",
+            "category_type": "product",
+            "parent": null
         }
     },
     {
         "model": "products.category",
         "pk": 2,
         "fields": {
-            "name": "Custom Cakes",
-            "description": "Fully customizable cakes with Flavours, fillings, and decorations."
+            "name": "Cupcakes",
+            "description": "Cupcakes selection",
+            "category_type": "product",
+            "parent": null
         }
     },
     {
         "model": "products.category",
         "pk": 3,
         "fields": {
-            "name": "Cupcakes",
-            "description": "Custom cupcakes with assorted Flavours and toppers."
+            "name": "Custom Cakes",
+            "description": "Custom cake builder",
+            "category_type": "product",
+            "parent": null
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": 4,
+        "fields": {
+            "name": "Accessories",
+            "description": "Cake accessories",
+            "category_type": "product",
+            "parent": null
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": 5,
+        "fields": {
+            "name": "Wedding Cakes",
+            "description": "Elegant wedding cakes",
+            "category_type": "product",
+            "parent": null
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": 6,
+        "fields": {
+            "name": "Birthday Cakes",
+            "description": "Cakes for birthdays",
+            "category_type": "product",
+            "parent": 1
         }
     }
 ]

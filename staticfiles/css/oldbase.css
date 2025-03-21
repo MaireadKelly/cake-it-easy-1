@@ -279,12 +279,12 @@ form.d-flex input[type="search"] {
 }
 
 /* Shopping Cart Total Styling */
-.basket-page {
+.bag-page {
     background-color: #f1eee3;
     /* Update this with your desired color */
 }
 
-.shopping-cart .basket-total {
+.shopping-cart .bag-total {
     font-size: 14px;
     color: var(--text-color);
 }

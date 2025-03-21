@@ -1,4 +1,5 @@
 import stripe
+import json 
 from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
@@ -8,7 +9,7 @@ from .forms import OrderForm
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from products.models import Cake
-from basket.contexts import basket_contents
+from bag.contexts import bag_contents
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -23,7 +24,7 @@ def cache_checkout_data(request):
         stripe.PaymentIntent.modify(
             pid,
             metadata={
-                "basket": json.dumps(request.session.get("basket", {})),
+                "bag": json.dumps(request.session.get("bag", {})),
                 "save_info": request.POST.get("save_info"),
                 "username": request.user,
             },
@@ -39,13 +40,13 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
-    basket = request.session.get("basket", {})
-    if not basket:
-        messages.error(request, "Your basket is empty")
+    bag = request.session.get("bag", {})
+    if not bag:
+        messages.error(request, "Your bag is empty")
         return redirect("products")
 
-    current_basket = basket_contents(request)
-    total = current_basket["grand_total"]
+    current_bag = bag_contents(request)
+    total = current_bag["grand_total"]
     stripe_total = round(total * 100)
     intent = stripe.PaymentIntent.create(
         amount=stripe_total,
@@ -63,10 +64,10 @@ def checkout(request):
 
             pid = client_secret.split("_secret")[0]
             order.stripe_pid = pid
-            order.original_basket = basket
+            order.original_bag = bag
             order.save()
 
-            for item_id, item_data in basket.items():
+            for item_id, item_data in bag.items():
                 cake = get_object_or_404(Cake, pk=item_id)
                 if isinstance(item_data, int):
                     order_line_item = OrderLineItem(
@@ -85,7 +86,7 @@ def checkout(request):
                         )
                         order_line_item.save()
 
-            request.session["basket"] = {}
+            request.session["bag"] = {}
             messages.success(request, "Order successfully processed!")
             return redirect("order_confirmation", order_number=order.order_number)
         else:
@@ -149,8 +150,8 @@ def checkout_success(request, order_number):
         email will be sent to {order.email}.",
     )
 
-    if "basket" in request.session:
-        del request.session["basket"]
+    if "bag" in request.session:
+        del request.session["bag"]
 
     template = "checkout/checkout_success.html"
     context = {

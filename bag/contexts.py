@@ -4,23 +4,23 @@ from django.shortcuts import get_object_or_404
 from products.models import Cake
 
 
-def basket_contents(request):
+def bag_contents(request):
     """
-    Context processor to make basket contents available across all templates.
+    Context processor to make bag contents available across all templates.
     """
-    basket_items = []
+    bag_items = []
     total = 0
     cake_count = 0
-    basket = request.session.get("basket", {})
+    bag = request.session.get("bag", {})
 
-    for cake_id, item_data in basket.items():
+    for cake_id, item_data in bag.items():
         cake = get_object_or_404(Cake, pk=cake_id)
 
         # If item_data is an integer, it means it's a simple quantity
         if isinstance(item_data, int):
             total += item_data * cake.price
             cake_count += item_data
-            basket_items.append(
+            bag_items.append(
                 {
                     "cake_id": cake_id,
                     "quantity": item_data,
@@ -33,7 +33,7 @@ def basket_contents(request):
             for size, quantity in item_data["items_by_size"].items():
                 total += quantity * cake.price
                 cake_count += quantity
-                basket_items.append(
+                bag_items.append(
                     {
                         "cake_id": cake_id,
                         "quantity": quantity,
@@ -51,7 +51,7 @@ def basket_contents(request):
     grand_total = total + delivery
 
     context = {
-        "basket_items": basket_items,
+        "bag_items": bag_items,
         "total": total,
         "cake_count": cake_count,
         "delivery": delivery,

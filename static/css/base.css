@@ -192,11 +192,11 @@ nav .nav-link:hover {
 }
 
 /* Shopping Cart Total Styling */
-.basket-page {
+.bag-page {
     background-color: var(--accent-color); /* Update with desired color */
 }
 
-.shopping-cart .basket-total {
+.shopping-cart .bag-total {
     font-size: 14px;
     color: var(--text-color);
 }

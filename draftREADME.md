@@ -22,7 +22,7 @@
 ## 2. Features
 - **User Authentication**: Secure user registration, login, logout, and profile management.
 - **Product Browsing**: View available cakes with filtering, sorting, and search capabilities.
-- **Basket Management**: Add, update, or remove items, with a dynamically updated total.
+- **bag Management**: Add, update, or remove items, with a dynamically updated total.
 - **Secure Checkout**: Stripe-powered payment integration with order confirmation.
 - **User Profiles**: Manage personal information and view order history.
 - **Guest Checkout**: Allow users to complete a purchase without registering.
@@ -134,7 +134,7 @@
 ## 5. User Stories
 ### As a customer, I want to:
 - View and filter cakes by category or occasion.
-- Add cakes to my basket and customize my order.
+- Add cakes to my bag and customize my order.
 - Checkout securely and receive an order confirmation.
 - Use guest checkout if I prefer not to create an account.
 - Browse featured cakes easily from the home page.
@@ -157,14 +157,14 @@
 ### Testing Approach
 - **Manual Testing**:
   - Test product CRUD operations through the admin panel and forms.
-  - Verify basket updates (add/remove items, quantity changes).
+  - Verify bag updates (add/remove items, quantity changes).
   - Simulate payment flow using Stripe test keys.
   - Check user registration, login, and profile updates.
   - Test guest checkout feature to ensure no login is required.
   - Verify homepage functionality, including featured cakes and category listings.
   - Test adding custom cakes and accessories during checkout.
 - **Automated Testing**:
-  - Write unit tests for key models (`Product`, `Basket`, `Order`, `Comment`).
+  - Write unit tests for key models (`Product`, `bag`, `Order`, `Comment`).
   - Test views for correct HTTP responses and redirects.
 
 ### Tools
@@ -221,7 +221,7 @@ Deployed on Heroku.
 
 7. **Testing Deployed Version**:
    - Navigate to the deployed URL and ensure all functionality matches the development environment.
-   - Test user registration, basket, checkout, and profile management.
+   - Test user registration, bag, checkout, and profile management.
    - Verify the homepage displays featured cakes and categories correctly.
    - Test adding and customizing products from the `products` app.
 

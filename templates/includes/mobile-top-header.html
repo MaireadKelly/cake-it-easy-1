@@ -44,11 +44,11 @@
             <!-- Shopping Cart with total below -->
             <!-- Example: mobile-top-header.html -->
             <div class="shopping-cart mt-3 w-100">
-                <a href="{% url 'view_basket' %}" class="btn btn-outline-secondary position-relative w-100">
+                <a href="{% url 'view_bag' %}" class="btn btn-outline-secondary position-relative w-100">
                     <i class="bi bi-cart-fill"></i>
-                    <!-- Basket total below the icon -->
-                    <span class="basket-total d-block text-center">€{{ total|floatformat:2 }}</span>
-                    <span class="basket-total d-block text-center">€{{ grand_total|floatformat:2 }}</span>
+                    <!-- bag total below the icon -->
+                    <span class="bag-total d-block text-center">€{{ total|floatformat:2 }}</span>
+                    <span class="bag-total d-block text-center">€{{ grand_total|floatformat:2 }}</span>
                 </a>
             </div>
 
