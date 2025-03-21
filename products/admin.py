@@ -46,9 +46,9 @@ class AccessoryAdmin(ProductAdmin):
 # ---- CATEGORY ADMIN ----
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'parent')
+    list_display = ('name', 'category_type', 'parent')
     search_fields = ('name',)
-    list_filter = ('parent',)
+    list_filter = ('category_type', 'parent')
 
 # ---- CUSTOMIZATION OPTIONS ADMIN ----
 admin.site.register(Flavour)
