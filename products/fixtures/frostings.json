@@ -1,0 +1,51 @@
+[
+    {
+        "model": "products.frosting",
+        "pk": 1,
+        "fields": {
+            "name": "Vanilla Buttercream"
+        }
+    },
+    {
+        "model": "products.frosting",
+        "pk": 2,
+        "fields": {
+            "name": "Chocolate Ganache"
+        }
+    },
+    {
+        "model": "products.frosting",
+        "pk": 3,
+        "fields": {
+            "name": "Cream Cheese Frosting"
+        }
+    },
+    {
+        "model": "products.frosting",
+        "pk": 4,
+        "fields": {
+            "name": "Whipped Cream"
+        }
+    },
+    {
+        "model": "products.frosting",
+        "pk": 5,
+        "fields": {
+            "name": "Fondant"
+        }
+    },
+    {
+        "model": "products.frosting",
+        "pk": 6,
+        "fields": {
+            "name": "Swiss Meringue"
+        }
+    },
+    {
+        "model": "products.frosting",
+        "pk": 7,
+        "fields": {
+            "name": "Royal Icing"
+        }
+    }
+]

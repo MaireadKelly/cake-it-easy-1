@@ -3,143 +3,44 @@
         "model": "products.product",
         "pk": 1,
         "fields": {
-            "name": "Chocolate Birthday Cake",
-            "product_type": "cake",
-            "category": 1,
-            "description": "A rich chocolate cake perfect for birthdays.",
-            "price": 29.99,
-            "image": "https://example.com/images/chocolate_birthday_cake.jpg",
-            "slug": "chocolate-birthday-cake"
+            "name": "Classic Birthday Cake",
+            "description": "A delicious birthday cake with customizable frosting and filling.",
+            "price": "35.00",
+            "image": "products/birthday_cake.jpg",
+            "category": 1
+        }
+    },
+    {
+        "model": "products.customcake",
+        "pk": 1,
+        "fields": {
+            "product_ptr": 1,
+            "size": 1,
+            "filling": 1,
+            "frosting": 1,
+            "inscription": "Happy Birthday!"
         }
     },
     {
         "model": "products.product",
         "pk": 2,
         "fields": {
-            "name": "Vanilla Birthday Cake",
-            "product_type": "cake",
-            "category": 1,
-            "description": "A classic vanilla cake for special occasions.",
-            "price": 25.99,
-            "image": "https://example.com/images/vanilla_birthday_cake.jpg",
-            "slug": "vanilla-birthday-cake"
+            "name": "Communion Cake",
+            "description": "Perfect cake for First Holy Communion celebrations.",
+            "price": "40.00",
+            "image": "products/communion_cake.jpg",
+            "category": 1
         }
     },
     {
-        "model": "products.product",
-        "pk": 3,
+        "model": "products.customcake",
+        "pk": 2,
         "fields": {
-            "name": "Red Velvet Communion Cake",
-            "product_type": "cake",
-            "category": 2,
-            "description": "A delicious red velvet cake, ideal for communions.",
-            "price": 35.99,
-            "image": "https://example.com/images/red_velvet_communion_cake.jpg",
-            "slug": "red-velvet-communion-cake"
-        }
-    },
-    {
-        "model": "products.product",
-        "pk": 4,
-        "fields": {
-            "name": "Luxury Wedding Cake",
-            "product_type": "cake",
-            "category": 3,
-            "description": "An elegant wedding cake with intricate designs.",
-            "price": 99.99,
-            "image": "https://example.com/images/luxury_wedding_cake.jpg",
-            "slug": "luxury-wedding-cake"
-        }
-    },
-    {
-        "model": "products.product",
-        "pk": 5,
-        "fields": {
-            "name": "Custom Chocolate Cake",
-            "product_type": "custom_cake",
-            "category": 4,
-            "description": "Personalize your own chocolate cake.",
-            "price": 49.99,
-            "image": "https://example.com/images/custom_chocolate_cake.jpg",
-            "slug": "custom-chocolate-cake"
-        }
-    },
-    {
-        "model": "products.product",
-        "pk": 6,
-        "fields": {
-            "name": "Custom Vanilla Cake",
-            "product_type": "custom_cake",
-            "category": 4,
-            "description": "Design your own vanilla cake with various options.",
-            "price": 45.99,
-            "image": "https://example.com/images/custom_vanilla_cake.jpg",
-            "slug": "custom-vanilla-cake"
-        }
-    },
-    {
-        "model": "products.product",
-        "pk": 7,
-        "fields": {
-            "name": "Chocolate Cupcake (6-pack)",
-            "product_type": "cupcake",
-            "category": 5,
-            "description": "A 6-pack of rich chocolate cupcakes.",
-            "price": 12.99,
-            "image": "https://example.com/images/chocolate_cupcake_pack.jpg",
-            "slug": "chocolate-cupcake-pack"
-        }
-    },
-    {
-        "model": "products.product",
-        "pk": 8,
-        "fields": {
-            "name": "Vanilla Cupcake (6-pack)",
-            "product_type": "cupcake",
-            "category": 5,
-            "description": "A 6-pack of delicious vanilla cupcakes.",
-            "price": 11.99,
-            "image": "https://example.com/images/vanilla_cupcake_pack.jpg",
-            "slug": "vanilla-cupcake-pack"
-        }
-    },
-    {
-        "model": "products.product",
-        "pk": 9,
-        "fields": {
-            "name": "Birthday Cake Toppers",
-            "product_type": "accessory",
-            "category": 6,
-            "description": "Decorative toppers for birthday cakes.",
-            "price": 5.99,
-            "image": "https://example.com/images/birthday_cake_toppers.jpg",
-            "slug": "birthday-cake-toppers"
-        }
-    },
-    {
-        "model": "products.product",
-        "pk": 10,
-        "fields": {
-            "name": "Balloon Set",
-            "product_type": "accessory",
-            "category": 6,
-            "description": "A set of colorful balloons for celebrations.",
-            "price": 8.99,
-            "image": "https://example.com/images/balloon_set.jpg",
-            "slug": "balloon-set"
-        }
-    },
-    {
-        "model": "products.product",
-        "pk": 11,
-        "fields": {
-            "name": "Party Candles",
-            "product_type": "accessory",
-            "category": 6,
-            "description": "A pack of candles for birthday and party cakes.",
-            "price": 3.99,
-            "image": "https://example.com/images/party_candles.jpg",
-            "slug": "party-candles"
+            "product_ptr": 2,
+            "size": 2,
+            "filling": 2,
+            "frosting": 2,
+            "inscription": "God Bless!"
         }
     }
 ]

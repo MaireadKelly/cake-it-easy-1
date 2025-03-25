@@ -1,0 +1,62 @@
+[
+  {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+      "name": "Classic Birthday Cake",
+      "description": "A delicious classic birthday cake, perfect for any age.",
+      "price": "35.00",
+      "category": 1,
+      "image": "products/birthday_classic.jpg",
+      "slug": "classic-birthday-cake"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+      "name": "First Holy Communion Cake",
+      "description": "Elegant white cake with a delicate decoration for a First Holy Communion celebration.",
+      "price": "45.00",
+      "category": 1,
+      "image": "products/communion_cake.jpg",
+      "slug": "first-holy-communion-cake"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+      "name": "Chocolate Cupcake",
+      "description": "Moist chocolate cupcakes topped with rich chocolate frosting.",
+      "price": "2.50",
+      "category": 2,
+      "image": "products/chocolate_cupcake.jpg",
+      "slug": "chocolate-cupcake"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+      "name": "Custom Birthday Cake",
+      "description": "Design your own birthday cake with our custom cake builder.",
+      "price": "55.00",
+      "category": 3,
+      "image": "products/custom_birthday_cake.jpg",
+      "slug": "custom-birthday-cake"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+      "name": "Balloons & Confetti Set",
+      "description": "Party-ready balloons and confetti in various colors.",
+      "price": "12.00",
+      "category": 4,
+      "image": "products/balloon_set.jpg",
+      "slug": "balloons-confetti-set"
+    }
+  }
+]

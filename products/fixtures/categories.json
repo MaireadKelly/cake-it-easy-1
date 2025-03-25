@@ -4,8 +4,7 @@
         "pk": 1,
         "fields": {
             "name": "Cakes",
-            "description": "Occasion cakes",
-            "category_type": "product",
+            "description": "",
             "parent": null
         }
     },
@@ -14,8 +13,7 @@
         "pk": 2,
         "fields": {
             "name": "Cupcakes",
-            "description": "Cupcakes selection",
-            "category_type": "product",
+            "description": "",
             "parent": null
         }
     },
@@ -24,8 +22,7 @@
         "pk": 3,
         "fields": {
             "name": "Custom Cakes",
-            "description": "Custom cake builder",
-            "category_type": "product",
+            "description": "",
             "parent": null
         }
     },
@@ -34,8 +31,7 @@
         "pk": 4,
         "fields": {
             "name": "Accessories",
-            "description": "Cake accessories",
-            "category_type": "product",
+            "description": "",
             "parent": null
         }
     },
@@ -44,8 +40,7 @@
         "pk": 5,
         "fields": {
             "name": "Wedding Cakes",
-            "description": "Elegant wedding cakes",
-            "category_type": "product",
+            "description": "",
             "parent": null
         }
     },
@@ -53,10 +48,27 @@
         "model": "products.category",
         "pk": 6,
         "fields": {
-            "name": "Birthday Cakes",
-            "description": "Cakes for birthdays",
-            "category_type": "product",
-            "parent": 1
+            "name": "Fillings",
+            "description": "",
+            "parent": 3
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": 7,
+        "fields": {
+            "name": "Frostings",
+            "description": "",
+            "parent": 3
+        }
+    },
+    {
+        "model": "products.category",
+        "pk": 8,
+        "fields": {
+            "name": "Flavours",
+            "description": "",
+            "parent": 3
         }
     }
 ]

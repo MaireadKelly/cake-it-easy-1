@@ -1,0 +1,50 @@
+[
+  {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+      "name": "Classic Birthday Cake",
+      "description": "A delicious birthday cake with customizable frosting and filling.",
+      "price": "35.00",
+      "image": "products/birthday_cake.jpg",
+      "category": 1,
+      "slug": "classic-birthday-cake"
+    }
+  },
+  {
+    "model": "products.customcake",
+    "pk": 1,
+    "fields": {
+      "product_ptr": 1,
+      "size": 1,
+      "filling": 1,
+      "frosting": 1,
+      "inscription": "Happy Birthday!",
+      "slug": "-1"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+      "name": "Communion Cake",
+      "description": "Perfect cake for First Holy Communion celebrations.",
+      "price": "40.00",
+      "image": "products/communion_cake.jpg",
+      "category": 1,
+      "slug": "communion-cake"
+    }
+  },
+  {
+    "model": "products.customcake",
+    "pk": 2,
+    "fields": {
+      "product_ptr": 2,
+      "size": 2,
+      "filling": 2,
+      "frosting": 2,
+      "inscription": "God Bless!",
+      "slug": "-2"
+    }
+  }
+]

@@ -1,0 +1,51 @@
+[
+    {
+        "model": "products.filling",
+        "pk": 1,
+        "fields": {
+            "name": "Strawberry Jam"
+        }
+    },
+    {
+        "model": "products.filling",
+        "pk": 2,
+        "fields": {
+            "name": "Raspberry Jam"
+        }
+    },
+    {
+        "model": "products.filling",
+        "pk": 3,
+        "fields": {
+            "name": "Chocolate Fudge"
+        }
+    },
+    {
+        "model": "products.filling",
+        "pk": 4,
+        "fields": {
+            "name": "Lemon Curd"
+        }
+    },
+    {
+        "model": "products.filling",
+        "pk": 5,
+        "fields": {
+            "name": "Buttercream"
+        }
+    },
+    {
+        "model": "products.filling",
+        "pk": 6,
+        "fields": {
+            "name": "Cream Cheese"
+        }
+    },
+    {
+        "model": "products.filling",
+        "pk": 7,
+        "fields": {
+            "name": "Vanilla Custard"
+        }
+    }
+]
