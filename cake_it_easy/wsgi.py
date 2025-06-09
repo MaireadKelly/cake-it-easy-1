@@ -1,5 +1,5 @@
 """
-WSGI config for found_it project.
+WSGI config for cake_it_easy project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
