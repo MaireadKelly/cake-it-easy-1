@@ -107,7 +107,7 @@
    ```
 
 5. **Update Project Settings**:
-   - In `found_it/settings.py`, update the following:
+   - In `cake_it_easy/settings.py`, update the following:
      - Ensure `DEBUG` is set to `False` for production.
      - Update the `DATABASES` setting with your PostgreSQL/MySQL credentials.
      - Add the URL of your deployed site to `ALLOWED_HOSTS`.
@@ -192,7 +192,7 @@ Deployed on Heroku.
 
 ### Deployment Steps
 1. **Prepare the App for Deployment**:
-   - Update settings in `found_it/settings.py` to use environment variables for production.
+   - Update settings in `cake_it_easy/settings.py` to use environment variables for production.
    - Disable `DEBUG` mode.
    - Ensure static and media files are properly configured (using Cloudinary).
 

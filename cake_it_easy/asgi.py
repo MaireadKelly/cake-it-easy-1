@@ -1,5 +1,5 @@
 """
-ASGI config for found_it project.
+ASGI config for cake_it_easy project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
